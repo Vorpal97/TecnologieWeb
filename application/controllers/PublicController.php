@@ -13,6 +13,13 @@ class PublicController extends Zend_Controller_Action
         // action body
     }
 
+    public function catalogAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 
