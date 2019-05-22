@@ -2,15 +2,16 @@
 
 class PublicController extends Zend_Controller_Action
 {
-
+    protected $_logger;
     public function init()
     {
-        /* Initialize action controller here */
+        $this->_helper->layout->setLayout('main');
+        $this->_logger = Zend_Registry::get('log');
     }
 
     public function indexAction()
     {
-        // action body
+        
     }
 
     public function catalogAction()

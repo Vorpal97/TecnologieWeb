@@ -4,6 +4,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
 
   protected $_logger;
+  protected $_view;
 
   protected function _initLogging(){
     $writer = new Zend_Log_Writer_Stream(APPLICATION_PATH . '/data/log/log.log');
@@ -12,5 +13,4 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     $this->_logger = $logger;
     $logger->info('Bootstrap ' .__METHOD__);
   }
-
 }
