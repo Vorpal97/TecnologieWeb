@@ -270,7 +270,7 @@ a:active, a:focus{background:transparent;}/* IE10 + 11 Bugfix - prevents grey ba
 hr, .borderedbox{border-color:#D7D7D7;}
 label span{color:#FF0000; background-color:inherit;}
 input:focus, textarea:focus, *:required:focus{border-color:#A2B70D;}
-.overlay{color:#FFFFFF; background-color:inherit; padding-bottom:13%}
+.overlay{color:#FFFFFF; background-color:inherit}
 .overlay::after{color:inherit; background-color:rgba(0,0,0,.4);}
 .overlay.coloured::after{background-color:#414905;}
 
