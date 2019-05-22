@@ -23,8 +23,15 @@ class PublicController extends Zend_Controller_Action
         // action body
     }
 
+    public function loginAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 
 
 

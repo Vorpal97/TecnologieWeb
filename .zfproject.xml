@@ -15,6 +15,7 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="catalog"/>
           <actionMethod actionName="faq"/>
+          <actionMethod actionName="login"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
@@ -38,6 +39,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Public">
             <viewScriptFile forActionName="faq"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Public">
+            <viewScriptFile forActionName="login"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -80,6 +84,7 @@
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="catalog"/>
             <testApplicationActionMethod forActionName="faq"/>
+            <testApplicationActionMethod forActionName="login"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
