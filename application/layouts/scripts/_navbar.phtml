@@ -6,7 +6,11 @@
         </div>
         <nav id="mainav" class="fl_right">
             <ul class="clear">
-                <li class="active"><a href="index.html">Home</a></li>
+                <li class="active"><a href=" <?= $this->url(array(
+                            'controller' => 'public',
+                            'action' => 'index'),
+                            'default', true ); ?>"
+                                      title="Home">Home</a></li>
                 <li><a class="drop" href="#">Catalogo</a>
                     <ul>
                         <li><a href="pages/gallery.html">Roba 1</a></li>
