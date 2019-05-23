@@ -9,28 +9,32 @@
                             'controller' => 'public',
                             'action' => 'index'),
                             'default', true ); ?>"
-                            title = "Home">Home</a></li>
+                            title = "Home" >Home</a></li>
                 <li><a href="<?= $this->url(array(
                             'controller' => 'public',
                             'action' => 'catalog'),
                             'default', true ); ?>"
-                            title = "Catalogo">Catalogo</a>
+                            title = "Catalogo" >Catalogo</a>
                 </li>
                 <li><a href="<?= $this->url(array(
                             'controller' => 'public',
                             'action' => 'profile'),
                             'default', true ); ?>"
-                            title ="Profilo">Profilo</a>
+                            title = "Profilo" >Profilo</a>
                 </li>
                 <li><a href="<?= $this->url(array(
-                    'controller' => 'public',
-                    'action' => 'register'),
-                    'default', true ); ?>"
-                    title ="Registrati">Registrati</a>
+                            'controller' => 'public',
+                            'action' => 'register'),
+                            'default', true ); ?>"
+                            title = "Registrati" >Registrati</a>
                 </li>
-                <li><a href="#">Accedi</a></li>
+                <li><a href="<?= $this->url(array(
+                            'controller' => 'public',
+                            'action' => 'login'),
+                            'default', true); ?>"
+                            title = "Login" >Accedi</a>
+                </li>
             </ul>
         </nav>
-        <!-- ################################################################################################ -->
     </header>
 </div>
