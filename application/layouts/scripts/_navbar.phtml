@@ -22,7 +22,12 @@
                             'default', true ); ?>"
                             title ="Profilo">Profilo</a>
                 </li>
-                <li><a href="#">Registrati</a></li>
+                <li><a href="<?= $this->url(array(
+                    'controller' => 'public',
+                    'action' => 'register'),
+                    'default', true ); ?>"
+                    title ="Registrati">Registrati</a>
+                </li>
                 <li><a href="#">Accedi</a></li>
             </ul>
         </nav>
