@@ -2,7 +2,9 @@
 
 class PublicController extends Zend_Controller_Action
 {
-    protected $_logger;
+
+    protected $_logger = null;
+
     public function init()
     {
         $this->_helper->layout->setLayout('main');
@@ -34,8 +36,15 @@ class PublicController extends Zend_Controller_Action
         // action body
     }
 
+    public function profileAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 
 
 
