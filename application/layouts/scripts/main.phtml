@@ -7,68 +7,16 @@
         <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
     </head>
     <body id="top">
-        <div class="bgded overlay" style="background-image:url('images/samples/teslawallpaper.jpg'); ; padding-bottom:13%">
-            <!-- ################################################################################################ -->
-            <div class="wrapper row1">
-                <header id="header" class="hoc clear">
-                    <!-- ################################################################################################ -->
-                    <div id="logo" class="fl_left">
-                        <h1><a href="index.html">Izy car rent</a></h1>
-                    </div>
-                    <nav id="mainav" class="fl_right">
-                        <ul class="clear">
-                            <li class="active"><a href="index.html">Home</a></li>
-                            <li><a class="drop" href="#">Catalogo</a>
-                                <ul>
-                                    <li><a href="pages/gallery.html">Roba 1</a></li>
-                                    <li><a href="pages/full-width.html">Roba 2</a></li>
-                                    <li><a href="pages/sidebar-left.html">Roba 3</a></li>
-                                </ul>
-                            </li>
-                            <li><a class="drop" href="#">Profilo</a>
-                                <ul>
-                                    <li><a href="#">Roba 1</a></li>
-                                    <li><a class="drop" href="#">Roba 2</a>
-                                        <ul>
-                                            <li><a href="#">Roba 1</a></li>
-                                            <li><a href="#">Roba 2</a></li>
-                                            <li><a href="#">Roba 3</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Roba 3</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Registrati</a></li>
-                            <li><a href="#">Accedi</a></li>
-                        </ul>
-                    </nav>
-                    <!-- ################################################################################################ -->
-                </header>
-            </div>
-            <!-- ################################################################################################ -->
-            <!-- ################################################################################################ -->
-            <!-- ################################################################################################ -->
-            <section id="pageintro" class="hoc clear">
-                <div>
-                    <!-- ################################################################################################ -->
-                    <h4 class="heading">Noleggia i tuoi sogni</h4>
-                    <p>Il più vasto parco d'auto d'europa</p>
-                    <!-- ################################################################################################ -->
-                </div>
-            </section>
-            <!-- ################################################################################################ -->
-        </div>
-        <!-- End Top Background Image Wrapper -->
-        <!-- ################################################################################################ -->
-        <!-- ################################################################################################ -->
-        <!-- ################################################################################################ -->
-        <div class="wrapper row2">
+        <?= $this->render('_navbar.phtml'); ?>  
+
+        <div>
             <?php echo $this->layout()->content; ?>
         </div>
+
         <!-- ################################################################################################ -->
         <!-- ################################################################################################ -->
         <div class="wrapper row4 bgded overlay" style="background-image:url('images/demo/backgrounds/02.png');">
-          <?= $this->render('_footer.phtml') ?>
+          <?= $this->render('_footer.phtml'); ?>
         </div>
         <!-- ################################################################################################ -->
         <!-- ################################################################################################ -->
