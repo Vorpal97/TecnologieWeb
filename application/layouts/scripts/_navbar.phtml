@@ -1,34 +1,26 @@
 <div class="wrapper row1" style="z-index: 2;">
     <header id="header" class="hoc clear">
-        <!-- ################################################################################################ -->
         <div id="logo" class="fl_left">
             <h1><a href="index.html">Izy car rent</a></h1>
         </div>
         <nav id="mainav" class="fl_right">
             <ul class="clear">
-                <li class="active"><a href=" <?= $this->url(array(
+                <li class=""><a href=" <?= $this->url(array(
                             'controller' => 'public',
                             'action' => 'index'),
                             'default', true ); ?>"
                             title = "Home">Home</a></li>
-                <li class="active"><a href="<?= $this->url(array(
+                <li><a href="<?= $this->url(array(
                             'controller' => 'public',
                             'action' => 'catalog'),
                             'default', true ); ?>"
                             title = "Catalogo">Catalogo</a>
                 </li>
-                <li><a class="drop" href="#">Profilo</a>
-                    <ul>
-                        <li><a href="#">Roba 1</a></li>
-                        <li><a class="drop" href="#">Roba 2</a>
-                            <ul>
-                                <li><a href="#">Roba 1</a></li>
-                                <li><a href="#">Roba 2</a></li>
-                                <li><a href="#">Roba 3</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Roba 3</a></li>
-                    </ul>
+                <li><a href="<?= $this->url(array(
+                            'controller' => 'public',
+                            'action' => 'profile'),
+                            'default', true ); ?>"
+                            title ="Profilo">Profilo</a>
                 </li>
                 <li><a href="#">Registrati</a></li>
                 <li><a href="#">Accedi</a></li>
