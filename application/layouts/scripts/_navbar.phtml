@@ -10,13 +10,12 @@
                             'controller' => 'public',
                             'action' => 'index'),
                             'default', true ); ?>"
-                                      title="Home">Home</a></li>
-                <li><a class="drop" href="#">Catalogo</a>
-                    <ul>
-                        <li><a href="pages/gallery.html">Roba 1</a></li>
-                        <li><a href="pages/full-width.html">Roba 2</a></li>
-                        <li><a href="pages/sidebar-left.html">Roba 3</a></li>
-                    </ul>
+                            title = "Home">Home</a></li>
+                <li class="active"><a href="<?= $this->url(array(
+                            'controller' => 'public',
+                            'action' => 'catalog'),
+                            'default', true ); ?>"
+                            title = "Catalogo">Catalogo</a>
                 </li>
                 <li><a class="drop" href="#">Profilo</a>
                     <ul>
