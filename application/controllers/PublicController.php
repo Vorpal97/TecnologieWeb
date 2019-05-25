@@ -3,7 +3,7 @@
 class PublicController extends Zend_Controller_Action
 {
 
-    protected $_logger = null;
+    protected $_logger;
 
     public function init()
     {
@@ -13,32 +13,32 @@ class PublicController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        
+         $this->_logger->info('Attivato:    '. __METHOD__);
     }
 
     public function catalogAction()
     {
-        // action body
+        $this->_logger->info('Attivato:    '. __METHOD__);
     }
 
     public function faqAction()
     {
-        // action body
+        $this->_logger->info('Attivato:    '. __METHOD__);
     }
 
     public function loginAction()
     {
-        // action body
+        $this->_logger->info('Attivato:    '. __METHOD__);
     }
 
     public function registerAction()
     {
-        // action body
+        $this->_logger->info('Attivato:    '. __METHOD__);
     }
 
     public function profileAction()
     {
-        // action body
+        $this->_logger->info('Attivato:    '. __METHOD__);
     }
 
 
