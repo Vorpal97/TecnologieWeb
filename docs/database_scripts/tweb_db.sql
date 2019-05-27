@@ -1,14 +1,4 @@
---#############################################################################
---
--- TWEB DB SOURCE CODE
---
---   grp_10
---
---   Designed and written by Manuel Manelli on 25 of may 2019
---
---   Define schema
---
---#############################################################################
+
 
 CREATE TABLE Utente(
   id_utente INT AUTO_INCREMENT NOT NULL PRIMARY KEY,

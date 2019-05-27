@@ -47,3 +47,14 @@
 	padding-left: 60px;
 	color: #ffffff;
 }
+
+#paginaCat .sidebar-filtri{
+    background-color: #ffffff;
+    width: 14em;
+    float: left;
+    padding: 1em 0.5em;
+    margin-left: -30em;
+    margin-top: 5em;
+    list-style-type: none;
+    color: #000000;
+}

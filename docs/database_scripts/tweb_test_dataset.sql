@@ -1,14 +1,4 @@
---#############################################################################
---
--- TWEB DB SOURCE CODE
---
---   grp_10
---
---   Designed and written by Manuel Manelli on 25 of may 2019
---
---   Define schema
---
---#############################################################################
+﻿
 
 INSERT INTO Auto
   (targa,marca,modello,segmento,alimentazione,cilindrata,potenza,cavalli,prezzo,colore,n_posti,immagine)
