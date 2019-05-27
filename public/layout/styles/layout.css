@@ -10,7 +10,7 @@ File: Layout CSS
 
 @import url("font-awesome.min.css");
 @import url("framework.css");
-
+@import "style.css";
 /* Rows
 --------------------------------------------------------------------------------------------------------------- */
 .row1, .row1 a{}
