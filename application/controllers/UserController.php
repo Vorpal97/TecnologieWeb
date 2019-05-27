@@ -5,7 +5,7 @@ class UserController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+      $this->_helper->layout->setLayout('user');
     }
 
     public function indexAction()
@@ -13,6 +13,17 @@ class UserController extends Zend_Controller_Action
         // action body
     }
 
+    public function logoutAction()
+    {
+        // action body
+    }
+
+    public function profiloAction()
+    {
+        // action body
+    }
+
 
 }
+
 
