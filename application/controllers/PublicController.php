@@ -4,11 +4,13 @@ class PublicController extends Zend_Controller_Action
 {
 
     protected $_logger;
+    protected $_form;
 
     public function init()
     {
         $this->_helper->layout->setLayout('main');
         $this->_logger = Zend_Registry::get('log');
+        $this->view->loginForm = $this->getLoginForm();
     }
 
     public function indexAction()
@@ -41,7 +43,13 @@ class PublicController extends Zend_Controller_Action
         $this->_logger->info('Attivato:    '. __METHOD__);
     }
 
-
+    private function getLoginForm()
+    {
+        $urlHelper = $this->_helper->getHelper('url');
+        $this->_form = new Application_Form_Public_Auth_Login();
+        return $this->_form;    
+    }
+    
 }
 
 
