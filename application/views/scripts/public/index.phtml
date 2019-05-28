@@ -30,8 +30,11 @@
       </li>
       <li class="one_quarter">
         <article>
-          <h6 class="heading font-x1"><a href="#">F.A.Q.</a></h6>
-          <p>Le Faq.</p>
+          <h6 class="heading font-x1"><a href="<?= $this->url(array(
+                      'controller' => 'public',
+                      'action' => 'FAQ'),
+                      'default', true ); ?>">FAQ</a></h6>
+          <p>Le domande più frequenti degli utenti</p>
         </article>
       </li>
     </ul>
