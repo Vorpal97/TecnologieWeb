@@ -6,11 +6,13 @@ class PublicController extends Zend_Controller_Action
     protected $_logger;
     protected $_form;
 
+
     public function init()
     {
         $this->_helper->layout->setLayout('main');
         $this->_logger = Zend_Registry::get('log');
         $this->view->loginForm = $this->getLoginForm();
+        $this->view->registerForm = $this->getRegisterForm();
     }
 
     public function indexAction()
@@ -46,18 +48,13 @@ class PublicController extends Zend_Controller_Action
     private function getLoginForm()
     {
         $this->_form = new Application_Form_Public_Auth_Login();
-        return $this->_form;    
+        return $this->_form;
     }
-    
+
+    private function getRegisterForm()
+    {
+      $this->$_form = new Application_Form_Public_Auth_Register();
+      return $this->$_form;
+    }
+
 }
-
-
-
-
-
-
-
-
-
-
-
