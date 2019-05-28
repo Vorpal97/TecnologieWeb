@@ -35,6 +35,11 @@ protected function _initViewSettings()
     $this->_view->headTitle('IZY Car rent');
 }
 
-
-
+protected function _initDefaultModuleAutoloader()
+    {
+    	$loader = Zend_Loader_Autoloader::getInstance();
+		$loader->registerNamespace('App_');
+        $this->getResourceLoader()
+             ->addResourceType('modelResource','models/resources','Resource');  
+  	}
 }
