@@ -20,7 +20,8 @@
             <div class="prod">
                 <div class="oneitem">
                     <?php echo'<h1 class="title">Marca: ' . $auto->marca . ' modello: ' . $auto->modello . '</h1>' ?>
-                    <?php $this->autoImg($auto->immagine, array('class' => 'imagefrm')) ?>
+                    <!--<?php $this->autoImg($auto->immagine, array('class' => 'imagefrm')) ?>-->
+                    <?php echo '<img src="http://localhost/TecnologieWeb/public/images/catalog/' . $auto->immagine . '" class="imagefrm" >' ?>
                     <div class="info">
                         <ul class="meta">
                             <li>scheda tecninca</li>
