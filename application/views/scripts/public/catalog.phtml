@@ -16,30 +16,29 @@
             </ul>
         </nav>
         <div>
+            <?php foreach ($this->products as $auto) : ?>
             <div class="prod">
                 <div class="oneitem">
-                    <div class="image">
-                        <h1 class="title">Marca e modello</h1>
-                        <img src="../../../public/images/demo/catalogTesla01.png" class="imagefrm">
-                    </div>
+                    <?php echo'<h1 class="title">Marca: ' . $auto->marca . ' modello: ' . $auto->modello . '</h1>' ?>
+                    <?php $this->autoImg($auto->immagine, array('class' => 'imagefrm')) ?>
                     <div class="info">
                         <ul class="meta">
                             <li>scheda tecninca</li>
-                            <li>segmento</li>
-                            <li>targa: bl1234la</li>
-                            <li>potenza: kw</li>
-                            <li>cilindrata:   1200</li>
-                            <li>alimentazione:   diesel</li>
-                            <li>cavalli:   120cv</li>
-                            <li>vmax</li>
-                            <li>prezzo</li>
-                            <li>colore</li>
-                            <li>posti</li>
+                            <?php echo '<li>prezzo: ' . $auto->prezzo . '</li>' ?>
+                            <?php echo '<li>segmento: ' . $auto->segmento . '</li>' ?>
+                            <?php echo '<li>targa: ' . $auto->targa . '</li>' ?>
+                            <?php echo '<li>potenza: ' . $auto->potenza . '</li>' ?>
+                            <?php echo '<li>cilindrata: ' . $auto->cilindrata . '</li>' ?>
+                            <?php echo '<li>alimentazione: ' . $auto->alimentazione . '</li>' ?>
+                            <?php echo '<li>cavalli: ' . $auto->cavalli . '</li>' ?>
+                            <?php echo '<li>colore: ' . $auto->colore . '</li>' ?>
+                            <?php echo '<li>posti: ' . $auto->n_posti . '</li>' ?>
                             <input type="submit" value="Prenota" name="btnPrenota" />
                         </ul>
                     </div>
                 </div>
             </div>
+            <?php endforeach ?>
         </div>
     </div>
 </section>
