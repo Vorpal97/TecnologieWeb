@@ -6,8 +6,9 @@
       <?= $this->headTitle(); ?>
     </head>
     <body id="top">
-        <?= $this->render('_navbar.phtml'); ?>
-        <div style="padding-top: 80px; background-color: whitesmoke">
+        <?= $this->render('_navbarUser.phtml'); ?>
+
+        <div>
             <?php echo $this->layout()->content; ?>
         </div>
 
@@ -16,11 +17,19 @@
         <div class="wrapper row4 bgded overlay" style="background-image:url('http://localhost/TecnologieWeb/public/images/samples/footer_wallpaper.jpg');">
           <?= $this->render('_footer.phtml'); ?>
         </div>
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
         <div class="wrapper row5">
             <div id="copyright" class="hoc clear">
+                <!-- ################################################################################################ -->
                 <p class="fl_left">Copyright &copy; 2019 - All Rights Reserved - <a href="#">Domain Name</a></p>
+                <!-- ################################################################################################ -->
             </div>
         </div>
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
+        <!-- ################################################################################################ -->
         <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
         <!-- JAVASCRIPTS -->
         <script src="layout/scripts/jquery.min.js"></script>

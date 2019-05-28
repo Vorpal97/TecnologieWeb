@@ -9,28 +9,28 @@
         </div>
         <nav id="mainav" class="fl_right">
             <ul class="clear">
-                <li><a href=" <?= $this->url(array(                             //classe active evidenzia elemento
-                            'controller' => 'public',
-                            'action' => 'index'),   
+                <li><a href=" <?= $this->url(array(
+                            'controller' => 'user',
+                            'action' => 'index'),
                             'default', true ); ?>"
                             title = "Home" >Home</a></li>
-                <li><a href="<?= $this->url(array(                              //classe drop per inserire menù a tendina
+                <li><a href="<?= $this->url(array(
                             'controller' => 'public',
                             'action' => 'catalog'),
                             'default', true ); ?>"
                             title = "Catalogo" >Catalogo</a>
                 </li>
                 <li><a href="<?= $this->url(array(
-                            'controller' => 'public',
-                            'action' => 'register'),
+                            'controller' => 'user',
+                            'action' => 'profilo'),
                             'default', true ); ?>"
-                            title = "Registrati" >Registrati</a>
+                            title = "Registrati" >Il mio profilo</a>
                 </li>
                 <li><a href="<?= $this->url(array(
                             'controller' => 'public',
-                            'action' => 'login'),
+                            'action' => 'index'),
                             'default', true); ?>"
-                            title = "Login" >Accedi</a>
+                            title = "Login" >Logout</a>
                 </li>
             </ul>
         </nav>
