@@ -1,49 +1,60 @@
-#paginaCat {width: 950px; margin: auto auto; padding-left: 150px;}
+#paginaCat {width: 950px; margin: auto auto; padding-left: 150px; height: 350px;}
 #paginaCat .prod {margin-bottom: 8px;}
 
 
 #paginaCat .prod .oneitem {
-	padding: 10px 20px 15px 20px;
-	height:280px;
-	/*border-bottom: 2px dashed #B5DEF4;*/
+    padding: 10px 20px 15px 20px;
+    height:280px;
+    /*border-bottom: 2px dashed #B5DEF4;*/
 }
 
 #paginaCat .prod .image {
-	float:left;
-	text-align: left;
-        width: 400px;
-	height: 280px;
+    float:left;
+    text-align: left;
+    width: 400px;
+    height: 280px;
 }
 
 #paginaCat .prod .image .imagefrm {
-        width: 400px;
-	height: auto;
-	padding-top: 10px;
+    width: 400px;
+    height: auto;
+    padding-top: 10px;
 }
 
 #paginaCat .prod .info{
-	float:left;
-        padding-left: 100px;
-        width: 350px;
-	height: inherit;
+    float:left;
+    padding-left: 100px;
+    width: 350px;
+    height: inherit;
 }
 
 #paginaCat .prod .meta {
-	padding-left: 20px;
-	text-align: left;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	font-style: italic;
-        list-style-type: none;
+    padding-left: 20px;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    list-style-type: none;
 }
 
 #paginaCat .prod .entry {
-	padding: 10px 20px 15px 20px;
-	text-align: justify;
+    padding: 10px 20px 15px 20px;
+    text-align: justify;
 }
 
 #paginaCat .prod .title {
-	padding-top: 20px;
-	padding-left: 60px;
-	color: #ffffff;
+    padding-top: 10px;
+    padding-left: 60px;
+    color: #ffffff;
+}
+
+#paginaCat .sidebar-filtri{
+    background-color: #ffffff;
+    width: 14em;
+    float: left;
+    padding: 1em 0.5em;
+    margin-left: -30em;
+    margin-top: 5em;
+    list-style-type: none;
+    color: #000000;
 }
