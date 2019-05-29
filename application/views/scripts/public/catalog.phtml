@@ -1,45 +1,44 @@
-<div class="bgded overlay" style="background-image:url('http://localhost/TecnologieWeb/public/images/samples/parcoAuto.jpg'); padding-bottom:13%">
+<div class="bgded overlay" style="background-image:url('http://localhost/TecnologieWeb/public/images/samples/parcoAuto.jpg'); padding-bottom:13%; height: 400px;">
     <section id="pageintro" class="hoc clear">
         <div>
             <h4 class="heading">Scegli quella adatta a te</h4>
         </div>
+
 </div>
-<section>
-    <div id="paginaCat" >
-        <nav class="sidebar-filtri">
-            <ul>
-                <li>sidebar provvisoria per i filtri</li>
-                <li>filtro1</li>
-                <li>filtro1</li>
-                <li>filtro1</li>
-                <li>filtro1</li>
-            </ul>
-        </nav>
-        <div>
-            <?php foreach ($this->products as $auto) : ?>
+<div class="paginaCat">
+    <div class="contenuto">
+        <?php foreach ($this->products as $auto) : ?>
             <div class="prod">
-                <div class="oneitem">
-                    <?php echo'<h1 class="title">Marca: ' . $auto->marca . ' modello: ' . $auto->modello . '</h1>' ?>
-                    <!--<?php $this->autoImg($auto->immagine, array('class' => 'imagefrm')) ?>-->
-                    <?php echo '<img src="http://localhost/TecnologieWeb/public/images/catalog/' . $auto->immagine . '" class="imagefrm" >' ?>
-                    <div class="info">
-                        <ul class="meta">
-                            <li>scheda tecninca</li>
-                            <?php echo '<li>prezzo: ' . $auto->prezzo . '</li>' ?>
-                            <?php echo '<li>segmento: ' . $auto->segmento . '</li>' ?>
-                            <?php echo '<li>targa: ' . $auto->targa . '</li>' ?>
-                            <?php echo '<li>potenza: ' . $auto->potenza . '</li>' ?>
-                            <?php echo '<li>cilindrata: ' . $auto->cilindrata . '</li>' ?>
-                            <?php echo '<li>alimentazione: ' . $auto->alimentazione . '</li>' ?>
-                            <?php echo '<li>cavalli: ' . $auto->cavalli . '</li>' ?>
-                            <?php echo '<li>colore: ' . $auto->colore . '</li>' ?>
-                            <?php echo '<li>posti: ' . $auto->n_posti . '</li>' ?>
-                            <input type="submit" value="Prenota" name="btnPrenota" />
-                        </ul>
-                    </div>
+                <?php echo'<h1 class="title">Marca: ' . $auto->marca . ' modello: ' . $auto->modello . '</h1>' ?>
+                <div class="image">
+                    <?php echo '<img class="imagefrm" src="http://localhost/TecnologieWeb/public/images/catalog/' . $auto->immagine . '">' ?>
+                </div>
+                <div class="info">
+                    <ul class="meta">
+                        <li>scheda tecninca</li>
+                        <?php echo '<li>prezzo: ' . $auto->prezzo . '</li>' ?>
+                        <?php echo '<li>segmento: ' . $auto->segmento . '</li>' ?>
+                        <?php echo '<li>targa: ' . $auto->targa . '</li>' ?>
+                        <?php echo '<li>potenza: ' . $auto->potenza . '</li>' ?>
+                        <?php echo '<li>cilindrata: ' . $auto->cilindrata . '</li>' ?>
+                        <?php echo '<li>alimentazione: ' . $auto->alimentazione . '</li>' ?>
+                        <?php echo '<li>cavalli: ' . $auto->cavalli . '</li>' ?>
+                        <?php echo '<li>colore: ' . $auto->colore . '</li>' ?>
+                        <?php echo '<li>posti: ' . $auto->n_posti . '</li>' ?>
+                        <li> <input type="submit" value="Prenota" name="btnPrenota" /> </li>
+                    </ul>
                 </div>
             </div>
-            <?php endforeach ?>
-        </div>
+        <?php endforeach; ?>
     </div>
-</section>
+    <div class="sidebarFiltri">
+        <ul class="metaFiltri">
+            <li>
+                <h2 id="filtroPrezzo">Prezzo</h2>
+            </li>
+            <li>
+                <h2 id="filtroPosti">Posti</h2>
+            </li>
+        </ul>
+    </div>
+</div>
