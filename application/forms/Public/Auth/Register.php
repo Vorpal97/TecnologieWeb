@@ -14,14 +14,14 @@ class Application_Form_Public_Auth_Register extends App_Form_Abstract
 
     $this->addElement('text', 'nome', array(
       'filters' => array('StringTrim','StringToLower'),
-      'validators' => array(array('StringLength',true,array(5,15))),
+      'validators' => array(array('StringLength',true,array(3,20))),
       'required' => true,
       'label' => 'Nome',
       'decorators' => $this->elementDecorators,
     ));
 
-    $this->addElement('password', 'cognome', array(
-      'validators' => array(array('StringLength', true, array(5,15))),
+    $this->addElement('text', 'cognome', array(
+      'validators' => array(array('StringLength', true, array(3,20))),
       'required' => true,
       'label' => 'Cognome',
       'decorators' => $this->elementDecorators,
@@ -35,7 +35,7 @@ class Application_Form_Public_Auth_Register extends App_Form_Abstract
     ));
     
     $this->addElement('text', 'email', array(
-      'validators' => array(array('StringLength', true, array(5,15))),
+      'validators' => array(array('emailaddress')),
       'required' => true,
       'label' => 'E-mail',
       'decorators' => $this->elementDecorators,
