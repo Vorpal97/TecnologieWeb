@@ -1,33 +1,47 @@
 <?php
+
 class Application_Form_Public_Auth_Register extends App_Form_Abstract
 {
+  
   public function init()
   {
+    
+    
     $this->setMethod('post');
     $this->setName('register');
     $this->setAction('');
+    
 
-    $this->addElement('text', 'username', array(
+    $this->addElement('text', 'nome', array(
       'filters' => array('StringTrim','StringToLower'),
       'validators' => array(array('StringLength',true,array(5,15))),
       'required' => true,
-      'label' => 'Username',
+      'label' => 'Nome',
       'decorators' => $this->elementDecorators,
     ));
 
-    $this->addElement('password', 'pass', array(
+    $this->addElement('password', 'cognome', array(
+      'validators' => array(array('StringLength', true, array(5,15))),
+      'required' => true,
+      'label' => 'Cognome',
+      'decorators' => $this->elementDecorators,
+    ));
+
+    $this->addElement('password', 'psw', array(
       'validators' => array(array('StringLength', true, array(5,15))),
       'required' => true,
       'label' => 'Password',
       'decorators' => $this->elementDecorators,
     ));
-
-    $this->addElement('password', 'confpass', array(
+    
+    $this->addElement('text', 'email', array(
       'validators' => array(array('StringLength', true, array(5,15))),
       'required' => true,
-      'label' => 'Confirm password',
+      'label' => 'E-mail',
       'decorators' => $this->elementDecorators,
     ));
+    
+    
 
     $this->addElement('submit','register',array(
       'label' => 'Register',
