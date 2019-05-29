@@ -3,9 +3,13 @@
 class PublicController extends Zend_Controller_Action
 {
 
-    protected $_logger;
-    protected $_form;
+    protected $_logger = null;
+
+    protected $_form = null;
+
     protected $_catalogModel;
+    
+    protected $_publicModel;
 
     public function init()
     {
@@ -13,6 +17,8 @@ class PublicController extends Zend_Controller_Action
         $this->_logger = Zend_Registry::get('log');
         $this->view->loginForm = $this->getLoginForm();
         $this->_catalogModel = new Application_Model_Catalog();
+        $this->_publicModel = new Application_Model_Public();
+        $this->view->registerForm = $this->getRegisterForm();
     }
 
     public function indexAction()
@@ -25,12 +31,12 @@ class PublicController extends Zend_Controller_Action
         $this->_logger->info('Attivato:    '. __METHOD__);
         //parte per il db
         $totAuto= $this->_catalogModel->getAuto();
-        
+
         foreach ($totAuto as $auto){
             $autoList[] = $auto->id_auto;
         }
         $prods=$this->_catalogModel->getAuto();
-        
+
         $this->view->assign(array('products' => $prods));
     }
 
@@ -56,19 +62,46 @@ class PublicController extends Zend_Controller_Action
 
     private function getLoginForm()
     {
+        $urlHelper = $this->_helper->getHelper('url');
         $this->_form = new Application_Form_Public_Auth_Login();
-        return $this->_form;    
+        $this->_form->setAction($urlHelper->url(array(
+            'controller' => 'user',
+            'action' => 'index'),
+            'default'
+            ));
+        return $this->_form;
+        
     }
     
+    public function addnewuserAction()
+    {
+        if(!$this->getRequest()->isPost())
+        {
+            $this->_helper->redirector('index');
+        }
+        $form=$this->_form;
+        if (!$form->isValid($_POST))
+        {
+            return $this->render('register');
+        }
+        $values = $form->getValues();
+        $this->_publicModel->addUser($values);
+        $this->_helper->redirector('login');
+    }
+
+    private function getRegisterForm()
+    {
+      $urlHelper = $this->_helper->getHelper('url');
+      $this->_form = new Application_Form_Public_Auth_Register();
+      $this->_form->setAction($urlHelper->url(array(
+          'controller' => 'public',
+          'action' => 'addnewuser'),
+          'default', true
+      ));
+      return $this->_form;
+    }
+
+
 }
-
-
-
-
-
-
-
-
-
 
 
