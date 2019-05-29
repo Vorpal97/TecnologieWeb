@@ -58,7 +58,13 @@ class PublicController extends Zend_Controller_Action
 
     private function getLoginForm()
     {
+        $urlHelper = $this->_helper->getHelper('url');
         $this->_form = new Application_Form_Public_Auth_Login();
+        $this->_form->setAction($urlHelper->url(array(
+            'controller' => 'user',
+            'action' => 'index'),
+            'default'
+            ));
         return $this->_form;
     }
 
