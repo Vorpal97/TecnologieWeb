@@ -41,6 +41,14 @@ class Application_Form_Public_Auth_Register extends App_Form_Abstract
       'decorators' => $this->elementDecorators,
     ));
     
+    $this->addElement('text', 'data', array(
+      'validators' => array(array('date')),
+      'required' => true,
+      'label' => 'Data di nascita (yyyy-mm-dd) ',
+      'decorators' => $this->elementDecorators,
+    ));
+    
+    
     
 
     $this->addElement('submit','register',array(
