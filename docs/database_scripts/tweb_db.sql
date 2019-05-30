@@ -1,4 +1,9 @@
 
+CREATE DATABASE IF NOT EXISTS lpweb;
+
+USE lpweb;
+
+DROP TABLE IF EXISTS Utente;
 
 CREATE TABLE Utente(
   id_utente INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -6,10 +11,14 @@ CREATE TABLE Utente(
   cognome VARCHAR(30) NOT NULL,
   email VARCHAR(30),
   psw VARCHAR(30) NOT NULL,
-  nascita DATE NOT NULL,
+  data DATE NOT NULL,
   autenticazione ENUM('1','2','3','4') NOT NULL DEFAULT '1',
+  residenza VARCHAR(30) NOT NULL,
+  occupazione ENUM('studente','lavoratore','altro') NOT NULL,
   abilitato BOOLEAN NOT NULL DEFAULT 1
 );
+
+DROP TABLE IF EXISTS Auto;
 
 CREATE TABLE Auto(
   id_auto INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -27,6 +36,8 @@ CREATE TABLE Auto(
   immagine VARCHAR(60)
 );
 
+DROP TABLE IF EXISTS Prenotazione;
+
 CREATE TABLE Prenotazione(
   id_prenotazione INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   id_utente INT NOT NULL REFERENCES Utente(id_utente),
@@ -37,6 +48,8 @@ CREATE TABLE Prenotazione(
   note VARCHAR(255)
 );
 
+DROP TABLE IF EXISTS Messaggio;
+
 CREATE TABLE Messaggio(
   id_messaggio INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   id_mittente INT NOT NULL REFERENCES Utente(id_utente),
@@ -44,6 +57,8 @@ CREATE TABLE Messaggio(
   corpo VARCHAR(255) NOT NULL,
   time_stamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+DROP TABLE IF EXISTS Faq;
 
 CREATE TABLE Faq(
   id_faq INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
