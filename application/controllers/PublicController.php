@@ -24,11 +24,13 @@ class PublicController extends Zend_Controller_Action
     public function indexAction()
     {
          $this->_logger->info('Attivato:    '. __METHOD__);
+         $this->view->azione = $this->getRequest()->getActionName();
     }
 
     public function catalogAction()
     {
         $this->_logger->info('Attivato:    '. __METHOD__);
+        $this->view->azione = $this->getRequest()->getActionName();
         //parte per il db
         $totAuto= $this->_catalogModel->getAuto();
 
@@ -45,16 +47,19 @@ class PublicController extends Zend_Controller_Action
 
     public function faqAction()
     {
+        $this->view->azione = $this->getRequest()->getActionName();
         $this->_logger->info('Attivato:    '. __METHOD__);
     }
 
     public function loginAction()
     {
+        $this->view->azione = $this->getRequest()->getActionName();
         $this->_logger->info('Attivato:    '. __METHOD__);
     }
 
     public function registerAction()
     {
+        $this->view->azione = $this->getRequest()->getActionName();
         $this->_logger->info('Attivato:    '. __METHOD__);
     }
 
