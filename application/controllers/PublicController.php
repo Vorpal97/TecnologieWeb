@@ -8,8 +8,10 @@ class PublicController extends Zend_Controller_Action
     protected $_form = null;
 
     protected $_catalogModel;
-    
+
     protected $_publicModel;
+
+    protected $_faqModel;
 
     public function init()
     {
@@ -18,6 +20,7 @@ class PublicController extends Zend_Controller_Action
         $this->view->loginForm = $this->getLoginForm();
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_publicModel = new Application_Model_Public();
+        $this->_faqModel = new Application_Model_Faq();
         $this->view->registerForm = $this->getRegisterForm();
     }
 
@@ -40,15 +43,25 @@ class PublicController extends Zend_Controller_Action
         $prods=$this->_catalogModel->getAuto();
 
         $this->view->assign(array('products' => $prods));
-        
+
         //sezione per i filtri
-        
+
     }
 
     public function faqAction()
     {
         $this->view->azione = $this->getRequest()->getActionName();
         $this->_logger->info('Attivato:    '. __METHOD__);
+
+        $totFaq= $this->_faqModel->getFaq();
+
+        foreach ($totFaq as $faq){
+            $faqList[] = $faq->id_faq;
+        }
+        $prods=$this->_faqModel->getFaq();
+
+        $this->view->assign(array('products' => $prods));
+
     }
 
     public function loginAction()
@@ -78,9 +91,9 @@ class PublicController extends Zend_Controller_Action
             'default'
             ));
         return $this->_form;
-        
+
     }
-    
+
     public function addnewuserAction()
     {
         if(!$this->getRequest()->isPost())
@@ -111,5 +124,3 @@ class PublicController extends Zend_Controller_Action
 
 
 }
-
-
