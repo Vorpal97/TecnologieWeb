@@ -3,9 +3,10 @@
         <div>
             <h4 class="heading">Scegli quella adatta a te</h4>
         </div>
-
+    </section>
 </div>
-<div class="paginaCat">   
+
+<div class="paginaCat">
     <div class="contenuto">
         <?php foreach ($this->products as $auto) : ?>
             <div class="prod">
@@ -35,10 +36,37 @@
         <ul class="metaFiltri">
             <li>
                 <h2 id="filtro">Filtri</h2>
-                <a href=""
-            <li>
-
             </li>
         </ul>
+        <div class="slider-container">
+            <input type="range" min="1" max="1000" value="500" class="slider">
+            <input type="range" min="1" max="1000" value="500" class="slider">
+        </div>
+        <form name="formFiltri" action="">
+            <label>Prezzo <select id="selPrezzo" name="fascia" size="1">
+                    <option selected value="0">-- Seleziona la fascia di prezzo</option>
+                    <option value="1">tra 30€ e 50€</option>
+                    <option value="2">tra 50€ e 70€</option>
+                    <option value="3">tra 70€ e 90€</option>
+                    <option value="4">tra 900€ e 110€</option>
+                    <option vale="5">tra 110€ e 1300€</option>
+                    <option value="6">tra 1300€ e 1500€</option>
+                </select><br>
+            </label>
+        </form>
+        <form>
+            <label>Posti <select id="selPosti" name="posti" size="1">
+                    <option selected value="0">-- Seleziona il numero di posti</option>
+                    <option value="1">1 posto</option>
+                    <option value="2">2 posti</option>
+                    <option value="3">3 posti</option>
+                    <option value="4">4 posti</option>
+                    <option value="5">5 posti</option>
+                    <option value="6">6 posti</option>
+                    <option value="7">7 posti</option>
+                </select>
+            </label><br>
+        </form>
+            <input type="submit" value="Applica filtri" name="btnFiltra" style="margin-top: 20px;"/>
     </div>
 </div>

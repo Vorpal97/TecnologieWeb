@@ -16,5 +16,13 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract{
                 ->order('marca');
         return $this->fetchAll($select);
     }
+    
+    public function getAutoByPrezzo ($min, $max){
+        
+        $select = $this->select()
+                ->where('$min < prezzo < $max')
+                ->order('marca');
+        return $this->fetchAll($select);
+    }
 }
 
