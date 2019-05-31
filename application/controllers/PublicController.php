@@ -5,14 +5,19 @@ class PublicController extends Zend_Controller_Action {
     protected $_logger = null;
     protected $_form = null;
     protected $_catalogModel;
+
     protected $_publicModel;
 
-    public function init() {
+    protected $_faqModel;
+
+    public function init()
+    {
         $this->_helper->layout->setLayout('main');
         $this->_logger = Zend_Registry::get('log');
         $this->view->loginForm = $this->getLoginForm();
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_publicModel = new Application_Model_Public();
+        $this->_faqModel = new Application_Model_Faq();
         $this->view->registerForm = $this->getRegisterForm();
     }
 
@@ -44,12 +49,22 @@ class PublicController extends Zend_Controller_Action {
             $prods2 = $prods;
             $this->view->assign(array('products' => $prods));
         }
-        
+
     }
 
     public function faqAction() {
         $this->view->azione = $this->getRequest()->getActionName();
-        $this->_logger->info('Attivato:    ' . __METHOD__);
+        $this->_logger->info('Attivato:    '. __METHOD__);
+
+        $totFaq= $this->_faqModel->getFaq();
+
+        foreach ($totFaq as $faq){
+            $faqList[] = $faq->id_faq;
+        }
+        $prods=$this->_faqModel->getFaq();
+
+        $this->view->assign(array('products' => $prods));
+
     }
 
     public function loginAction() {
