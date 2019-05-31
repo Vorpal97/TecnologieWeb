@@ -1,11 +1,10 @@
+CREATE DATABASE IF NOT EXISTS tweb_db;
 
-CREATE DATABASE IF NOT EXISTS lpweb;
+USE tweb_db;
 
-USE lpweb;
+DROP TABLE IF EXISTS utente;
 
-DROP TABLE IF EXISTS Utente;
-
-CREATE TABLE Utente(
+CREATE TABLE utente(
   id_utente INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   nome VARCHAR(30) NOT NULL,
   cognome VARCHAR(30) NOT NULL,
@@ -14,13 +13,13 @@ CREATE TABLE Utente(
   data DATE NOT NULL,
   autenticazione ENUM('1','2','3','4') NOT NULL DEFAULT '1',
   residenza VARCHAR(30) NOT NULL,
-  occupazione ENUM('studente','lavoratore','altro') NOT NULL,
+  occupazione VARCHAR(30) NOT NULL,
   abilitato BOOLEAN NOT NULL DEFAULT 1
 );
 
-DROP TABLE IF EXISTS Auto;
+DROP TABLE IF EXISTS auto;
 
-CREATE TABLE Auto(
+CREATE TABLE auto(
   id_auto INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   targa VARCHAR(10) NOT NULL,
   marca VARCHAR(30) NOT NULL,
@@ -36,9 +35,9 @@ CREATE TABLE Auto(
   immagine VARCHAR(60)
 );
 
-DROP TABLE IF EXISTS Prenotazione;
+DROP TABLE IF EXISTS prenotazione;
 
-CREATE TABLE Prenotazione(
+CREATE TABLE prenotazione(
   id_prenotazione INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   id_utente INT NOT NULL REFERENCES Utente(id_utente),
   id_auto INT NOT NULL REFERENCES Auto(id_auto),
@@ -48,9 +47,9 @@ CREATE TABLE Prenotazione(
   note VARCHAR(255)
 );
 
-DROP TABLE IF EXISTS Messaggio;
+DROP TABLE IF EXISTS messaggio;
 
-CREATE TABLE Messaggio(
+CREATE TABLE messaggio(
   id_messaggio INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   id_mittente INT NOT NULL REFERENCES Utente(id_utente),
   id_destinatario INT NOT NULL REFERENCES Utente(id_utente),
@@ -58,9 +57,9 @@ CREATE TABLE Messaggio(
   time_stamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-DROP TABLE IF EXISTS Faq;
+DROP TABLE IF EXISTS faq;
 
-CREATE TABLE Faq(
+CREATE TABLE faq(
   id_faq INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   time_stamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   domanda VARCHAR(255) NOT NULL,
