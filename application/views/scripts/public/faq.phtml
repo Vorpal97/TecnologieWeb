@@ -28,45 +28,21 @@
       <div id="comments">
         <h2>Frequently Asked Questions</h2>
         <ul>
+          <?php foreach ($this->products as $faq) : ?>
 					<li>
             <article>
               <header>
                 <address>
-                ANSWER 1
+                <?php echo $faq->domanda ?>
                 </address>
-                <time datetime="2045-04-06T08:15+00:00">Friday, 6 April 2045 @08:15:00</time>
+                <?php echo $faq->time_stamp ?>
               </header>
               <div class="comcont">
-                <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
+                <p><?php echo $faq->risposta ?></p>
               </div>
             </article>
           </li>
-					<li>
-            <article>
-              <header>
-                <address>
-                ANSWER 2
-                </address>
-                <time datetime="2045-04-06T08:15+00:00">Friday, 6 April 2045 @08:15:00</time>
-              </header>
-              <div class="comcont">
-                <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
-              </div>
-            </article>
-          </li>
-					<li>
-            <article>
-              <header>
-                <address>
-                ANSWER 3
-                </address>
-                <time datetime="2045-04-06T08:15+00:00">Friday, 6 April 2045 @08:15:00</time>
-              </header>
-              <div class="comcont">
-                <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
-              </div>
-            </article>
-          </li>
+          <?php endforeach; ?>
         </ul>
       </div>
       <!-- ################################################################################################ -->
