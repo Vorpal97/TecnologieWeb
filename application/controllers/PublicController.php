@@ -40,6 +40,9 @@ class PublicController extends Zend_Controller_Action
         $prods=$this->_catalogModel->getAuto();
 
         $this->view->assign(array('products' => $prods));
+        
+        //sezione per i filtri
+        
     }
 
     public function faqAction()
