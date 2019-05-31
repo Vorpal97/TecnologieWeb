@@ -40,18 +40,26 @@
         </ul>
 
         <form name="formFiltri" action="">
-            <label>Prezzo <select id="selPrezzo" name="fascia" size="1">
-                    <option selected value="0">-- Seleziona la fascia di prezzo</option>
-                    <option value="1">tra 30€ e 50€</option>
-                    <option value="2">tra 50€ e 70€</option>
-                    <option value="3">tra 70€ e 90€</option>
-                    <option value="4">tra 900€ e 110€</option>
-                    <option vale="5">tra 110€ e 1300€</option>
-                    <option value="6">tra 1300€ e 1500€</option>
+            <label>Prezzo minimo <select id="selPrezzoMin" name="minimo" size="1">
+                    <option selected value="0">-- Seleziona il prezzo minimo</option>
+                    <option value="30">30€</option>
+                    <option value="50">50€</option>
+                    <option value="70">70€</option>
+                    <option value="90">90€</option>
+                    <option vale="110">110€</option>
+                    <option value="130">130€</option>
                 </select><br>
             </label>
-        </form>
-        <form>
+            <label>Prezzo massimo <select id="selPrezzoMax" name="massimo" size="1">
+                    <option selected value="0">-- Seleziona il prezzo massimo</option>
+                    <option value="30">30€</option>
+                    <option value="50">50€</option>
+                    <option value="70">70€</option>
+                    <option value="90">90€</option>
+                    <option vale="110">110€</option>
+                    <option value="130">130€</option>
+                </select><br>
+            </label>
             <label>Posti <select id="selPosti" name="posti" size="1">
                     <option selected value="0">-- Seleziona il numero di posti</option>
                     <option value="1">1 posto</option>
@@ -65,8 +73,5 @@
             </label><br>
             <input type="submit" value="Applica filtri" name="btnFiltra" style="margin-top: 10px; margin-bottom: 10px;"/>
         </form>
-        <?php
-        echo('Menu: ' .$_GET['fascia']);
-    echo('<br>'); ?>
     </div>
 </div>

@@ -19,10 +19,20 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract{
     
     public function getAutoByPrezzo ($min, $max){
         
+        $query = $min .' <=  prezzo AND prezzo <= ' . $max;
         $select = $this->select()
-                ->where($min <= ' prezzo' && 'prezzo' <= $max)
+                ->where($query)
                 ->order('marca');
         return $this->fetchAll($select);
+    }
+    
+    public function getAutoByPosti ($posti){
+        
+        $query = 'n_posti ==' . $posti; 
+        $select = $this->select()
+                ->where($quey)
+                ->order('marca');
+        return $this->fetchAll();
     }
 }
 
