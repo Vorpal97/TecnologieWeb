@@ -25,6 +25,12 @@
           <actionMethod actionName="profilo"/>
           <actionMethod actionName="editaprofilo"/>
         </controllerFile>
+        <controllerFile controllerName="Staff">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Admin">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory>
@@ -73,6 +79,12 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="editaprofilo"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Staff">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -117,6 +129,12 @@
             <testApplicationActionMethod forActionName="login"/>
             <testApplicationActionMethod forActionName="register"/>
             <testApplicationActionMethod forActionName="profile"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Staff">
+            <testApplicationActionMethod forActionName="index"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Admin">
+            <testApplicationActionMethod forActionName="index"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
