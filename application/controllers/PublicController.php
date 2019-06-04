@@ -37,16 +37,25 @@ class PublicController extends Zend_Controller_Action {
 
         $totAuto = $this->_catalogModel->getAuto();
 
-        if (is_null($prezzoMin) && is_null($prezzoMax) && is_null($numeroPosti)) {
+        /*if (is_null($prezzoMin) && is_null($prezzoMax) && is_null($numeroPosti) && $prezzoMin == 0 && $prezzoMax == 0 && $numeroPosti == 0) {
             foreach ($totAuto as $auto) {
                 $autoList[] = $auto->id_auto;
             }
             $prods = $this->_catalogModel->getAuto();
-
             $this->view->assign(array('products' => $prods));
         } else{
             $prods = $this->_catalogModel->getAutoByPrezzo($prezzoMin, $prezzoMax);
-            $prods2 = $prods;
+            $this->view->assign(array('products' => $prods));
+         * 
+        }*/
+        if (/*!is_null($prezzoMin) && !is_null($prezzoMax) && !is_null($numeroPosti)*/ is_null($prezzoMin) && is_null($prezzoMax) && is_null($numeroPosti)){
+            /*foreach ($totAuto as $auto) {
+                $autoList[] = $auto->id_auto;
+            }*/
+            $prods = $this->_catalogModel->getAuto();
+            $this->view->assign(array('products' => $prods));
+        } else {
+            $prods = $this->_catalogModel->getAutoByPrezzo($prezzoMin, $prezzoMax);
             $this->view->assign(array('products' => $prods));
         }
 

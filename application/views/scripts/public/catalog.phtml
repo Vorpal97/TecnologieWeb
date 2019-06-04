@@ -1,77 +1,79 @@
-<div class="bgded overlay" style="background-image:url('http://localhost/TecnologieWeb/public/images/samples/parcoAuto.jpg'); padding-bottom:13%; height: 400px;">
+<div class="bgded overlay" style="background-image:url('http://localhost/TecnologieWeb/public/images/samples/copertinaGrandTour.png'); padding-bottom:13%; height: 400px;">
     <section id="pageintro" class="hoc clear">
         <div>
             <h4 class="heading">Scegli quella adatta a te</h4>
         </div>
     </section>
 </div>
-
-<div class="paginaCat">
-    <div class="contenuto">
-        <?php foreach ($this->products as $auto) : ?>
-            <div class="prod">
-                <?php echo'<h1 class="title">Marca: ' . $auto->marca . ' modello: ' . $auto->modello . '</h1>' ?>
-                <div class="image">
-                    <?php echo '<img class="imagefrm" src="http://localhost/TecnologieWeb/public/images/catalog/' . $auto->immagine . '">' ?>
-                </div>
-                <div class="info">
+<div class="paginaSfondo">
+    <div class="paginaCat">
+        <div class="contenuto">
+            <?php foreach ($this->products as $auto) : ?>
+                <div class="prod">
+                    <?php echo'<h1 class="title">' . $auto->marca . '  ' . $auto->modello . '</h1>' ?>
+                    <div class="image">
+                        <?php echo '<img class="imagefrm" src="http://localhost/TecnologieWeb/public/images/catalog/' . $auto->immagine . '">' ?>
+                    </div>
+                    <div class="prePrenotazione">
+                        <div style="text-align: center; margin-top: 50px;">
+                            <p>Vuoi prenotare un'auto?</p>
+                            <p>Effettua il login o registrati</p>
+                        </div>
+                        <button style="width: 150px; height: 25px; position: relative; margin-left: 10px; float: left;" onclick="window.location.href = 'http:/TecnologieWeb/public/public/login'">Login</button>
+                        <button style="width: 150px; height: 25px; position: relative; margin-right: 10px; float: right;" onclick="window.location.href = 'http:/TecnologieWeb/public/public/register'">Registrati</button>
+                    </div>
                     <ul class="meta">
-                        <li>scheda tecninca</li>
                         <?php echo '<li>prezzo: ' . $auto->prezzo . '</li>' ?>
-                        <?php echo '<li>segmento: ' . $auto->segmento . '</li>' ?>
-                        <?php echo '<li>targa: ' . $auto->targa . '</li>' ?>
-                        <?php echo '<li>potenza: ' . $auto->potenza . '</li>' ?>
-                        <?php echo '<li>cilindrata: ' . $auto->cilindrata . '</li>' ?>
-                        <?php echo '<li>alimentazione: ' . $auto->alimentazione . '</li>' ?>
-                        <?php echo '<li>cavalli: ' . $auto->cavalli . '</li>' ?>
-                        <?php echo '<li>colore: ' . $auto->colore . '</li>' ?>
                         <?php echo '<li>posti: ' . $auto->n_posti . '</li>' ?>
-                        <li> <button onclick="window.location.href = 'http:/TecnologieWeb/public/public/register'">Registrati</button> </li>
+                        <?php echo '<li>segmento: ' . $auto->segmento . '</li>' ?>                                 
+                        <?php echo '<li>cilindrata: ' . $auto->cilindrata . '</li>' ?>
+                        <?php echo '<li>potenza: ' . $auto->potenza . '</li>' ?>
+                        <?php echo '<li>cavalli: ' . $auto->cavalli . '</li>' ?>
+                        <?php echo '<li>alimentazione: ' . $auto->alimentazione . '</li>' ?>
+                        <?php echo '<li>colore: ' . $auto->colore . '</li>' ?>
+                        <?php echo '<li>targa: ' . $auto->targa . '</li>' ?>
+                        <!--<li> <button onclick="window.location.href = 'http:/TecnologieWeb/public/public/register'">Registrati</button> </li>-->
                     </ul>
                 </div>
-            </div>
-        <?php endforeach; ?>
-    </div>
-    <div class="sidebarFiltri">
-        <ul class="metaFiltri">
-            <li>
-                <h2 id="filtro">Filtri</h2>
-            </li>
-        </ul>
-
-        <form name="formFiltri" action="">
-            <label>Prezzo minimo <select id="selPrezzoMin" name="minimo" size="1">
-                    <option selected value="0">-- Seleziona il prezzo minimo</option>
-                    <option value="30">30€</option>
-                    <option value="50">50€</option>
-                    <option value="70">70€</option>
-                    <option value="90">90€</option>
-                    <option vale="110">110€</option>
-                    <option value="130">130€</option>
-                </select><br>
-            </label>
-            <label>Prezzo massimo <select id="selPrezzoMax" name="massimo" size="1">
-                    <option selected value="0">-- Seleziona il prezzo massimo</option>
-                    <option value="30">30€</option>
-                    <option value="50">50€</option>
-                    <option value="70">70€</option>
-                    <option value="90">90€</option>
-                    <option vale="110">110€</option>
-                    <option value="130">130€</option>
-                </select><br>
-            </label>
-            <label>Posti <select id="selPosti" name="posti" size="1">
-                    <option selected value="0">-- Seleziona il numero di posti</option>
-                    <option value="1">1 posto</option>
-                    <option value="2">2 posti</option>
-                    <option value="3">3 posti</option>
-                    <option value="4">4 posti</option>
-                    <option value="5">5 posti</option>
-                    <option value="6">6 posti</option>
-                    <option value="7">7 posti</option>
-                </select>
-            </label><br>
-            <input type="submit" value="Applica filtri" name="btnFiltra" style="margin-top: 10px; margin-bottom: 10px;"/>
-        </form>
+            <?php endforeach; ?>
+        </div>
+        <div class="sidebarFiltri">
+            <h1 class="sidebarTitolo">Filtri</h1>
+            <hr>
+            <form class="formFiltri" name="formFiltri" action="">
+                <label class="formTitolo">Prezzo minimo <select id="selPrezzoMin" name="minimo" size="1">
+                        <option selected value="0">Seleziona</option>
+                        <option value="30">30€</option>
+                        <option value="50">50€</option>
+                        <option value="70">70€</option>
+                        <option value="90">90€</option>
+                        <option value="110">110€</option>
+                        <option value="130">130€</option>
+                    </select><br>
+                </label>
+                <label class="formTitolo">Prezzo massimo <select id="selPrezzoMax" name="massimo" size="1">
+                        <option selected value="999">Seleziona</option>
+                        <option value="30">30€</option>
+                        <option value="50">50€</option>
+                        <option value="70">70€</option>
+                        <option value="90">90€</option>
+                        <option value="110">110€</option>
+                        <option value="130">130€</option>
+                    </select><br>
+                </label>
+                <label class="formTitolo">Numero posti <select id="selPosti" name="posti" size="1">
+                        <option selected value="null">Seleziona</option>
+                        <option value="1">1 posto</option>
+                        <option value="2">2 posti</option>
+                        <option value="3">3 posti</option>
+                        <option value="4">4 posti</option>
+                        <option value="5">5 posti</option>
+                        <option value="6">6 posti</option>
+                        <option value="7">7 posti</option>
+                    </select>
+                </label><br>
+                <input type="submit" value="Applica filtri" name="btnFiltra" style="margin-top: 10px; margin-bottom: 10px;"/>
+            </form>
+        </div>
     </div>
 </div>
