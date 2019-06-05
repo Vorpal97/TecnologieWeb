@@ -150,13 +150,13 @@ class PublicController extends Zend_Controller_Action
         $form = $this->_loginform;
         if (!$form->isValid($request->getPost()))
         {
-            $form->setDescription('Email o Password errati. Riprova');
-            return $this->render('index');
+            $form->setDescription('Dati non validi, riprova.');
+            return $this->render('login');
         }
         if (false === $this->_authService->authenticate($form->getValues()))
         {
-            $form->setDescription('Errore di autenticazione. Riprova');
-            return $this->render('catalog');
+            $form->setDescription('Email o password errati, riprova.');
+            return $this->render('login');
         }
         return $this->_helper->redirector('index', $this->_authService->getIdentity()->autenticazione);
     }
