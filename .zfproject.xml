@@ -18,6 +18,7 @@
           <actionMethod actionName="login"/>
           <actionMethod actionName="register"/>
           <actionMethod actionName="profile"/>
+          <actionMethod actionName="authenticate"/>
         </controllerFile>
         <controllerFile controllerName="User">
           <actionMethod actionName="index"/>
@@ -85,6 +86,9 @@
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Public">
+            <viewScriptFile forActionName="authenticate"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -129,6 +133,7 @@
             <testApplicationActionMethod forActionName="login"/>
             <testApplicationActionMethod forActionName="register"/>
             <testApplicationActionMethod forActionName="profile"/>
+            <testApplicationActionMethod forActionName="authenticate"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Staff">
             <testApplicationActionMethod forActionName="index"/>

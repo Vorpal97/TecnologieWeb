@@ -10,29 +10,33 @@ class Application_Service_Auth
         $this->_adminModel = new Application_Model_Admin();
     }
     
-    private function getAuthAdapter($values)
+    public function authenticate($credenzials) 
     {
-        $authAdapter = new Zend_Auth_Adapter_DbTable(Zend_Db_table_Abstract::getDefaultAdapter(),
-                'utente',
-                'id_utente',
-                'psw');
-        $authAdapter->setIdentity($values['email']);
-        $authAdapter->setCredential($values['psw']);
-        return $authAdapter;
+        $adapter = $this->getAuthAdapter($credenzials);
+        $auth = $this->getAuth();
+        $result = $auth->authenticate($adapter);
+        
+        if(!$result->isValid())
+        {
+            return false;
+        }
+        $user = $this->_adminModel->getUser($credenzials['email']);
+        $auth->getStorage()->write($user);
+        return true;
     }
     
-    public function getAuth()
+     public function getAuth()
     {
         if (null === $this->_auth)
         {
-            $this->_auth =Zend_Auth::getInstance();
+            $this->_auth = Zend_Auth::getInstance();
         }
         return $this->_auth;
     }
     
-    public function logout()
+    public function logout()     //per il logout
     {
-        $this->getAuth()->clearIdentity();
+        $this->getAuth()->clearIdentity();  //cleariamo la variabile auth, azzera $session ecc.
     }
     
     public function getIdentity()   //per quando ci servono le caratteristiche dell'utente loggato memorizzato nell'applicazione    
@@ -45,18 +49,17 @@ class Application_Service_Auth
         return false;
     }
     
-    public function authenticate($credenziali) 
+    
+    
+    private function getAuthAdapter($values)
     {
-        $adapter = $this->getAuthAdapter($credenziali);
-        $auth = $this->getAuth();
-        $result = $auth->authenticate($adapter);
-        
-        if(!$result->isValid())
-        {
-            return false;
-        }
-        $user = $this->_adminModel->getUser($credenziali['email']);
-        $auth->getStorage()->write($user);
-        return true;
+        $authAdapter = new Zend_Auth_Adapter_DbTable(Zend_Db_Table_Abstract::getDefaultAdapter(),
+                'utente',
+                'email',
+                'psw');
+        $authAdapter->setIdentity($values['email']);
+        $authAdapter->setCredential($values['psw']);
+        return $authAdapter;
     }
+     
 }

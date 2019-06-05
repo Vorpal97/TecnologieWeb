@@ -9,8 +9,8 @@ class App_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
     public function __construct()
     {
         $this->_auth = Zend_Auth::getInstance();
-        $this->_role = !$this->_auth->hasIdentity() ? 'unregistered' : $this->_auth->getIdentity()->role;
-        $this->_acl = new Applicaztion_Model_Acl();
+        $this->_role = !$this->_auth->hasIdentity() ? 'visitor' : $this->_auth->getIdentity()->autenticazione;
+        $this->_acl = new Application_Model_Acl();
     }
     
     public function preDispatch(Zend_Controller_Request_Abstract $request)

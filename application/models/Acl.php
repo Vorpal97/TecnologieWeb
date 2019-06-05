@@ -13,7 +13,7 @@ class Application_Model_Acl extends Zend_Acl
         
         //per utente registrato
         $this->addRole(new Zend_Acl_Role('user'), 'visitor')
-             ->addResource(new Zend_Acl_Resource ('user'))
+             ->add (new Zend_Acl_Resource ('user'))
              ->allow('user','user');
         
     }
