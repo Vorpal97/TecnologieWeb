@@ -6,8 +6,8 @@ class Application_Model_Catalog extends App_Model_Abstract{
         $this->_logger = Zend_Registry::get('log');
     }
     
-    public function getAuto(){
-        return $this->getResource('Auto')->getAuto();
+    public function getAuto($paged=null){
+        return $this->getResource('Auto')->getAuto($paged);
     }
     
     public function getAutoByPrezzo($min, $max){

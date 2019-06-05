@@ -5,7 +5,7 @@
         </div>
     </section>
 </div>
-<div class="paginaSfondo">
+<div id="pagina">
     <div class="paginaCat">
         <div class="contenuto">
             <?php foreach ($this->products as $auto) : ?>
@@ -36,11 +36,22 @@
                     </ul>
                 </div>
             <?php endforeach; ?>
+            
+            <?php
+    if ($this->products instanceof Zend_Paginator) { //dedicato alla creazione della paginazione, è un blocco condizionale visualizzato se e solo se nella nostra pagina vogliamo utilizzare i prodotti paginati
+        //se lo siamo viene stampata la barra di navigazione, che, però è di fatto un metodo predefiito
+        echo $this->paginationControl($this->products, 'Sliding', 'public/_paginator.phtml'); // il primo parametro è la struttura dati che deve controllare (tutti i prodotti che devono essere visualizzati)
+        // il secondo è il tipo di layout che vogliamo utilizzare per rappresentarla (lo stile)
+        //il terzo è l'indicazione di un viewscript che codifica l'html della nostra navbar
+        //ovviamente il public fa riferimento alla sezione delle viewscript
+    }
+    ?>
+            
         </div>
         <div class="sidebarFiltri">
             <h1 class="sidebarTitolo">Filtri</h1>
             <hr>
-            <form class="formFiltri" name="formFiltri" action="">
+            <form method="POST" class="formFiltri" name="formFiltri" action="">
                 <label class="formTitolo">Prezzo minimo <select id="selPrezzoMin" name="minimo" size="1">
                         <option selected value="0">Seleziona</option>
                         <option value="30">30€</option>
@@ -72,8 +83,19 @@
                         <option value="7">7 posti</option>
                     </select>
                 </label><br>
-                <input type="submit" value="Applica filtri" name="btnFiltra" style="margin-top: 10px; margin-bottom: 10px;"/>
+                <!--<input type="submit" value="Applica filtri" name="btnFiltra" style="margin-top: 10px; margin-bottom: 10px;"/>-->
+                <?php 
+            //$min = trim($_POST['minimo']);
+            //$max = trim($_POST['massimo']);
+            //$min = $this->_getParam('minimo', null);
+            //$max = $this->_getParam('massimo', null);
+                echo '<button style="margin-bottom: 30px;" onclick="window.location.href =\' ' . $this->url(array('controller' => 'public',
+                                                                                                                'action' => 'catalog',
+                                                                                                                'minimo' => 'minimo'/*$min*/,
+                                                                                                                'massimo' => 'massimo'/*$max*/),
+                                                                                                                'default', true) . '\'">Applica Filtri</button>'?>
             </form>
-        </div>
+            
+            </div>
     </div>
 </div>

@@ -34,6 +34,7 @@ class PublicController extends Zend_Controller_Action {
         $prezzoMin = $this->_getParam('minimo', null);
         $prezzoMax = $this->_getParam('massimo', null);
         $numeroPosti = $this->_getParam('posti', null);
+        $paged = $this->_getParam('pagina', 1);
 
         $totAuto = $this->_catalogModel->getAuto();
 
@@ -52,7 +53,7 @@ class PublicController extends Zend_Controller_Action {
             /*foreach ($totAuto as $auto) {
                 $autoList[] = $auto->id_auto;
             }*/
-            $prods = $this->_catalogModel->getAuto();
+            $prods = $this->_catalogModel->getAuto($paged);
             $this->view->assign(array('products' => $prods));
         } else {
             $prods = $this->_catalogModel->getAutoByPrezzo($prezzoMin, $prezzoMax);

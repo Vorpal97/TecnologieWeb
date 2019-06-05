@@ -9,11 +9,24 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract{
         
     }
     
-    public function getAuto (){
+    public function getAuto ($paged=null){
         
         $select = $this->select()
                 ->where('prezzo != 0')
                 ->order('marca');
+        
+        //peginator
+        if (null !== $paged) { //se non è richiesta paginata saltiamo il blocco, e tramite una fetch all si ritorna il risultato della richiesta
+			$adapter = new Zend_Paginator_Adapter_DbTableSelect($select); //definisce la  sorgente informativa
+			$paginator = new Zend_Paginator($adapter); //oggetto che rappresenta i dati paginati
+                                                                   //zend_paginator opera in modalità lazy, ritorna solo la pagina richiesta ma bufferizza tutte, così quando fa una richiesta ad un altra pagina non rifa tutto, potrebbero servirgli nelle chiamate successive, ottimizza l'accesso al db
+			$paginator->setItemCountPerPage(5) //proprietà della paginazione, tuple estratte che vogliamo associare ad ogni pagina, c'è un unica scheda prodotto, lo si vede selezionando una sottocategoria
+		          	  ->setCurrentPageNumber((int) $paged); //il secondo parametro è quello che rappresenta quella estratta, con l'operatore di casting int, questo perche il parametro deriva dalla rotta
+                                                                        // acquisito dunque come stringa, invece il metodo vuole come parametro un intero 
+			return $paginator; //rappresenta la pagina iesima con i suoi contenuti
+		}
+        //fine paginator
+        
         return $this->fetchAll($select);
     }
     
@@ -23,6 +36,9 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract{
         $select = $this->select()
                 ->where($query)
                 ->order('marca');
+        
+
+        
         return $this->fetchAll($select);
     }
     
