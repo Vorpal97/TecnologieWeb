@@ -1,5 +1,9 @@
 <!--generatore di codice che potrà utilizzare le proprietà dell'ogetto paginator  -->
-<?php if ($this->pageCount > 1): ?> <!-- pagecount ci dice quante sono le pagine del contenuto informativo che devo utilizzare, se i prodotti estratti sono più di uno genero la barra, altrimenti no-->
+<?php 
+        $pMin = trim($_POST['minimo']);
+        $pMax = trim($_POST['massimo']);
+        $nPosti = trim($_POST['posti']);
+if ($this->pageCount > 1): ?> <!-- pagecount ci dice quante sono le pagine del contenuto informativo che devo utilizzare, se i prodotti estratti sono più di uno genero la barra, altrimenti no-->
 <div id="pagination" style="margin: 40px;"> <!-- se va a buon fine genera un div con tutte le seguenti componenti-->
 <?php echo $this->firstItemNumber; ?> - <?= $this->lastItemNumber; ?> di <?= $this->totalItemCount; ?> --- <!-- indica la corrente (nel caso fossero più di una la prima delle pagine e l'ultima delle agine visualizate) e il totale, è la costruzione della parte scritta della barra-->
 
