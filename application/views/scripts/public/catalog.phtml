@@ -14,14 +14,18 @@
                     <div class="image">
                         <?php echo '<img class="imagefrm" src="http://localhost/TecnologieWeb/public/images/catalog/' . $auto->immagine . '">' ?>
                     </div>
-                    <div class="prePrenotazione">
-                        <div style="text-align: center; margin-top: 50px;">
-                            <p>Vuoi prenotare un'auto?</p>
-                            <p>Effettua il login o registrati</p>
-                        </div>
-                        <button style="width: 150px; height: 25px; position: relative; margin-left: 10px; float: left;" onclick="window.location.href = 'http:/TecnologieWeb/public/public/login'">Login</button>
-                        <button style="width: 150px; height: 25px; position: relative; margin-right: 10px; float: right;" onclick="window.location.href = 'http:/TecnologieWeb/public/public/register'">Registrati</button>
-                    </div>
+                    
+                       <?php 
+                       //caso in cui non sia loggato
+                       
+                       //echo $this->render('/public/_noPrenotazione.phtml'); 
+                       
+                       //caso in cui sia registrato
+                       
+                       echo $this->render('public/_prenotazione.phtml');
+                       
+                       ?>
+                    
                     <ul class="meta">
                         <?php echo '<li>prezzo: ' . $auto->prezzo . '</li>' ?>
                         <?php echo '<li>posti: ' . $auto->n_posti . '</li>' ?>
@@ -51,7 +55,7 @@
         <div class="sidebarFiltri">
             <h1 class="sidebarTitolo">Filtri</h1>
             <hr>
-            <form id="miaForm" method="post" class="formFiltri" name="formFiltri" action="catalog/">
+            <form id="miaForm" method="post" class="formFiltri" name="formFiltri" action="">
                 <label class="formTitolo">Prezzo minimo <select id="selPrezzoMin" name="minimo" size="1">
                         <option selected value="0">Qualsiasi</option>
                         <option value="30">30€</option>
@@ -83,18 +87,20 @@
                     </select>
                 </label><br>
                 <!--<input type="submit" value="Applica filtri" name="btnFiltra" style="margin-top: 10px; margin-bottom: 10px;"/>-->
-                <?php
+                <!--
                 $min = trim($_POST['minimo']);
                 global $minimo;
                 $minimo = $min;
                 $max = trim($_POST['massimo']);
                 $posti = trim($_POST['posti']);
                 echo '<div>' . $minimo . '</div>';
-                echo '<div>' . $max . '</div>';
+                echo '<div>' . $max . '</div>';-->
+                
+                <button style="margin-top: 20px; margin-bottom:20px;" type="submit">Applica filtri</button>
+                <!--
                 //$min = $this->_getParam('minimo', null);
                 //$max = $this->_getParam('massimo', null);
-                echo '<button style="margin-top: 20px; margin-bottom:20px;" type="submit">Carica filtri</butotn>';
-                /*if ($min!=0 || $max!=9999 || $posti!=0){
+                if ($min!=0 || $max!=9999 || $posti!=0){
                     $query = '"location: http:/TecnologieWeb/public/public/catalog/minimo' . $min . '/massimo' . $max . '/posti' . $posti . '"';
                     header($query);
                 }*/
@@ -104,8 +110,7 @@
                     'minimo' => $min,
                     'massimo' => $max,
                     'posti' => $posti), 'default', true) . '\'">Applica i filtri</a></div>';
-                }*/
-                ?>
+                }-->
             </form>
 
         </div>
