@@ -59,12 +59,21 @@
     color: #A2B70D;
 }
 
-.prod .prePrenotazione{
+.prod .noPrenotazione{
     float: right;
     background-color: #D7D7D7;
     width: 350px;
     height: 200px;
+}
 
+.prod .okPrenotazione{
+    float: right;
+    background-color: #F6F6F6;
+    width: 350px;
+    height: 200px;
+    border: solid;
+    border-width: 1px;
+    border-color: #D7D7D7;
 }
 
 .sidebarFiltri{

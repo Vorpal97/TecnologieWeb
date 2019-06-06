@@ -18,7 +18,7 @@ class Application_Model_Catalog extends App_Model_Abstract{
         return $this->getResource('Auto')->getAutoByPosti($posti);
     }
     
-    public function getAutoByAll ($min, $max, $posti, $paged){
+    public function getAutoByAll ($min, $max, $posti, $paged=null){
         return $this->getResource('Auto')->getAutoByAll($min, $max, $posti, $paged);
     }
 }

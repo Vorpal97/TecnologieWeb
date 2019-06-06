@@ -14,14 +14,18 @@
                     <div class="image">
                         <?php echo '<img class="imagefrm" src="http://localhost/TecnologieWeb/public/images/catalog/' . $auto->immagine . '">' ?>
                     </div>
-                    <div class="prePrenotazione">
-                        <div style="text-align: center; margin-top: 50px;">
-                            <p>Vuoi prenotare un'auto?</p>
-                            <p>Effettua il login o registrati</p>
-                        </div>
-                        <button style="width: 150px; height: 25px; position: relative; margin-left: 10px; float: left;" onclick="window.location.href = 'http:/TecnologieWeb/public/public/login'">Login</button>
-                        <button style="width: 150px; height: 25px; position: relative; margin-right: 10px; float: right;" onclick="window.location.href = 'http:/TecnologieWeb/public/public/register'">Registrati</button>
-                    </div>
+                    
+                       <?php 
+                       //caso in cui non sia loggato
+                       
+                       //echo $this->render('/public/_noPrenotazione.phtml'); 
+                       
+                       //caso in cui sia registrato
+                       
+                       echo $this->render('public/_prenotazione.phtml');
+                       
+                       ?>
+                    
                     <ul class="meta">
                         <?php echo '<li>prezzo: ' . $auto->prezzo . '</li>' ?>
                         <?php echo '<li>posti: ' . $auto->n_posti . '</li>' ?>
