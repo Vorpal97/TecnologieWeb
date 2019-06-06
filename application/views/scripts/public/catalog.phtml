@@ -5,12 +5,12 @@
         </div>
     </section>
 </div>
-<div class="paginaSfondo">
+<div id="pagina">
     <div class="paginaCat">
         <div class="contenuto">
             <?php foreach ($this->products as $auto) : ?>
                 <div class="prod">
-                    <?php echo'<h1 class="title">' . $auto->marca . '  ' . $auto->modello . '</h1>' ?>
+                    <?php echo'<h1 class="title">' . $auto->marca . ':  ' . $auto->modello . '</h1>' ?>
                     <div class="image">
                         <?php echo '<img class="imagefrm" src="http://localhost/TecnologieWeb/public/images/catalog/' . $auto->immagine . '">' ?>
                     </div>
@@ -36,13 +36,24 @@
                     </ul>
                 </div>
             <?php endforeach; ?>
+
+            <?php
+            if ($this->products instanceof Zend_Paginator) { //dedicato alla creazione della paginazione, è un blocco condizionale visualizzato se e solo se nella nostra pagina vogliamo utilizzare i prodotti paginati
+                //se lo siamo viene stampata la barra di navigazione, che, però è di fatto un metodo predefiito
+                echo $this->paginationControl($this->products, 'Sliding', 'public/_paginator.phtml'); // il primo parametro è la struttura dati che deve controllare (tutti i prodotti che devono essere visualizzati)
+                // il secondo è il tipo di layout che vogliamo utilizzare per rappresentarla (lo stile)
+                //il terzo è l'indicazione di un viewscript che codifica l'html della nostra navbar
+                //ovviamente il public fa riferimento alla sezione delle viewscript
+            }
+            ?>
+
         </div>
         <div class="sidebarFiltri">
             <h1 class="sidebarTitolo">Filtri</h1>
             <hr>
-            <form class="formFiltri" name="formFiltri" action="">
+            <form id="miaForm" method="post" class="formFiltri" name="formFiltri" action="">
                 <label class="formTitolo">Prezzo minimo <select id="selPrezzoMin" name="minimo" size="1">
-                        <option selected value="0">Seleziona</option>
+                        <option selected value="0">Qualsiasi</option>
                         <option value="30">30€</option>
                         <option value="50">50€</option>
                         <option value="70">70€</option>
@@ -52,7 +63,7 @@
                     </select><br>
                 </label>
                 <label class="formTitolo">Prezzo massimo <select id="selPrezzoMax" name="massimo" size="1">
-                        <option selected value="999">Seleziona</option>
+                        <option selected value="9999">Qualsiasi</option>
                         <option value="30">30€</option>
                         <option value="50">50€</option>
                         <option value="70">70€</option>
@@ -62,18 +73,42 @@
                     </select><br>
                 </label>
                 <label class="formTitolo">Numero posti <select id="selPosti" name="posti" size="1">
-                        <option selected value="null">Seleziona</option>
-                        <option value="1">1 posto</option>
-                        <option value="2">2 posti</option>
-                        <option value="3">3 posti</option>
-                        <option value="4">4 posti</option>
-                        <option value="5">5 posti</option>
-                        <option value="6">6 posti</option>
-                        <option value="7">7 posti</option>
+                        <option selected value="0">Qualsiasi</option>
+                        <option value="2">almeno 2 posti</option>
+                        <option value="3">almeno 3 posti</option>
+                        <option value="4">almeno 4 posti</option>
+                        <option value="5">almeno 5 posti</option>
+                        <option value="6">almeno 6 posti</option>
+                        <option value="7">almeno 7 posti</option>
                     </select>
                 </label><br>
-                <input type="submit" value="Applica filtri" name="btnFiltra" style="margin-top: 10px; margin-bottom: 10px;"/>
+                <!--<input type="submit" value="Applica filtri" name="btnFiltra" style="margin-top: 10px; margin-bottom: 10px;"/>-->
+                <!--
+                $min = trim($_POST['minimo']);
+                global $minimo;
+                $minimo = $min;
+                $max = trim($_POST['massimo']);
+                $posti = trim($_POST['posti']);
+                echo '<div>' . $minimo . '</div>';
+                echo '<div>' . $max . '</div>';-->
+                
+                <button style="margin-top: 20px; margin-bottom:20px;" type="submit">Applica filtri</button>
+                <!--
+                //$min = $this->_getParam('minimo', null);
+                //$max = $this->_getParam('massimo', null);
+                if ($min!=0 || $max!=9999 || $posti!=0){
+                    $query = '"location: http:/TecnologieWeb/public/public/catalog/minimo' . $min . '/massimo' . $max . '/posti' . $posti . '"';
+                    header($query);
+                }*/
+                /*if($min!=0 || $max!=9999 || $posti!=0){
+                    echo '<div><a style="margin-bottom: 30px;" href =\' ' . $this->url(array('controller' => 'public',
+                    'action' => 'catalog',
+                    'minimo' => $min,
+                    'massimo' => $max,
+                    'posti' => $posti), 'default', true) . '\'">Applica i filtri</a></div>';
+                }-->
             </form>
+
         </div>
     </div>
 </div>

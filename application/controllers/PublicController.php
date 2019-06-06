@@ -13,11 +13,10 @@ class PublicController extends Zend_Controller_Action
     protected $_publicModel = null;
 
     protected $_faqModel = null;
-    
+
     protected $_authService = null;
 
-    public function init()
-    {
+    public function init() {
         $this->_helper->layout->setLayout('main');
         $this->_logger = Zend_Registry::get('log');
         $this->view->loginForm = $this->getLoginForm();
@@ -32,58 +31,49 @@ class PublicController extends Zend_Controller_Action
     {
         $this->_logger->info('Attivato:    ' . __METHOD__);
         $this->view->azione = $this->getRequest()->getActionName();
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione; //passa alla vista le informazione sul livello di permessi dell'utente
     }
 
     public function catalogAction()
     {
         $this->_logger->info('Attivato:    ' . __METHOD__);
         $this->view->azione = $this->getRequest()->getActionName();
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione; //passa alla vista le informazione sul livello di permessi dell'utente
         //parte per il db
 
         $prezzoMin = $this->_getParam('minimo', null);
         $prezzoMax = $this->_getParam('massimo', null);
         $numeroPosti = $this->_getParam('posti', null);
+        $paged = $this->_getParam('pagina', 1);
+        //$totAuto = $this->_catalogModel->getAuto();
 
-        $totAuto = $this->_catalogModel->getAuto();
-
-        /*if (is_null($prezzoMin) && is_null($prezzoMax) && is_null($numeroPosti) && $prezzoMin == 0 && $prezzoMax == 0 && $numeroPosti == 0) {
-            foreach ($totAuto as $auto) {
-                $autoList[] = $auto->id_auto;
-            }
-            $prods = $this->_catalogModel->getAuto();
-            $this->view->assign(array('products' => $prods));
-        } else{
+        if ((is_null($prezzoMin) && is_null($prezzoMax) && is_null($numeroPosti))||($prezzoMin==0 && $prezzoMax==9999 && $numeroPosti==0)) {
+            $prods = $this->_catalogModel->getAuto($paged);
+        } else if ($numeroPosti==0 && ($prezzoMin!=0 || $prezzoMax!=9999)) {
             $prods = $this->_catalogModel->getAutoByPrezzo($prezzoMin, $prezzoMax);
-            $this->view->assign(array('products' => $prods));
-         * 
-        }*/
-        if (/*!is_null($prezzoMin) && !is_null($prezzoMax) && !is_null($numeroPosti)*/ is_null($prezzoMin) && is_null($prezzoMax) && is_null($numeroPosti)){
-            /*foreach ($totAuto as $auto) {
-                $autoList[] = $auto->id_auto;
-            }*/
-            $prods = $this->_catalogModel->getAuto();
-            $this->view->assign(array('products' => $prods));
+        } else if ($numeroPosti!=0 && $prezzoMin==0 && $prezzoMax==9999){
+            $prods = $this->_catalogModel->getAutoByPosti($numeroPosti);
         } else {
-            $prods = $this->_catalogModel->getAutoByPrezzo($prezzoMin, $prezzoMax);
-            $this->view->assign(array('products' => $prods));
+            $prods = $this->_catalogModel->getAutoByAll($prezzoMin, $prezzoMax, $numeroPosti);
         }
 
+        $this->view->assign(array('products' => $prods));
     }
 
     public function faqAction()
     {
         $this->view->azione = $this->getRequest()->getActionName();
-        $this->_logger->info('Attivato:    '. __METHOD__);
+        $this->_logger->info('Attivato:    ' . __METHOD__);
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
 
-        $totFaq= $this->_faqModel->getFaq();
+        $totFaq = $this->_faqModel->getFaq();
 
-        foreach ($totFaq as $faq){
+        foreach ($totFaq as $faq) {
             $faqList[] = $faq->id_faq;
         }
-        $prods=$this->_faqModel->getFaq();
+        $prods = $this->_faqModel->getFaq();
 
         $this->view->assign(array('products' => $prods));
-
     }
 
     public function loginAction()
@@ -160,8 +150,4 @@ class PublicController extends Zend_Controller_Action
         }
         return $this->_helper->redirector('index', $this->_authService->getIdentity()->autenticazione);
     }
-
-
 }
-
-
