@@ -6,7 +6,7 @@ class StaffController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->_helper->layout->setLayout('staff');
+        $this->_helper->layout->setLayout('main');
         $this->_authService = new Application_Service_Auth();
         $this->view->insertForm = $this->getInsertForm();
     }
@@ -31,7 +31,7 @@ class StaffController extends Zend_Controller_Action
     public function logoutAction()
     {
         $this->_authService->logout();
-	return $this->_helper->redirector('index','public');	
+	      return $this->_helper->redirector('index','public');
     }
 
     public function inserisciAction()
@@ -56,14 +56,3 @@ class StaffController extends Zend_Controller_Action
 
 
 }
-
-
-
-
-
-
-
-
-
-
-

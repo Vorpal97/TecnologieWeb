@@ -35,6 +35,11 @@
         </controllerFile>
         <controllerFile controllerName="Admin">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="managefaq"/>
+          <actionMethod actionName="rentstats"/>
+          <actionMethod actionName="usermanager"/>
+          <actionMethod actionName="staffmanager"/>
+          <actionMethod actionName="logout"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
@@ -93,6 +98,22 @@
           <viewControllerScriptsDirectory forControllerName="Public">
             <viewScriptFile forActionName="authenticate"/>
           </viewControllerScriptsDirectory>
+<<<<<<< HEAD
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="managefaq"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="rentstats"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="usermanager"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="staffmanager"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="logout"/>
+=======
           <viewControllerScriptsDirectory forControllerName="Staff">
             <viewScriptFile forActionName="inserisci"/>
           </viewControllerScriptsDirectory>
@@ -104,6 +125,7 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Staff">
             <viewScriptFile forActionName="visualizza"/>
+>>>>>>> b50b22f6713d356335cf7ad745ed2f6fc128cb2c
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -160,6 +182,11 @@
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Admin">
             <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="managefaq"/>
+            <testApplicationActionMethod forActionName="rentstats"/>
+            <testApplicationActionMethod forActionName="usermanager"/>
+            <testApplicationActionMethod forActionName="staffmanager"/>
+            <testApplicationActionMethod forActionName="logout"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>

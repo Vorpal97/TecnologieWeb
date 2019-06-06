@@ -6,7 +6,33 @@
       <?= $this->headTitle(); ?>
     </head>
     <body id="top">
-        <?= $this->render('_navbar.phtml'); ?>
+        <?php
+
+        if(!isset($this->livello)){
+          echo $this->render('_navbar.phtml');
+        } else {
+
+          switch ($this->livello) {
+            case 'user':
+              echo $this->render('_navbarUser.phtml');
+              break;
+
+            case 'staff':
+              echo $this->render('_navbarStaff.phtml');
+              break;
+
+            case 'admin':
+              echo $this->render('_navbarAdmin.phtml');
+              break;
+
+              default:
+              echo $this->render('_navbar.phtml');
+              break;
+            }
+          }
+
+
+         ?>
         <div>
             <?php echo $this->layout()->content; ?>
         </div>

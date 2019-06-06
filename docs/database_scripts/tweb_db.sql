@@ -2,10 +2,10 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Creato il: Giu 05, 2019 alle 17:23
--- Versione del server: 10.1.40-MariaDB
--- Versione PHP: 7.3.5
+-- Host: localhost
+-- Creato il: Giu 06, 2019 alle 20:41
+-- Versione del server: 10.1.38-MariaDB
+-- Versione PHP: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -138,7 +138,8 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`id_utente`, `nome`, `cognome`, `username`, `email`, `psw`, `data`, `autenticazione`, `residenza`, `occupazione`, `abilitato`) VALUES
-(7, 'simone', 'Cappella', '', 'ciao@ciao.it', 'ciaociao', '1997-11-21', 'user', 'SBT', 'altro', 1);
+(7, 'simone', 'Cappella', '', 'ciao@ciao.it', 'ciaociao', '1997-11-21', 'user', 'SBT', 'altro', 1),
+(8, '', '', 'admin', 'admin@admin.it', 'admin', '0000-00-00', 'admin', '', '', 1);
 
 --
 -- Indici per le tabelle scaricate
@@ -206,7 +207,7 @@ ALTER TABLE `prenotazione`
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `id_utente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_utente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
