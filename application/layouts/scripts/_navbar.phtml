@@ -28,7 +28,6 @@
                             'default', true ); ?>"
                             title = "Catalogo" >Catalogo</a>
                 </li>
-                <?php if(!isset($this->livello)): ?>
                 <li <?php if($this->azione == "register")
                 {
                     echo 'class="active"';
@@ -49,29 +48,7 @@
                             'default', true); ?>"
                             title = "Login" >Accedi</a>
                 </li>
-              <?php else: ?>
-              <li <?php if($this->azione == "profilo")
-              {
-                  echo 'class="active"';
-              }         ?>
-                          ><a href="<?= $this->url(array(
-                          'controller' => 'user',
-                          'action' => 'profilo'),
-                          'default', true ); ?>"
-                          title = "Registrati" >Il mio profilo</a>
-              </li>
-              <li <?php if($this->azione == "logout")
-              {
-                  echo 'class="active"';
-              }         ?>
-                          ><a href="<?= $this->url(array(
-                          'controller' => $this->livello,
-                          'action' => 'logout'),
-                          'default', true); ?>"
-                          title = "Logout" >Logout</a>
-              </li>
-            <?php endif ?>
-          </ul>
+          
             </ul>
         </nav>
     </header>
