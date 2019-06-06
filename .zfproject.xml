@@ -32,6 +32,7 @@
         <controllerFile controllerName="Admin">
           <actionMethod actionName="index"/>
           <actionMethod actionName="managefaq"/>
+          <actionMethod actionName="rentstats"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
@@ -93,6 +94,9 @@
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="managefaq"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="rentstats"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -145,6 +149,7 @@
           <testApplicationControllerFile forControllerName="Admin">
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="managefaq"/>
+            <testApplicationActionMethod forActionName="rentstats"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
