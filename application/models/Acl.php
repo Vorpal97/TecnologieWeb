@@ -16,5 +16,10 @@ class Application_Model_Acl extends Zend_Acl
              ->add (new Zend_Acl_Resource ('user'))
              ->allow('user','user');
         
+        //per utente staff
+        $this->addRole(new Zend_Acl_role('staff'),'user')
+             ->add (new Zend_Acl_Resource ('staff'))
+             ->allow ('staff','staff');
+        
     }
 }
