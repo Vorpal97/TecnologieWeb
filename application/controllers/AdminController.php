@@ -37,21 +37,9 @@ class AdminController extends Zend_Controller_Action
 
     public function logoutAction()
     {
-        // action body
+      $this->_authService->logout();
+      return $this->_helper->redirector('index','public');
     }
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
