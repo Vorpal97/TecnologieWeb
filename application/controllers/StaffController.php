@@ -14,14 +14,10 @@ class StaffController extends Zend_Controller_Action
         // action body
     }
 
-<<<<<<< HEAD
-        public function logoutAction()
-=======
     public function logoutAction()
->>>>>>> b50b22f6713d356335cf7ad745ed2f6fc128cb2c
     {
         $this->_authService->logout();
-	return $this->_helper->redirector('index','public');
+	      return $this->_helper->redirector('index','public');
     }
 
     public function inserisciAction()
@@ -46,17 +42,3 @@ class StaffController extends Zend_Controller_Action
 
 
 }
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> b50b22f6713d356335cf7ad745ed2f6fc128cb2c
