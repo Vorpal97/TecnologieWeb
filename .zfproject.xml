@@ -35,6 +35,7 @@
           <actionMethod actionName="rentstats"/>
           <actionMethod actionName="usermanager"/>
           <actionMethod actionName="staffmanager"/>
+          <actionMethod actionName="logout"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
@@ -105,6 +106,9 @@
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="staffmanager"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="logout"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -160,6 +164,7 @@
             <testApplicationActionMethod forActionName="rentstats"/>
             <testApplicationActionMethod forActionName="usermanager"/>
             <testApplicationActionMethod forActionName="staffmanager"/>
+            <testApplicationActionMethod forActionName="logout"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
