@@ -13,15 +13,43 @@ class StaffController extends Zend_Controller_Action
     {
         // action body
     }
-    
-        public function logoutAction()
+
+    public function logoutAction()
     {
         $this->_authService->logout();
 	return $this->_helper->redirector('index','public');	
     }
 
+    public function inserisciAction()
+    {
+        // action body
+    }
+
+    public function modificaAction()
+    {
+        // action body
+    }
+
+    public function cancellaAction()
+    {
+        // action body
+    }
+
+    public function visualizzaAction()
+    {
+        // action body
+    }
+
 
 }
+
+
+
+
+
+
+
+
 
 
 

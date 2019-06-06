@@ -30,12 +30,28 @@
                     <ul>
                         <li><a class="drop">Auto</a>
                             <ul>
-                                <li><a>Inserisci</a></li>
-                                <li><a>Modifica</a></li>
-                                <li><a>Cancella</a></li>     
+                                <li><a href=" <?= $this->url(array(
+                                    'controller' => 'staff',
+                                    'action' => 'inserisci'),
+                                    'default', true ); ?>"
+                                title ="Inserisci">Inserisci</a></li>
+                                <li><a href=" <?= $this->url(array(
+                                    'controller' => 'staff',
+                                    'action' => 'modifica'),
+                                    'default', true ); ?>"
+                                title ="Modifica">Modifica</a></li>
+                                <li><a href=" <?= $this->url(array(
+                                    'controller' => 'staff',
+                                    'action' => 'cancella'),
+                                    'default', true ); ?>"
+                                title ="Cancella">Cancella</a></li>     
                             </ul>
                         </li>
-                        <li><a>Visualizza elenco</a></li>
+                        <li><a href=" <?= $this->url(array(
+                                    'controller' => 'staff',
+                                    'action' => 'visualizza'),
+                                    'default', true ); ?>"
+                                title ="Visualizza">Visualizza elenco</a></li>
                     </ul>
                     
                 </li>

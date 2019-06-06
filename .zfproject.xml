@@ -28,6 +28,10 @@
         </controllerFile>
         <controllerFile controllerName="Staff">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="inserisci"/>
+          <actionMethod actionName="modifica"/>
+          <actionMethod actionName="cancella"/>
+          <actionMethod actionName="visualizza"/>
         </controllerFile>
         <controllerFile controllerName="Admin">
           <actionMethod actionName="index"/>
@@ -89,6 +93,18 @@
           <viewControllerScriptsDirectory forControllerName="Public">
             <viewScriptFile forActionName="authenticate"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Staff">
+            <viewScriptFile forActionName="inserisci"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Staff">
+            <viewScriptFile forActionName="modifica"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Staff">
+            <viewScriptFile forActionName="cancella"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Staff">
+            <viewScriptFile forActionName="visualizza"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -137,6 +153,10 @@
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Staff">
             <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="inserisci"/>
+            <testApplicationActionMethod forActionName="modifica"/>
+            <testApplicationActionMethod forActionName="cancella"/>
+            <testApplicationActionMethod forActionName="visualizza"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Admin">
             <testApplicationActionMethod forActionName="index"/>
