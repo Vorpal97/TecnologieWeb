@@ -18,12 +18,19 @@
           <actionMethod actionName="login"/>
           <actionMethod actionName="register"/>
           <actionMethod actionName="profile"/>
+          <actionMethod actionName="authenticate"/>
         </controllerFile>
         <controllerFile controllerName="User">
           <actionMethod actionName="index"/>
           <actionMethod actionName="logout"/>
           <actionMethod actionName="profilo"/>
           <actionMethod actionName="editaprofilo"/>
+        </controllerFile>
+        <controllerFile controllerName="Staff">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Admin">
+          <actionMethod actionName="index"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
@@ -73,6 +80,15 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="editaprofilo"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Staff">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Public">
+            <viewScriptFile forActionName="authenticate"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -117,6 +133,13 @@
             <testApplicationActionMethod forActionName="login"/>
             <testApplicationActionMethod forActionName="register"/>
             <testApplicationActionMethod forActionName="profile"/>
+            <testApplicationActionMethod forActionName="authenticate"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Staff">
+            <testApplicationActionMethod forActionName="index"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Admin">
+            <testApplicationActionMethod forActionName="index"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>

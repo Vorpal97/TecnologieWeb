@@ -1,12 +1,20 @@
 <?php
 
-class PublicController extends Zend_Controller_Action {
+class PublicController extends Zend_Controller_Action
+{
 
     protected $_logger = null;
-    protected $_form = null;
-    protected $_catalogModel;
-    protected $_publicModel;
-    protected $_faqModel;
+
+    protected $_registerform = null;
+    protected $_loginform = null;
+
+    protected $_catalogModel = null;
+
+    protected $_publicModel = null;
+
+    protected $_faqModel = null;
+
+    protected $_authService = null;
 
     public function init() {
         $this->_helper->layout->setLayout('main');
@@ -15,17 +23,20 @@ class PublicController extends Zend_Controller_Action {
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_publicModel = new Application_Model_Public();
         $this->_faqModel = new Application_Model_Faq();
+        $this->_authService = new Application_Service_Auth();
         $this->view->registerForm = $this->getRegisterForm();
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         $this->_logger->info('Attivato:    ' . __METHOD__);
         $this->view->azione = $this->getRequest()->getActionName();
     }
 
-    public function catalogAction() {
-        //$this->_logger->info('Attivato:    ' . __METHOD__);
-        //$this->view->azione = $this->getRequest()->getActionName();
+    public function catalogAction()
+    {
+        $this->_logger->info('Attivato:    ' . __METHOD__);
+        $this->view->azione = $this->getRequest()->getActionName();
         //parte per il db
 
         $prezzoMin = $this->_getParam('minimo', null);
@@ -47,7 +58,8 @@ class PublicController extends Zend_Controller_Action {
         $this->view->assign(array('products' => $prods));
     }
 
-    public function faqAction() {
+    public function faqAction()
+    {
         $this->view->azione = $this->getRequest()->getActionName();
         $this->_logger->info('Attivato:    ' . __METHOD__);
 
@@ -61,35 +73,41 @@ class PublicController extends Zend_Controller_Action {
         $this->view->assign(array('products' => $prods));
     }
 
-    public function loginAction() {
+    public function loginAction()
+    {
         $this->view->azione = $this->getRequest()->getActionName();
         $this->_logger->info('Attivato:    ' . __METHOD__);
     }
 
-    public function registerAction() {
+    public function registerAction()
+    {
         $this->view->azione = $this->getRequest()->getActionName();
         $this->_logger->info('Attivato:    ' . __METHOD__);
     }
 
-    public function profileAction() {
+    public function profileAction()
+    {
         $this->_logger->info('Attivato:    ' . __METHOD__);
     }
 
-    private function getLoginForm() {
+    private function getLoginForm()
+    {
         $urlHelper = $this->_helper->getHelper('url');
-        $this->_form = new Application_Form_Public_Auth_Login();
-        $this->_form->setAction($urlHelper->url(array(
-                    'controller' => 'user',
-                    'action' => 'index'), 'default'
+        $this->_loginform = new Application_Form_Public_Auth_Login();
+        $this->_loginform->setAction($urlHelper->url(array(
+                    'controller' => 'public',
+                    'action' => 'authenticate'),
+                    'default'
         ));
-        return $this->_form;
+        return $this->_loginform;
     }
 
-    public function addnewuserAction() {
+    public function addnewuserAction()
+    {
         if (!$this->getRequest()->isPost()) {
             $this->_helper->redirector('index');
         }
-        $form = $this->_form;
+        $form = $this->_registerform;
         if (!$form->isValid($_POST)) {
             return $this->render('register');
         }
@@ -98,14 +116,37 @@ class PublicController extends Zend_Controller_Action {
         $this->_helper->redirector('login');
     }
 
-    private function getRegisterForm() {
+    private function getRegisterForm()
+    {
         $urlHelper = $this->_helper->getHelper('url');
-        $this->_form = new Application_Form_Public_Auth_Register();
-        $this->_form->setAction($urlHelper->url(array(
+        $this->_registerform = new Application_Form_Public_Auth_Register();
+        $this->_registerform->setAction($urlHelper->url(array(
                     'controller' => 'public',
                     'action' => 'addnewuser'), 'default', true
         ));
-        return $this->_form;
+        return $this->_registerform;
     }
+
+    public function authenticateAction()
+    {
+        $request = $this->getRequest();
+        if (!$request->isPost())
+        {
+            return $this->_helper->redirector('login');
+        }
+        $form = $this->_loginform;
+        if (!$form->isValid($request->getPost()))
+        {
+            $form->setDescription('Dati non validi, riprova.');
+            return $this->render('login');
+        }
+        if (false === $this->_authService->authenticate($form->getValues()))
+        {
+            $form->setDescription('Email o password errati, riprova.');
+            return $this->render('login');
+        }
+        return $this->_helper->redirector('index', $this->_authService->getIdentity()->autenticazione);
+    }
+
 
 }

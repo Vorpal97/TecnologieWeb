@@ -1,3 +1,4 @@
+
 <?php
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
@@ -38,6 +39,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $loader->registerNamespace('App_');
         $this->getResourceLoader()
                 ->addResourceType('modelResource', 'models/resources', 'Resource');
+    }
+    
+    protected function _initFrontControllerPlugin()
+    {
+        $front = Zend_Controller_Front::getInstance();
+        $front->registerPlugin(new App_Controller_Plugin_Acl());
     }
 
 }

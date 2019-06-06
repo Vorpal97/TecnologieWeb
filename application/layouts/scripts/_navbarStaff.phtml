@@ -10,12 +10,12 @@
         <nav id="mainav" class="fl_right">
             <ul class="clear">
                 <li><a href=" <?= $this->url(array(
-                            'controller' => 'user',
+                            'controller' => 'staff',
                             'action' => 'index'),
                             'default', true ); ?>"
                             title = "Home" >Home</a></li>
                 <li><a href="<?= $this->url(array(
-                            'controller' => 'public',
+                            'controller' => 'staff',
                             'action' => 'catalog'),
                             'default', true ); ?>"
                             title = "Catalogo" >Catalogo</a>
@@ -26,8 +26,21 @@
                             'default', true ); ?>"
                             title = "Registrati" >Il mio profilo</a>
                 </li>
+                <li><a class="drop">Gestisci</a>
+                    <ul>
+                        <li><a class="drop">Auto</a>
+                            <ul>
+                                <li><a>Inserisci</a></li>
+                                <li><a>Modifica</a></li>
+                                <li><a>Cancella</a></li>     
+                            </ul>
+                        </li>
+                        <li><a>Visualizza elenco</a></li>
+                    </ul>
+                    
+                </li>
                 <li><a href="<?= $this->url(array(
-                            'controller' => 'user',
+                            'controller' => 'staff',
                             'action' => 'logout'),
                             'default', true); ?>"
                             title = "Logout" >Logout</a>
@@ -36,3 +49,4 @@
         </nav>
     </header>
 </div>
+ 
