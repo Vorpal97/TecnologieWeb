@@ -6,11 +6,13 @@ class AdminController extends Zend_Controller_Action
     public function init()
     {
         /* Initialize action controller here */
+        $this->_helper->layout->setLayout('main');
+        $this->_authService = new Application_Service_Auth();
     }
 
     public function indexAction()
     {
-        // action body
+      $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     }
 
     public function managefaqAction()

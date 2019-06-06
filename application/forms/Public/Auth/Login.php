@@ -10,7 +10,7 @@ class Application_Form_Public_Auth_Login extends App_Form_Abstract
 
         $this->addElement('text', 'email', array(
             'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('EmailAddress',true, array('messages' => "L'email inserita non è nel formato emailaddress@hostname"))),
-            'required' =>array(required,'messages'=>'ciao'),
+            'required' =>array('required','messages'=>'ciao'),
             'label' => 'E-mail',
             'decorators' => $this->elementDecorators,
             ));
@@ -33,7 +33,7 @@ class Application_Form_Public_Auth_Login extends App_Form_Abstract
             array('Description', array('placement' => 'prepend', 'class' => 'errors')),
             'Form',
         ));
-        
-        
+
+
     }
 }
