@@ -1,41 +1,35 @@
-<!--generatore di codice che potrà utilizzare le proprietà dell'ogetto paginator  -->
-<?php 
-        $pMin = trim($_POST['minimo']);
-        $pMax = trim($_POST['massimo']);
-        $nPosti = trim($_POST['posti']);
-if ($this->pageCount > 1): ?> <!-- pagecount ci dice quante sono le pagine del contenuto informativo che devo utilizzare, se i prodotti estratti sono più di uno genero la barra, altrimenti no-->
-<div id="pagination" style="margin: 40px;"> <!-- se va a buon fine genera un div con tutte le seguenti componenti-->
-<?php echo $this->firstItemNumber; ?> - <?= $this->lastItemNumber; ?> di <?= $this->totalItemCount; ?> --- <!-- indica la corrente (nel caso fossero più di una la prima delle pagine e l'ultima delle agine visualizate) e il totale, è la costruzione della parte scritta della barra-->
+<?php
+if ($this->pageCount > 1):?> 
+    <div id="pagination" style="margin: 40px;">
+    <?php echo $this->firstItemNumber; ?> - <?= $this->lastItemNumber; ?> di <?= $this->totalItemCount; ?> --- 
 
-<!-- Link alla prima pagina
-     genera il link all'inizio   -->
-<?php if (isset($this->previous)): ?> <!-- se esiste una pagina precedente genero un ancora associata all'inizio, se cliccata chiede il caricamento della pagina dei prodotti a partire dall'inizio -->
-  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'catalog', 'pagina' => $this->first)); ?>">Inizio</a> | <!-- passa come parametro page, impostato sulla prima pagina-->
-<?php else: ?>
-  Inizio | <!-- se sono gia all'inizio stampa solo inizio con una barra verticale-->
-<?php endif; ?>
 
-<!-- Link alla pagina precedente -->
-<?php if (isset($this->previous)): ?> <!-- analogamente, se esiste una pagina precedente viene generato lo stesso metodo ma la page è settata alla pagina precedente, non alla prima, cosi se ci clicco mi carica la precedente-->
-  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'catalog', 'pagina' => $this->previous)); ?>">&lt; Precedente</a> |
-<?php else: ?>
-  &lt; Precedente |
-<?php endif; ?>
+        <?php if (isset($this->previous)): ?>
+            <a href="<?= $this->url(array('controller' => 'public', 'action' => 'catalog', 'pagina' => $this->first)); ?>">Inizio</a> | 
+        <?php else: ?>
+            Inizio | 
+    <?php endif; ?>
 
-<!-- Link alla pagina successiva -->
-<?php if (isset($this->next)): ?>
-  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'catalog', 'pagina' => $this->next)); ?>">Successivo &gt;</a> |
-<?php else: ?>
-  Successivo &gt; |
-<?php endif; ?>
 
-<!-- Link all'ultima pagina -->
-<?php if (isset($this->next)): ?>
-  <a href="<?= $this->url(array('controller' => 'public', 'action' => 'catalog', 'pagina' => $this->last)); ?>">Fine</a>
-<?php else: ?>
-  Fine
-<?php endif; ?>
+        <?php if (isset($this->previous)): ?> 
+            <a href="<?= $this->url(array('controller' => 'public', 'action' => 'catalog', 'pagina' => $this->previous)); ?>">&lt; Precedente</a> |
+        <?php else: ?>
+            &lt; Precedente |
+    <?php endif; ?>
 
-</div>
+
+        <?php if (isset($this->next)): ?>
+            <a href="<?= $this->url(array('controller' => 'public', 'action' => 'catalog', 'pagina' => $this->next)); ?>">Successivo &gt;</a> |
+        <?php else: ?>
+            Successivo &gt; |
+    <?php endif; ?>
+
+
+        <?php if (isset($this->next)): ?>
+            <a href="<?= $this->url(array('controller' => 'public', 'action' => 'catalog', 'pagina' => $this->last)); ?>">Fine</a>
+        <?php else: ?>
+            Fine
+    <?php endif; ?>
+
+    </div>
 <?php endif; ?>
-<!--ognuna di queste ancore richiamano il controller public passandogli i giusti parametri; questi implementano di fatto la paginazione con la nav-->

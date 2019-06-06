@@ -67,11 +67,20 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract {
         return $this->fetchAll($select);
     }
 
-    public function getAutoByAll($min, $max, $posti) {
+    public function getAutoByAll($min, $max, $posti, $paged=null) {
         $query = 'n_posti >= ' . $posti . ' AND ' . $min . ' <=  prezzo AND prezzo <= ' . $max;
         $select = $this->select()
                 ->where($query)
                 ->order('marca');
+        
+        if (null !== $paged) {
+            $adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
+            $paginator = new Zend_Paginator($adapter);
+            $paginator->setItemCountPerPage(3)
+                    ->setCurrentPageNumber((int) $paged);
+            return $paginator;
+        }
+        
         return $this->fetchAll($select);
     }
 

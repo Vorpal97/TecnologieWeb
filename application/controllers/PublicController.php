@@ -34,14 +34,14 @@ class PublicController extends Zend_Controller_Action {
         $paged = $this->_getParam('pagina', 1);
         //$totAuto = $this->_catalogModel->getAuto();
 
-        if ((is_null($prezzoMin) && is_null($prezzoMax) && is_null($numeroPosti))||($prezzoMin==0 && $prezzoMax==999 && $numeroPosti==0)) {
+        if ((is_null($prezzoMin) && is_null($prezzoMax) && is_null($numeroPosti))||($prezzoMin==0 && $prezzoMax==9999 && $numeroPosti==0)) {
             $prods = $this->_catalogModel->getAuto($paged);
-        } else if ($numeroPosti==0 && ($prezzoMin!=0 || $prezzoMax!=999)) {
+        } else if ($numeroPosti==0 && ($prezzoMin!=0 || $prezzoMax!=9999)) {
             $prods = $this->_catalogModel->getAutoByPrezzo($prezzoMin, $prezzoMax, $paged);
-        } else if ($numeroPosti!=0 && $prezzoMin==0 && $prezzoMax==999){
+        } else if ($numeroPosti!=0 && $prezzoMin==0 && $prezzoMax==9999){
             $prods = $this->_catalogModel->getAutoByPosti($numeroPosti);
         } else {
-            $prods = $this->_catalogModel->getAutoByAll($prezzoMin, $prezzoMax, $numeroPosti);
+            $prods = $this->_catalogModel->getAutoByAll($prezzoMin, $prezzoMax, $numeroPosti, $paged);
         }
 
         $this->view->assign(array('products' => $prods));
