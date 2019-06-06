@@ -12,26 +12,27 @@
                 <li <?php if($this->azione == "index")
                 {
                     echo 'class="active"';
-                }         ?>  
+                }         ?>
                             ><a href=" <?= $this->url(array(                             //classe active evidenzia elemento
                             'controller' => 'public',
-                            'action' => 'index'),   
+                            'action' => 'index'),
                             'default', true ); ?>"
                             title = "Home" >Home</a></li>
                 <li <?php if($this->azione == "catalog")
                 {
                     echo 'class="active"';
-                }         ?>  
+                }         ?>
                             ><a href="<?= $this->url(array(                              //classe drop per inserire menù a tendina
                             'controller' => 'public',
                             'action' => 'catalog'),
                             'default', true ); ?>"
                             title = "Catalogo" >Catalogo</a>
                 </li>
+                <?php if(!isset($this->livello)): ?>
                 <li <?php if($this->azione == "register")
                 {
                     echo 'class="active"';
-                }         ?>  
+                }         ?>
                             ><a href="<?= $this->url(array(
                             'controller' => 'public',
                             'action' => 'register'),
@@ -41,13 +42,36 @@
                 <li <?php if($this->azione == "login")
                 {
                     echo 'class="active"';
-                }         ?>  
+                }         ?>
                             ><a href="<?= $this->url(array(
                             'controller' => 'public',
                             'action' => 'login'),
                             'default', true); ?>"
                             title = "Login" >Accedi</a>
                 </li>
+              <?php else: ?>
+              <li <?php if($this->azione == "profilo")
+              {
+                  echo 'class="active"';
+              }         ?>
+                          ><a href="<?= $this->url(array(
+                          'controller' => 'user',
+                          'action' => 'profilo'),
+                          'default', true ); ?>"
+                          title = "Registrati" >Il mio profilo</a>
+              </li>
+              <li <?php if($this->azione == "logout")
+              {
+                  echo 'class="active"';
+              }         ?>
+                          ><a href="<?= $this->url(array(
+                          'controller' => $this->livello,
+                          'action' => 'logout'),
+                          'default', true); ?>"
+                          title = "Logout" >Logout</a>
+              </li>
+            <?php endif ?>
+          </ul>
             </ul>
         </nav>
     </header>

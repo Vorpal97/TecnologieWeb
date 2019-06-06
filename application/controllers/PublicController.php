@@ -31,12 +31,14 @@ class PublicController extends Zend_Controller_Action
     {
         $this->_logger->info('Attivato:    ' . __METHOD__);
         $this->view->azione = $this->getRequest()->getActionName();
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione; //passa alla vista le informazione sul livello di permessi dell'utente
     }
 
     public function catalogAction()
     {
         $this->_logger->info('Attivato:    ' . __METHOD__);
         $this->view->azione = $this->getRequest()->getActionName();
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione; //passa alla vista le informazione sul livello di permessi dell'utente
         //parte per il db
 
         $prezzoMin = $this->_getParam('minimo', null);
@@ -62,6 +64,7 @@ class PublicController extends Zend_Controller_Action
     {
         $this->view->azione = $this->getRequest()->getActionName();
         $this->_logger->info('Attivato:    ' . __METHOD__);
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
 
         $totFaq = $this->_faqModel->getFaq();
 
@@ -146,5 +149,5 @@ class PublicController extends Zend_Controller_Action
             return $this->render('login');
         }
         return $this->_helper->redirector('index', $this->_authService->getIdentity()->autenticazione);
-    }   
+    }
 }
