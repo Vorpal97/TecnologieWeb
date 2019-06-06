@@ -34,6 +34,7 @@
           <actionMethod actionName="managefaq"/>
           <actionMethod actionName="rentstats"/>
           <actionMethod actionName="usermanager"/>
+          <actionMethod actionName="staffmanager"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
@@ -101,6 +102,9 @@
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="usermanager"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="staffmanager"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -155,6 +159,7 @@
             <testApplicationActionMethod forActionName="managefaq"/>
             <testApplicationActionMethod forActionName="rentstats"/>
             <testApplicationActionMethod forActionName="usermanager"/>
+            <testApplicationActionMethod forActionName="staffmanager"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>

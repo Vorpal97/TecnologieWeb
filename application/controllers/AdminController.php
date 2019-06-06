@@ -28,8 +28,15 @@ class AdminController extends Zend_Controller_Action
         // action body
     }
 
+    public function staffmanagerAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 
 
 
