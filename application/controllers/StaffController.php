@@ -2,11 +2,25 @@
 
 class StaffController extends Zend_Controller_Action
 {
+    protected $_form = null;
 
     public function init()
     {
         $this->_helper->layout->setLayout('staff');
         $this->_authService = new Application_Service_Auth();
+        $this->view->insertForm = $this->getInsertForm();
+    }
+    
+    public function getInsertForm()
+    {
+        $urlHelper = $this->_helper->getHelper('url');
+        $this->_form = new Application_Form_Staff_Auto_Insert();
+        $this->_form->setAction($urlHelper->url(array(
+            'controller' => 'staff',
+            'action' =>'inserisci'),
+            'default'
+        ));
+        return $this->_form;
     }
 
     public function indexAction()

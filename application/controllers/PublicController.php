@@ -4,16 +4,11 @@ class PublicController extends Zend_Controller_Action
 {
 
     protected $_logger = null;
-
     protected $_registerform = null;
     protected $_loginform = null;
-
     protected $_catalogModel = null;
-
     protected $_publicModel = null;
-
     protected $_faqModel = null;
-
     protected $_authService = null;
 
     public function init() {

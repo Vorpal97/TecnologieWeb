@@ -3,12 +3,12 @@ class App_Form_Abstract extends Zend_Form
 {
     public $elementDecorators = array(
         'ViewHelper',
-        array(array('alias1' => 'HtmlTag'),array('tag' => 'td', 'class' => 'element')),
-		array(array('alias2' => 'HtmlTag'), array('tag' => 'td', 'class' => 'errors','openOnly' => true, 'placement' => 'append')),
+        array(array('elem1' => 'HtmlTag'),array('tag' => 'td', 'class' => 'element')),
+		array(array('elem2' => 'HtmlTag'), array('tag' => 'td', 'class' => 'errors','openOnly' => true, 'placement' => 'append')),
 		'Errors',
-		array(array('alias3' => 'HtmlTag'), array('tag' => 'td', 'closeOnly' => true, 'placement' => 'append')),
+		array(array('elem3' => 'HtmlTag'), array('tag' => 'td', 'closeOnly' => true, 'placement' => 'append')),
         array('Label', array('tag' => 'td', 'style' => 'float:right;')),
-        array(array('alias4' => 'HtmlTag'), array('tag' => 'tr')),
+        array(array('elem4' => 'HtmlTag'), array('tag' => 'tr')),
         );
 
     public $buttonDecorators = array(
@@ -16,6 +16,16 @@ class App_Form_Abstract extends Zend_Form
         array(array('button1' => 'HtmlTag'),array('tag' => 'td')),
         array(array('button2' => 'HtmlTag'), array('tag' => 'td', 'class' => 'button')),
         array(array('button3' => 'HtmlTag'),array('tag' => 'tr')),
+    );
+    
+     public $fileDecorators = array(
+        'File', //serve il wrapper spefcifico per gli elementi di tipo file
+        array(array('file1' => 'HtmlTag'), array('tag' => 'td', 'class' => 'file')),
+        array(array('file2' => 'HtmlTag'), array('tag' => 'td', 'class' => 'errors', 'openOnly' => true, 'placement' => 'append')),
+        'Errors',
+        array(array('file3' => 'HtmlTag'), array('tag' => 'td', 'closeOnly' => true, 'placement' => 'append')),
+        array('Label', array('tag' => 'td', 'style' => 'float:right')),
+        array(array('file4' => 'HtmlTag'), array('tag' => 'tr')),
     );
 
 }
