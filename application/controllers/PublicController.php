@@ -48,11 +48,11 @@ class PublicController extends Zend_Controller_Action
         if ((is_null($prezzoMin) && is_null($prezzoMax) && is_null($numeroPosti))||($prezzoMin==0 && $prezzoMax==9999 && $numeroPosti==0)) {
             $prods = $this->_catalogModel->getAuto($paged);
         } else if ($numeroPosti==0 && ($prezzoMin!=0 || $prezzoMax!=9999)) {
-            $prods = $this->_catalogModel->getAutoByPrezzo($prezzoMin, $prezzoMax, $paged);
+            $prods = $this->_catalogModel->getAutoByPrezzo($prezzoMin, $prezzoMax);
         } else if ($numeroPosti!=0 && $prezzoMin==0 && $prezzoMax==9999){
             $prods = $this->_catalogModel->getAutoByPosti($numeroPosti);
         } else {
-            $prods = $this->_catalogModel->getAutoByAll($prezzoMin, $prezzoMax, $numeroPosti, $paged);
+            $prods = $this->_catalogModel->getAutoByAll($prezzoMin, $prezzoMax, $numeroPosti);
         }
 
         $this->view->assign(array('products' => $prods));
@@ -146,7 +146,5 @@ class PublicController extends Zend_Controller_Action
             return $this->render('login');
         }
         return $this->_helper->redirector('index', $this->_authService->getIdentity()->autenticazione);
-    }
-
-
+    }   
 }
