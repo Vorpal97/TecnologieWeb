@@ -76,6 +76,13 @@
     border-color: #D7D7D7;
 }
 
+.prod .modifica{
+    float: right;
+    background-color: #a2b70d40;
+    width: 350px;
+    height: 200px;
+}
+
 .sidebarFiltri{
     margin-left: 40px;
     margin-top: 40px;
