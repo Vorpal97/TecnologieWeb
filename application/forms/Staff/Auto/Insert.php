@@ -73,30 +73,30 @@
             ));
             
             $this->addElement('text', 'cilindrata', array(
-                'validators' => array(array('validator'=>'NotEmpty', 'options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true), array('Regex',true,array('[0-9]'))),
+                'validators' => array(array('validator'=>'NotEmpty', 'options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('Digits', true, array('messages' => 'Puoi inserire soltanto numeri'))),
                 'required' => true,
                 'label' => 'Cilindrata',
                 'decorators' => $this->elementDecorators,
             ));
             
             $this->addElement('text', 'potenza', array(
-                'validators' => array(array('validator'=>'NotEmpty', 'options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true), array('Regex',true,array('[0-9]'))),
+                'validators' => array(array('validator'=>'NotEmpty', 'options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('Digits', true, array('messages' => 'Puoi inserire soltanto numeri'))),
                 'required' => true,
                 'label' => 'Potenza',
                 'decorators' => $this->elementDecorators,
             ));
             
             $this->addElement('text', 'cavalli', array(
-                'validators' => array(array('validator'=>'NotEmpty', 'options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true), array('Regex',true,array('[0-9]'))),
+                'validators' => array(array('validator'=>'NotEmpty', 'options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('Digits', true, array('messages' => 'Puoi inserire soltanto numeri'))),
                 'required' => true,
                 'label' => 'Cavalli',
                 'decorators' => $this->elementDecorators,
             ));
             
             $this->addElement('text', 'prezzo', array(
-                'validators' => array(array('validator'=>'NotEmpty', 'options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true), array('Regex',true,array('^\d+(,\d{1,2})?$'))),
+                'validators' => array(array('validator'=>'NotEmpty', 'options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('Int', true, array('messages' => 'Il prezzo deve essere un intero'))),
                 'required' => true,
-                'label' => 'Prezzo',
+                'label' => 'Prezzo (Intero)',
                 'decorators' => $this->elementDecorators,
             ));
             
@@ -128,7 +128,7 @@
 			'destination' => APPLICATION_PATH . '/../public/images/catalog',
 			'validators' => array( 
 			array('Count', false, 1),
-			array('Size', false, 102400),
+			array('Size', false, 1024000),
 			array('Extension', false, array('jpg'))),
             'decorators' => $this->fileDecorators,
             ));

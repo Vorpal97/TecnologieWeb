@@ -9,6 +9,11 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract {
     public function init() {
         
     }
+    
+    public function addNewAuto($newauto)
+    {
+        $this->insert($newauto);
+    }
 
     public function getAuto($paged = null) {
 
