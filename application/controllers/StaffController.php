@@ -9,10 +9,12 @@ class StaffController extends Zend_Controller_Action
         $this->_helper->layout->setLayout('main');
         $this->_authService = new Application_Service_Auth();
         $this->view->insertForm = $this->getInsertForm();
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     }
     
     public function getInsertForm()
     {
+        
         $urlHelper = $this->_helper->getHelper('url');
         $this->_form = new Application_Form_Staff_Auto_Insert();
         $this->_form->setAction($urlHelper->url(array(
@@ -26,12 +28,6 @@ class StaffController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
-    }
-
-    public function logoutAction()
-    {
-        $this->_authService->logout();
-	      return $this->_helper->redirector('index','public');
     }
 
     public function inserisciAction()

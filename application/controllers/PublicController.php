@@ -20,20 +20,19 @@ class PublicController extends Zend_Controller_Action
         $this->_faqModel = new Application_Model_Faq();
         $this->_authService = new Application_Service_Auth();
         $this->view->registerForm = $this->getRegisterForm();
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     }
 
     public function indexAction()
     {
         $this->_logger->info('Attivato:    ' . __METHOD__);
         $this->view->azione = $this->getRequest()->getActionName();
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione; //passa alla vista le informazione sul livello di permessi dell'utente
     }
 
     public function catalogAction()
     {
         $this->_logger->info('Attivato:    ' . __METHOD__);
         $this->view->azione = $this->getRequest()->getActionName();
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione; //passa alla vista le informazione sul livello di permessi dell'utente
         //parte per il db
 
         $prezzoMin = $this->_getParam('minimo', null);

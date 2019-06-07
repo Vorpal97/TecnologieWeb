@@ -7,12 +7,12 @@ class UserController extends Zend_Controller_Action
     {
       $this->_helper->layout->setLayout('main');
       $this->_authService = new Application_Service_Auth();
+      $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     }
 
     public function indexAction()
     {
         // action body
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione; //passa alla vista le informazione sul livello di permessi dell'utente
     }
 
     public function logoutAction()
@@ -23,7 +23,6 @@ class UserController extends Zend_Controller_Action
 
     public function profiloAction()
     {
-      $this->view->livello = $this->_authService->getIdentity()->autenticazione; //passa alla vista le informazione sul livello di permessi dell'utente
 
         // action body
     }
