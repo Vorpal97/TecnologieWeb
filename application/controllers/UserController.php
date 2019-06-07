@@ -12,7 +12,7 @@ class UserController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $this->view->azione = $this->getRequest()->getActionName();
     }
 
     public function logoutAction()
@@ -23,7 +23,7 @@ class UserController extends Zend_Controller_Action
 
     public function profiloAction()
     {
-
+        $this->view->azione = $this->getRequest()->getActionName();
         // action body
     }
 

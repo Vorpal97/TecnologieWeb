@@ -50,22 +50,22 @@ class StaffController extends Zend_Controller_Action
 
     public function inserisciAction()
     {
-        // action body
+        $this->view->azione = $this->getRequest()->getActionName();
     }
 
     public function modificaAction()
     {
-        // action body
+        $this->view->azione = $this->getRequest()->getActionName();
     }
 
     public function cancellaAction()
     {
-        // action body
+        $this->view->azione = $this->getRequest()->getActionName();
     }
 
     public function visualizzaAction()
     {
-        // action body
+        $this->view->azione = $this->getRequest()->getActionName();
     }
 
 

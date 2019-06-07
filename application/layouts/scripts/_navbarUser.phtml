@@ -9,18 +9,27 @@
         </div>
         <nav id="mainav" class="fl_right">
             <ul class="clear">
-                <li><a href=" <?= $this->url(array(
+                <li <?php if($this->azione == "index")
+                {
+                    echo 'class="active"';
+                }         ?>><a href=" <?= $this->url(array(
                             'controller' => 'user',
                             'action' => 'index'),
                             'default', true ); ?>"
                             title = "Home" >Home</a></li>
-                <li><a href="<?= $this->url(array(
+                <li <?php if($this->azione == "catalog")
+                {
+                    echo 'class="active"';
+                }         ?>><a href="<?= $this->url(array(
                             'controller' => 'public',
                             'action' => 'catalog'),
                             'default', true ); ?>"
                             title = "Catalogo" >Catalogo</a>
                 </li>
-                <li><a href="<?= $this->url(array(
+                <li <?php if($this->azione == "profilo")
+                {
+                    echo 'class="active"';
+                }         ?>><a href="<?= $this->url(array(
                             'controller' => 'user',
                             'action' => 'profilo'),
                             'default', true ); ?>"
