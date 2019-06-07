@@ -14,22 +14,32 @@
                     <div class="image">
                         <?php echo '<img class="imagefrm" src="http://localhost/TecnologieWeb/public/images/catalog/' . $auto->immagine . '">' ?>
                     </div>
-                    
-                       <?php 
-                       //caso in cui non sia loggato
-                       
-                       //echo $this->render('/public/_noPrenotazione.phtml'); 
-                       
-                       //caso in cui sia registrato
-                       
-                       echo $this->render('public/_prenotazione.phtml');
-                       
-                       ?>
-                    
+
+                    <?php
+                    switch ($this->livello) {
+                        case 'user':
+                            echo $this->render('public/_prenotazione.phtml');
+                            break;
+                        
+                        case 'staff':
+                            echo $this->render('public/_modifica.phtml');
+                            break;
+
+                        default:
+                            echo $this->render('public/_noPrenotazione.phtml');
+                            break;
+                    }
+                    //caso in cui non sia loggato
+                    //echo $this->render('/public/_noPrenotazione.phtml'); 
+                    //caso in cui sia registrato
+
+                    //echo $this->render('public/_prenotazione.phtml');
+                    ?>
+
                     <ul class="meta">
-                        <?php echo '<li>prezzo: ' . $auto->prezzo . '</li>' ?>
-                        <?php echo '<li>posti: ' . $auto->n_posti . '</li>' ?>
-                        <?php echo '<li>segmento: ' . $auto->segmento . '</li>' ?>
+                    <?php echo '<li>prezzo: ' . $auto->prezzo . '</li>' ?>
+                    <?php echo '<li>posti: ' . $auto->n_posti . '</li>' ?>
+    <?php echo '<li>segmento: ' . $auto->segmento . '</li>' ?>
                         <?php echo '<li>cilindrata: ' . $auto->cilindrata . '</li>' ?>
                         <?php echo '<li>potenza: ' . $auto->potenza . '</li>' ?>
                         <?php echo '<li>cavalli: ' . $auto->cavalli . '</li>' ?>
@@ -39,17 +49,17 @@
                         <!--<li> <button onclick="window.location.href = 'http:/TecnologieWeb/public/public/register'">Registrati</button> </li>-->
                     </ul>
                 </div>
-            <?php endforeach; ?>
+                    <?php endforeach; ?>
 
-            <?php
-            if ($this->products instanceof Zend_Paginator) { //dedicato alla creazione della paginazione, è un blocco condizionale visualizzato se e solo se nella nostra pagina vogliamo utilizzare i prodotti paginati
-                //se lo siamo viene stampata la barra di navigazione, che, però è di fatto un metodo predefiito
-                echo $this->paginationControl($this->products, 'Sliding', 'public/_paginator.phtml'); // il primo parametro è la struttura dati che deve controllare (tutti i prodotti che devono essere visualizzati)
-                // il secondo è il tipo di layout che vogliamo utilizzare per rappresentarla (lo stile)
-                //il terzo è l'indicazione di un viewscript che codifica l'html della nostra navbar
-                //ovviamente il public fa riferimento alla sezione delle viewscript
-            }
-            ?>
+<?php
+if ($this->products instanceof Zend_Paginator) { //dedicato alla creazione della paginazione, è un blocco condizionale visualizzato se e solo se nella nostra pagina vogliamo utilizzare i prodotti paginati
+    //se lo siamo viene stampata la barra di navigazione, che, però è di fatto un metodo predefiito
+    echo $this->paginationControl($this->products, 'Sliding', 'public/_paginator.phtml'); // il primo parametro è la struttura dati che deve controllare (tutti i prodotti che devono essere visualizzati)
+    // il secondo è il tipo di layout che vogliamo utilizzare per rappresentarla (lo stile)
+    //il terzo è l'indicazione di un viewscript che codifica l'html della nostra navbar
+    //ovviamente il public fa riferimento alla sezione delle viewscript
+}
+?>
 
         </div>
         <div class="sidebarFiltri">
@@ -95,7 +105,7 @@
                 $posti = trim($_POST['posti']);
                 echo '<div>' . $minimo . '</div>';
                 echo '<div>' . $max . '</div>';-->
-                
+
                 <button style="margin-top: 20px; margin-bottom:20px;" type="submit">Applica filtri</button>
                 <!--
                 //$min = $this->_getParam('minimo', null);
