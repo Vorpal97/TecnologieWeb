@@ -17,22 +17,22 @@ class AdminController extends Zend_Controller_Action
 
     public function managefaqAction()
     {
-        // action body
+      $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     }
 
     public function rentstatsAction()
     {
-        // action body
+      $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     }
 
     public function usermanagerAction()
     {
-        // action body
+      $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     }
 
     public function staffmanagerAction()
     {
-        // action body
+      $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     }
 
     public function logoutAction()
