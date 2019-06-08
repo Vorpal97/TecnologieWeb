@@ -5,7 +5,8 @@
         </div>
     </section>
 </div>
-<div id="pagina">
+
+<div id="pagina" style="text-align: center;">
     <div class="paginaCat">
         <div class="contenuto">
             <?php foreach ($this->products as $auto) : ?>
@@ -18,9 +19,30 @@
                     <?php
                     switch ($this->livello) {
                         case 'user':
-                            echo $this->render('public/_prenotazione.phtml');
+                            echo '<div class = "okPrenotazione">';
+                            echo '<div style = "text-align: center; margin-top: 5px;">';
+                            echo '<p>Prenota ora</p>';
+                            echo '<div><button style="margin-bottom: 30px;" onclick="window.location.href =\' ' . $this->url(array('controller' => 'user',
+                                 'action' => 'prenotazione',
+                                 'idAuto' => $auto->id_auto,), 'default', true) . '\'">Procedi</button></div>';
+
+                            /* <form method = "post" style = "height: 100px;">
+                              <label style = "text-align: center;  height: 25px; position: relative; margin-left: 10px; float: left;">Data di inizio<input type = "date" style = "width: 150px;"name = "dataInizio"></label>
+                              <label style = "text-align: center; height: 25px; position: relative; margin-right: 10px;  float: right;">Data di fine<input type = "date" style = "width: 150px;"name = "dataFine"></label>
+                              <button type = "submit" style = "width: 150px; height: auto; position: absolute; margin-top: 60px; margin-left: 10px;">Verifica disponibilità</button>
+                              </form>
+                              </div>;*
+                              $id = $auto->id_auto;
+                              $in = $_POST['dataInizio'];
+                              $fin = $_POST['dataFine'];
+                              echo '<div>' . $in . '</div>';
+                              echo '<div>' . $fin . '</div>';
+                              echo '<div>' . $id . '</div>';*/
+
+                              echo '</div>';
+                              echo '</div>';
                             break;
-                        
+
                         case 'staff':
                             echo $this->render('public/_modifica.phtml');
                             break;
@@ -32,14 +54,13 @@
                     //caso in cui non sia loggato
                     //echo $this->render('/public/_noPrenotazione.phtml'); 
                     //caso in cui sia registrato
-
-                    //echo $this->render('public/_prenotazione.phtml');
+                    //echo $this->render('public/_prenotazione.phtml');*/
                     ?>
 
                     <ul class="meta">
-                    <?php echo '<li>prezzo: ' . $auto->prezzo . '</li>' ?>
-                    <?php echo '<li>posti: ' . $auto->n_posti . '</li>' ?>
-    <?php echo '<li>segmento: ' . $auto->segmento . '</li>' ?>
+                        <?php echo '<li>prezzo: ' . $auto->prezzo . '</li>' ?>
+                        <?php echo '<li>posti: ' . $auto->n_posti . '</li>' ?>
+                        <?php echo '<li>segmento: ' . $auto->segmento . '</li>' ?>
                         <?php echo '<li>cilindrata: ' . $auto->cilindrata . '</li>' ?>
                         <?php echo '<li>potenza: ' . $auto->potenza . '</li>' ?>
                         <?php echo '<li>cavalli: ' . $auto->cavalli . '</li>' ?>
@@ -49,17 +70,13 @@
                         <!--<li> <button onclick="window.location.href = 'http:/TecnologieWeb/public/public/register'">Registrati</button> </li>-->
                     </ul>
                 </div>
-                    <?php endforeach; ?>
+            <?php endforeach; ?>
 
-<?php
-if ($this->products instanceof Zend_Paginator) { //dedicato alla creazione della paginazione, è un blocco condizionale visualizzato se e solo se nella nostra pagina vogliamo utilizzare i prodotti paginati
-    //se lo siamo viene stampata la barra di navigazione, che, però è di fatto un metodo predefiito
-    echo $this->paginationControl($this->products, 'Sliding', 'public/_paginator.phtml'); // il primo parametro è la struttura dati che deve controllare (tutti i prodotti che devono essere visualizzati)
-    // il secondo è il tipo di layout che vogliamo utilizzare per rappresentarla (lo stile)
-    //il terzo è l'indicazione di un viewscript che codifica l'html della nostra navbar
-    //ovviamente il public fa riferimento alla sezione delle viewscript
-}
-?>
+            <?php
+            if ($this->products instanceof Zend_Paginator) { 
+                echo $this->paginationControl($this->products, 'Sliding', 'public/_paginator.phtml');
+            }
+            ?>
 
         </div>
         <div class="sidebarFiltri">
@@ -108,8 +125,7 @@ if ($this->products instanceof Zend_Paginator) { //dedicato alla creazione della
 
                 <button style="margin-top: 20px; margin-bottom:20px;" type="submit">Applica filtri</button>
                 <!--
-                //$min = $this->_getParam('minimo', null);
-                //$max = $this->_getParam('massimo', null);
+                
                 if ($min!=0 || $max!=9999 || $posti!=0){
                     $query = '"location: http:/TecnologieWeb/public/public/catalog/minimo' . $min . '/massimo' . $max . '/posti' . $posti . '"';
                     header($query);
@@ -122,7 +138,6 @@ if ($this->products instanceof Zend_Paginator) { //dedicato alla creazione della
                     'posti' => $posti), 'default', true) . '\'">Applica i filtri</a></div>';
                 }-->
             </form>
-
         </div>
     </div>
 </div>

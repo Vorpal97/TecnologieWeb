@@ -88,5 +88,11 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract {
         
         return $this->fetchAll($select);
     }
-
+    
+    public function getAutoById($id){
+        $query = 'id_auto = ' . $id;
+        $select = $this->select()
+                       ->where($query);
+        return $this->fetchAll($select);
+    }
 }

@@ -1,0 +1,22 @@
+<div class="okPrenotazione">
+    <div style="text-align: center; margin-top: 5px;">
+        <p>Prenota ora</p>
+
+        <form method="post" style="height: 100px;">
+            <label style="text-align: center;  height: 25px; position: relative; margin-left: 10px; float: left;">Data di inizio<input type="date" style="width: 150px;"name="dataInizio"></label>
+            <label style="text-align: center; height: 25px; position: relative; margin-right: 10px;  float: right;">Data di fine<input type="date" style="width: 150px;"name="dataFine"></label>
+            <button type="submit" style="width: 150px; height: 25px; position: absolute; margin-top: 80px; margin-left: 100px;">Procedi</button>
+        </form>
+    </div>
+
+    
+    <?php
+        $id = $this->id_auto;
+        $in = $_POST['dataInizio'];
+        $fin = $_POST['dataFine'];
+        echo '<div>' . $in . '</div>';
+        echo '<div>' . $fin . '</div>';
+        echo '<div>' . $id . '</div>';
+    ?>
+</div>
+

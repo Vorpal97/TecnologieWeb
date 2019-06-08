@@ -2,7 +2,6 @@
 
 class PublicController extends Zend_Controller_Action
 {
-
     protected $_logger = null;
     protected $_registerform = null;
     protected $_loginform = null;
@@ -38,6 +37,7 @@ class PublicController extends Zend_Controller_Action
         $prezzoMin = $this->_getParam('minimo', null);
         $prezzoMax = $this->_getParam('massimo', null);
         $numeroPosti = $this->_getParam('posti', null);
+        
         $paged = $this->_getParam('pagina', 1);
         //$totAuto = $this->_catalogModel->getAuto();
 
@@ -143,5 +143,10 @@ class PublicController extends Zend_Controller_Action
             return $this->render('login');
         }
         return $this->_helper->redirector('index', $this->_authService->getIdentity()->autenticazione);
+    }
+    
+    public function prenotazione(){
+        $this->_logger->info('Attivato:    ' . __METHOD__);
+        $this->view->azione = $this->getRequest()->getActionName();
     }
 }
