@@ -18,4 +18,16 @@ class Application_Resource_Faq extends Zend_Db_Table_Abstract{
         return $this->fetchAll($select);
     }
 
+    public function addNewFaq ($newfaq)
+    {
+        $this->insert($newfaq);
+    }
+
+    public function removeFaq ($faqId)
+    {
+        $this->delete('id_faq = ' . $faqId);
+    }
+
+
+
 }
