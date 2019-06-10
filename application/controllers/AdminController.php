@@ -5,6 +5,8 @@ class AdminController extends Zend_Controller_Action
 
     protected $_faqform = null;
     protected $_faqModel = null;
+    protected $_adminModel = null;
+
 
 
     public function init()
@@ -14,6 +16,8 @@ class AdminController extends Zend_Controller_Action
         $this->_authService = new Application_Service_Auth();
         $this->view->faqForm = $this->getFaqForm();
         $this->_faqModel = new Application_Model_Faq();
+        $this->_adminModel = new Application_Model_Admin();
+
 
     }
 
@@ -63,7 +67,7 @@ class AdminController extends Zend_Controller_Action
         $this->_faqform  = new Application_Form_Admin_Faq_Add();
         $this->_faqform->setAction($urlHelper->url(array(
                     'controller' => 'admin',
-                    'action' => 'authenticate'),
+                    'action' => 'addnewfaq'),
                     'default'
         ));
         return $this->_faqform;
@@ -71,16 +75,24 @@ class AdminController extends Zend_Controller_Action
 
     public function addnewfaqAction()
     {
-//        if (!$this->getRequest()->isPost()) {
-//            $this->_helper->redirector('index');
-//        }
-//        $form = $this->_registerform;
-//        if (!$form->isValid($_POST)) {
-//            return $this->render('register');
-//        }
-//        $values = $form->getValues();
-//        $this->_publicModel->addUser($values);
-//        $this->_helper->redirector('login');
+        if (!$this->getRequest()->isPost()) {
+            $this->_helper->redirector('index');
+        }
+        $form = $this->_faqform;
+        if (!$form->isValid($_POST)) {
+            return $this->render('managefaq');
+        }
+        $values = $form->getValues();
+        $this->_adminModel->addFaq($values);
+        $this->_helper->redirector('managefaq');
+    }
+
+    public function removefaqAction(){
+      $faqId = $this->_getParam('faqid', null);
+      if($faqId != null){
+        $this->_adminModel->removeFaq($faqId);
+        $this->_helper->redirector('managefaq');
+      }
     }
 
 }

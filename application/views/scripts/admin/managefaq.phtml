@@ -34,6 +34,10 @@
                 <header>
                   <address>
                     <?php echo $faq->domanda ?>
+                    <a href="<?= $this->url(array('controller' => 'admin',
+		     										                      'action' => 'removefaq',
+                                                  'faqid' => $faq->id_faq),
+                                                   'default', true)?>"> <b> ELIMINA </b> </a>
                   </address>
                   <?php echo $faq->time_stamp ?>
                 </header>
