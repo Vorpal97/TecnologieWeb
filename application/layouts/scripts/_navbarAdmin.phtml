@@ -22,8 +22,24 @@
                 </li>
                 <li><a class="drop">Gestisci</a>
                     <ul>
-                        <li><a>FAQ</a></li>
-                        <li><a>Staff</a></li>
+                        <li><a href="<?= $this->url(array(
+                                    'controller' => 'admin',
+                                    'action' => 'managefaq'),
+                                    'default', true ); ?>"
+                                    >FAQ</a></li>
+                        <li><a href="<?= $this->url(array(
+                                    'controller' => 'admin',
+                                    'action' => 'staffmanager'),
+                                    'default', true ); ?>"
+                                    >Staff</a></li>
+                        <li><a href="<?= $this->url(array(
+                                    'controller' => 'admin',
+                                    'action' => 'usermanager'),
+                                    'default', true ); ?>"
+                                    >Utenti</a></li>
+
+
+
                     </ul>
 
                 </li>

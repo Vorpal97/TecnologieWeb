@@ -5,49 +5,21 @@
         </div>
     </section>
 </div>
+
+<br /><br />
 <div class="paginaCat">
-    <div class="contenutoPren">
-        <?php foreach ($this->products as $auto) : ?>
-            <div class="prodPren">
-                <?php echo'<h1 class="titlePren">' . $auto->marca . ':  ' . $auto->modello . '</h1>' ?>
-                <div class="imagePren">
-                    <?php echo '<img class="imagefrmPren" src="http://localhost/TecnologieWeb/public/images/catalog/' . $auto->immagine . '">' ?>
-                </div>
-
-                <div class="formPren">
-                    <div style="text-align: center; margin-top: 5px;">
-                        <p>Prenota ora</p>
-
-                        <form method="post" style="height: 100px;">
-                            <label style="text-align: center;  height: 25px; position: relative; margin-left: 10px; float: left;">Data di inizio<input type="date" style="width: 150px;"name="dataInizio"></label>
-                            <label style="text-align: center; height: 25px; position: relative; margin-right: 10px;  float: right;">Data di fine<input type="date" style="width: 150px;"name="dataFine"></label>
-                            <button type="submit" style="width: 150px; height: 25px; position: absolute; margin-top: 80px; margin-left: 100px;">Procedi</button>
-                        </form>
-                    </div>
-
-
-                    <?php
-                    $id = $this->id_auto;
-                    $in = $_POST['dataInizio'];
-                    $fin = $_POST['dataFine'];
-                    echo '<div>' . $in . '</div>';
-                    echo '<div>' . $fin . '</div>';
-                    echo '<div>' . $id . '</div>';
-                    ?>
-                </div>
-
-                <ul class="metaPren">
-                    <?php echo '<li>prezzo: ' . $auto->prezzo . '</li>' ?>
-                    <?php echo '<li>posti: ' . $auto->n_posti . '</li>' ?>
-                    <?php echo '<li>segmento: ' . $auto->segmento . '</li>' ?>
-                    <?php echo '<li>cilindrata: ' . $auto->cilindrata . '</li>' ?>
-                    <?php echo '<li>potenza: ' . $auto->potenza . '</li>' ?>
-                    <?php echo '<li>cavalli: ' . $auto->cavalli . '</li>' ?>
-                    <?php echo '<li>alimentazione: ' . $auto->alimentazione . '</li>' ?>
-                    <?php echo '<li>colore: ' . $auto->colore . '</li>' ?>
-                    <?php echo '<li>targa: ' . $auto->targa . '</li>' ?>
-                </ul>
-            </div>
-        <?php endforeach; ?>
+    <p>Prenotazione avvenuta con successo</p>
+    <div>
+        riepilogo prenotazione 
+        <?php
+        $inizio = $this->data_inizio;
+        $fine = $this->data_fine;
+        $ida = $this->id_auto;
+        $idu = $this->id_utente;
+        echo '<p>' . $inizio . '</p>';
+        echo '<p>' . $fine . '</p>';
+        echo '<p>' . $ida . '</p>';
+        echo '<p>' . $idu . '</p>';
+        ?>
     </div>
 </div>

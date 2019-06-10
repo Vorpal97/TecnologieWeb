@@ -34,7 +34,7 @@
     border-color: #D7D7D7;
     padding: 10px 10px 10px 10px;
     margin: 40px;
-    height: 500px;
+    height: 800px;
 }
 
 .prodPren .imagePren {
@@ -109,7 +109,7 @@
     float: right;
     background-color: #F6F6F6;
     width: 350px;
-    height: 350px;
+    min-height: 350px;
     border: solid;
     border-width: 1px;
     border-color: #D7D7D7;
@@ -154,4 +154,8 @@
 
 .formTitolo {
     text-align: center;
+}
+
+.conflitto {
+    color: #9b0606;
 }
