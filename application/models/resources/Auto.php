@@ -95,4 +95,9 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract {
                        ->where($query);
         return $this->fetchAll($select);
     }
+    
+    public function editAuto($data, $id)
+    {
+        $this->update($data, 'id_auto = '.$id);
+    }
 }

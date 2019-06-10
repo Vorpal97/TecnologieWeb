@@ -25,4 +25,5 @@ class Application_Model_Catalog extends App_Model_Abstract{
     public function getAutoById ($id){
         return $this->getResource('Auto')->getAutoById($id);
     }
+    
 }

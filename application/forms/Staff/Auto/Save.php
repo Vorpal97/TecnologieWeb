@@ -1,5 +1,5 @@
 <?php
-    class Application_Form_Staff_Auto_Edit extends App_Form_Abstract
+    class Application_Form_Staff_Auto_Save extends App_Form_Abstract
     {
         public function init()
         {
@@ -134,7 +134,7 @@
             ));
             
             $this->addElement('submit','aggiungi',array(
-            'label' => 'Modifica',
+            'label' => 'Salva',
             'decorators' => $this->buttonDecorators,
              ));
             

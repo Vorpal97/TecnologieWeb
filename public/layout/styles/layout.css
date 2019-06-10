@@ -264,7 +264,7 @@ tr{margin-top: auto;margin-bottom: auto;}
 
 /* Colours
 --------------------------------------------------------------------------------------------------------------- */
-body{color:#000000; background-color:#191919;}
+body{color:#000000; background-color:white;}
 a{color:#A2B70D;}
 a:active, a:focus{background:transparent;}/* IE10 + 11 Bugfix - prevents grey background */
 hr, .borderedbox{border-color:#D7D7D7;}

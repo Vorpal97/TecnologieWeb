@@ -17,12 +17,12 @@ class Application_Model_Acl extends Zend_Acl
              ->allow('user','user');
 
         //per utente staff
-        $this->addRole(new Zend_Acl_role('staff'),'user')
+        $this->addRole(new Zend_Acl_Role('staff'),'user')
              ->add (new Zend_Acl_Resource ('staff'))
              ->allow ('staff','staff');
 
         //per utente admin
-        $this->addRole(new Zend_Acl_role('admin'),'staff')
+        $this->addRole(new Zend_Acl_Role('admin'),'staff')
              ->add (new Zend_Acl_Resource ('admin'))
              ->allow ('admin','admin');
 
