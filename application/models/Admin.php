@@ -21,4 +21,9 @@ class Application_Model_Admin extends App_Model_Abstract
         return $this->getResource('Faq')->removeFaq($faqId);
     }
 
+    public function getFaqById($faqId)
+    {
+        return $this->getResource('Faq')->getFaqById($faqId);
+    }
+
 }
