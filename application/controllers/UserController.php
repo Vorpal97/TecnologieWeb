@@ -58,6 +58,9 @@ class UserController extends Zend_Controller_Action {
         if ($idUtente != 0) {
             $this->_reservationModel->setPrenotazione(array('data_inizio' => $dataInizio, 'data_fine' => $dataFine, 'id_auto' => $idAuto, 'id_utente' => $idUtente));
         }
-        $this->view->assign(array('data_inizio' => $dataInizio, 'data_fine' => $dataFine, 'id_auto' => $idAuto, 'id_utente' => $idUtente));
+        if ($idAuto != 0){
+            $dataAuto = $this->_catalogModel->getAutoById($idAuto);
+        }
+        $this->view->assign(array('data_inizio' => $dataInizio, 'data_fine' => $dataFine, 'id_auto' => $idAuto, 'id_utente' => $idUtente, 'dataAuto' => $dataAuto));
     }
 }

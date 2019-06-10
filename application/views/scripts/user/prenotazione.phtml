@@ -5,21 +5,27 @@
         </div>
     </section>
 </div>
-
-<br /><br />
 <div class="paginaCat">
-    <p>Prenotazione avvenuta con successo</p>
-    <div>
-        riepilogo prenotazione 
-        <?php
-        $inizio = $this->data_inizio;
-        $fine = $this->data_fine;
-        $ida = $this->id_auto;
-        $idu = $this->id_utente;
-        echo '<p>' . $inizio . '</p>';
-        echo '<p>' . $fine . '</p>';
-        echo '<p>' . $ida . '</p>';
-        echo '<p>' . $idu . '</p>';
-        ?>
+
+    <div class="prod">
+        <h1 style="color: #A2B70D; text-align: center;">Prenotazione avvenuta con successo!!</h1>
+        <div>
+            <b style="color:#A2B70D;">Dettaglio prenotazione</b> 
+            <?php
+            foreach ($this->dataAuto as $auto){
+            $inizio = $this->data_inizio;
+            $fine = $this->data_fine;
+            $ida = $this->id_auto;
+            $idu = $this->id_utente;
+            $prezzo = $auto->prezzo;
+            $durata = $this->durata($inizio, $fine);
+            echo '<p>Data di inizio: ' . $inizio . '</p>';
+            echo '<p>Data di fine: ' . $fine . '</p>';
+            echo '<p>Durata: ' . $durata . ' giorni</p>';
+            echo $this->costo($prezzo, $durata);
+            }
+            ?>
+        </div>
     </div>
+
 </div>

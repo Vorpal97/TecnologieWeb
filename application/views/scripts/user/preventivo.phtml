@@ -56,14 +56,15 @@
                         }
                     }
                     if ($c == 0 && (!is_null($in) || !is_null($fine))) {
-                        echo '<p style="text-align: center;">Confermare la prenotazione?</p>';
+                        echo '<p style="text-align: center;">Confermare la prenotazione</p>';
+                        echo '<p style="text-align: center;">dal: ' . $in . ' al:' . $fin . '?</p>';
                         echo '<button onclick="window.location.href =\' ' . $this->url(array('controller' => 'user',
                             'action' => 'prenotazione',
                             'id_auto' => $auto->id_auto,
                             'data_inizio' => $in,
                             'data_fine' => $fin,
                             'id_utente' => $idU), 'default', true) . '\'">Prenota</button>';
-                    } else if ($c >= 1 && $i >= 2) {
+                    } else if ($c >= 1 && ($in!=0 && $fin!=0)) {
                         echo '<p style="text-align: center;">Si prega di scegliere un\'altra data</p>';
                     }
                     ?>
