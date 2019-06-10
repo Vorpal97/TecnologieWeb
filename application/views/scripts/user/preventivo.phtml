@@ -1,0 +1,86 @@
+<div class="bgded overlay" style="background-image:url('http://localhost/TecnologieWeb/public/images/samples/copertinaGrandTour.png'); padding-bottom:13%; height: 400px;">
+    <section id="pageintro" class="hoc clear">
+        <div>
+            <h4 class="heading">Prenota in pochi click</h4>
+        </div>
+    </section>
+</div>
+<div class="paginaCat">
+    <div class="contenutoPren">
+        <?php foreach ($this->products as $auto) : ?>
+            <div class="prodPren">
+                <?php echo'<h1 class="titlePren">' . $auto->marca . ':  ' . $auto->modello . '</h1>' ?>
+                <div class="imagePren">
+                    <?php echo '<img class="imagefrmPren" src="http://localhost/TecnologieWeb/public/images/catalog/' . $auto->immagine . '">' ?>
+                </div>
+
+                <div class="formPren">
+                    <div style="text-align: center; margin-top: 5px;">
+                        <p>Prenota ora</p>
+
+                        <form method="post" style="height: 100px;">
+                            <label style="text-align: center;  height: 25px; position: relative; margin-left: 10px; float: left;">Data di inizio<input type="date" style="width: 150px;"name="dataInizio"></label>
+                            <label style="text-align: center; height: 25px; position: relative; margin-right: 10px;  float: right;">Data di fine<input type="date" style="width: 150px;"name="dataFine"></label>
+                            <button type="submit" style="width: 150px; height: 25px; position: absolute; margin-top: 80px; margin-left: 100px;">Procedi</button>
+                        </form>
+                    </div>
+
+
+                    <?php
+                    $in = $_POST['dataInizio'];
+                    $fin = $_POST['dataFine'];
+                    $idU = $this->id_utente;
+                    //echo '<p>ID' . $idU . '</p>';
+                    $c = 0;
+                    $oggi = date("Y-m-d");
+
+                    if ($in < $oggi && $in != 0) {
+                        echo '<p style="text-align: center;">Non possiamo tornare indietro nel tempo</p>';
+                        echo '<p style="text-align: center">La data di inizio inserita è: ' . $in . '</p>';
+                        $c = $c + 1;
+                    } else if ($in > $fin) {
+                        echo '<p style="text-align: center;">La data di fine precede la data di inizio</p>';
+                        echo '<p style="text-align: center;">Inserire le date nel giusto ordine</p>';
+                        $c = $c + 1;
+                    } else if ($in == 0 || $fin == 0) {
+                        echo '<p style="text-align: center;">Inserire la data di inizio e fine desiderate<p>';
+                        $c = $c + 1;
+                    } else {
+                        foreach ($this->prenotazioni as $prenotazioni) {
+                            $inizio = $prenotazioni->data_inizio;
+                            $fine = $prenotazioni->data_fine;
+                            if (($in < $inizio && $fin > $inizio) || ($in > $inizio && $in < $fine) || ($in < $inizio && $fin > $fine) || ($in == $inizio && $fin == $fine)) {
+                                echo '<p style="text-align: center;">L\'auto non è disponibile <br> dal: ' . $inizio . ' al: ' . $fine . '.</p>';
+                                $c = $c + 1;
+                            }
+                        }
+                    }
+                    if ($c == 0 && (!is_null($in) || !is_null($fine))) {
+                        echo '<p style="text-align: center;">Confermare la prenotazione?</p>';
+                        echo '<button onclick="window.location.href =\' ' . $this->url(array('controller' => 'user',
+                            'action' => 'prenotazione',
+                            'id_auto' => $auto->id_auto,
+                            'data_inizio' => $in,
+                            'data_fine' => $fin,
+                            'id_utente' => $idU), 'default', true) . '\'">Prenota</button>';
+                    } else if ($c >= 1 && $i >= 2) {
+                        echo '<p style="text-align: center;">Si prega di scegliere un\'altra data</p>';
+                    }
+                    ?>
+                </div>
+
+                <ul class="metaPren">
+                    <?php echo '<li>prezzo: ' . $auto->prezzo . '</li>' ?>
+                    <?php echo '<li>posti: ' . $auto->n_posti . '</li>' ?>
+                    <?php echo '<li>segmento: ' . $auto->segmento . '</li>' ?>
+                    <?php echo '<li>cilindrata: ' . $auto->cilindrata . '</li>' ?>
+                    <?php echo '<li>potenza: ' . $auto->potenza . '</li>' ?>
+                    <?php echo '<li>cavalli: ' . $auto->cavalli . '</li>' ?>
+                    <?php echo '<li>alimentazione: ' . $auto->alimentazione . '</li>' ?>
+                    <?php echo '<li>colore: ' . $auto->colore . '</li>' ?>
+                    <?php echo '<li>targa: ' . $auto->targa . '</li>' ?>
+                </ul>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
