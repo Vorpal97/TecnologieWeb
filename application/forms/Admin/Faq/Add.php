@@ -12,18 +12,18 @@ class Application_Form_Admin_Faq_Add extends App_Form_Abstract
             'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true)),
             'required' =>true,
             'label' => 'Domanda',
-            'decorators' => $this->elementDecorators,
+            'decorators' => $this->elementFaqDecorators,
             ));
 
             $this->addElement('text', 'risposta', array(
                 'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true)),
                 'required' =>true,
                 'label' => 'Risposta',
-                'decorators' => $this->elementDecorators,
+                'decorators' => $this->elementFaqDecorators,
                 ));
 
         $this->addElement ('submit', 'aggiungi', array(
-            'label' => 'Aggiungi',
+            'label' => 'Salva',
             'decorators' => $this->buttonDecorators,
             ));
 

@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 class StaffController extends Zend_Controller_Action
 {
@@ -56,6 +56,8 @@ class StaffController extends Zend_Controller_Action
     public function modificaAction()
     {
         $this->view->azione = $this->getRequest()->getActionName();
+        $auto = $this->_getParam('targa', null);
+        $this->view->targa = $auto;
     }
 
     public function cancellaAction()

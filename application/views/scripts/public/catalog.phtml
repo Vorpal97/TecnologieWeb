@@ -44,7 +44,14 @@
                             break;
 
                         case 'staff':
-                            echo $this->render('public/_modifica.phtml');
+                            echo '<div class="modifica">';
+                           echo '<div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">';
+                           echo '<p>Vuoi modificare l auto sul listino?</p>';
+                           echo '</div><button style="width: 150px; height: 25px; position: relative;" onclick="window.location.href =\''.$this->url(array(
+                                'controller' => 'staff',
+                                'action' => 'modifica',
+                                'idauto' => $auto->id_auto,),
+                                'default', true ).'\'">Modifica</button></div>';
                             break;
 
                         default:
