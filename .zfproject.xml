@@ -98,7 +98,6 @@
           <viewControllerScriptsDirectory forControllerName="Public">
             <viewScriptFile forActionName="authenticate"/>
           </viewControllerScriptsDirectory>
-<<<<<<< HEAD
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="managefaq"/>
           </viewControllerScriptsDirectory>
@@ -113,7 +112,6 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="logout"/>
-=======
           <viewControllerScriptsDirectory forControllerName="Staff">
             <viewScriptFile forActionName="inserisci"/>
           </viewControllerScriptsDirectory>
@@ -125,7 +123,6 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Staff">
             <viewScriptFile forActionName="visualizza"/>
->>>>>>> b50b22f6713d356335cf7ad745ed2f6fc128cb2c
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

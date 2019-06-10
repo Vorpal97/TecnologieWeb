@@ -95,4 +95,42 @@ class AdminController extends Zend_Controller_Action
       }
     }
 
+    public function editfaqAction(){
+      $urlHelper = $this->_helper->getHelper('url');
+      $this->view->livello = $this->_authService->getIdentity()->autenticazione;
+      $faqId = $this->_getParam('faqid', null);
+      $faq = $this->_adminModel->getFaqById($faqId);
+
+      $editFaqForm = $this->_faqform;
+      $editFaqForm->populate(array("domanda" => $faq[0]->domanda, "risposta" => $faq[0]->risposta));
+      $editFaqForm->setAction($urlHelper->url(array(
+                  'controller' => 'admin',
+                  'action' => 'savefaq',
+                  'faqid' => $faqId),
+                  'default'
+      ));
+      $this->view->form = $editFaqForm;
+
+//      $this->view->faq = $faq;
+
+    }
+
+    public function savefaqAction(){
+      $faqId = $this->_getParam('faqid', null);
+      // remove old faq
+      if($faqId != null){
+        $this->_adminModel->removeFaq($faqId);
+        // add new edited faq
+        if (!$this->getRequest()->isPost()) {
+          $this->_helper->redirector('index');
+        }
+        $form = $this->_faqform;
+        if (!$form->isValid($_POST)) {
+          return $this->render('managefaq');
+        }
+        $values = $form->getValues();
+        $this->_adminModel->addFaq($values);
+        $this->_helper->redirector('managefaq');
+      }
+    }
 }
