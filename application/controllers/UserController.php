@@ -3,7 +3,8 @@
 class UserController extends Zend_Controller_Action
 {
     protected $_catalogModel = null;
-    //protected $_reservationModel = null;
+    protected $_reservationModel = null;
+    protected $_authService = null;
 
     public function init()
     {
@@ -11,7 +12,8 @@ class UserController extends Zend_Controller_Action
       $this->_authService = new Application_Service_Auth();
       $this->view->livello = $this->_authService->getIdentity()->autenticazione;
       $this->_catalogModel = new Application_Model_Catalog();
-      //$this->_reservationModel = new Application_Model_Reservation();
+      $this->_reservationModel = new Application_Model_Reservation();
+      $this->view->id_utente = $this->_authService->getIdentity()->id_utente;
     }
 
     public function indexAction()
@@ -36,13 +38,32 @@ class UserController extends Zend_Controller_Action
         // action body
     }
     
-    public function prenotazioneAction()
+    public function preventivoAction()
     {
+        
+        
         $idAuto = $this->_getParam('idAuto', null);
+        $inizio = $this->_getParam('dataInizio');
+        $fine = $this->_getParam('dataFine');
         
         if(!is_null($idAuto)){
             $prods = $this->_catalogModel->getAutoById($idAuto);
         }
-        $this->view->assign(array('products' => $prods));
+        if ($inizio!=0 && $fine!=0){
+            $pren = $this->_reservationModel->getPrenotazioneByAuto($idAuto);
+        }
+        $this->view->assign(array('products' => $prods, 'prenotazioni' => $pren));
+    }
+    
+    public function prenotazioneAction (){
+        
+        $dataInizio = $this->_getParam('data_inizio', null);
+        $dataFine  = $this->_getParam('data_fine', null);
+        $idAuto = $this->_getParam('id_auto', null);
+        $idUtente = $this->_getParam('id_utente', null);
+        
+        $this->_reservationModel->setPrenotazione(array('data_inizio' => $dataInizio, 'data_fine' => $dataFine, 'id_auto' => $idAuto, 'id_utente' => $idUtente));
+        $this->view->assign(array('data_inizio' => $dataInizio, 'data_fine' => $dataFine, 'id_auto' => $idAuto, 'id_utente' => $idUtente));
+        
     }
 }
