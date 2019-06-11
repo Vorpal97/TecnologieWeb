@@ -55,8 +55,11 @@ class UserController extends Zend_Controller_Action {
         $dataFine = $this->_getParam('data_fine', null);
         $idAuto = $this->_getParam('id_auto', null);
         $idUtente = $this->_getParam('id_utente', null);
-        if ($idUtente != 0) {
-            $this->_reservationModel->setPrenotazione(array('data_inizio' => $dataInizio, 'data_fine' => $dataFine, 'id_auto' => $idAuto, 'id_utente' => $idUtente));
+        $costo = $this->_getParam('costo', null);
+        $durata = $this->_getParam('durata', null);
+        $rif = substr($dataInizio, 5,6);
+        if ($idUtente != 0 && $durata != 0) {
+            $this->_reservationModel->setPrenotazione(array('data_inizio' => $dataInizio, 'data_fine' => $dataFine, 'id_auto' => $idAuto, 'id_utente' => $idUtente, 'mese_rif' => $rif, 'costo' => $costo, 'durata' => $durata));
         }
         if ($idAuto != 0){
             $dataAuto = $this->_catalogModel->getAutoById($idAuto);
