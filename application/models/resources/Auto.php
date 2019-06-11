@@ -100,4 +100,9 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract {
     {
         $this->update($data,'id_auto = ' .$id);
     }
+    
+    public function removeAuto($autoid)
+    {
+        $this->delete('id_auto = ' .$autoid);
+    }
 }

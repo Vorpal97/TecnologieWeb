@@ -47,11 +47,16 @@
                             echo '<div class="modifica">';
                            echo '<div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">';
                            echo '<p>Vuoi modificare l auto sul listino?</p>';
-                           echo '</div><button style="width: 150px; height: 25px; position: relative;" onclick="window.location.href =\''.$this->url(array(
+                           echo '</div><div><button style="width: 150px; height: 25px; position: relative;" onclick="window.location.href =\''.$this->url(array(
                                 'controller' => 'staff',
                                 'action' => 'modifica',
                                 'idauto' => $auto->id_auto,),
                                 'default', true ).'\'">Modifica</button></div>';
+                           echo '<div style="margin-top:10px;"><button style="width: 150px; height: 25px; position: relative;" onclick="window.location.href =\''.$this->url(array(
+                                'controller' => 'staff',
+                                'action' => 'cancella',
+                                'idauto' => $auto->id_auto,),
+                                'default', true ).'\'">Rimuovi auto</button></div></div>';
                             break;
 
                         default:

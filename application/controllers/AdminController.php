@@ -17,8 +17,6 @@ class AdminController extends Zend_Controller_Action
         $this->view->faqForm = $this->getFaqForm();
         $this->_faqModel = new Application_Model_Faq();
         $this->_adminModel = new Application_Model_Admin();
-
-
     }
 
     public function indexAction()
