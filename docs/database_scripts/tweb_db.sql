@@ -108,9 +108,7 @@ CREATE TABLE `prenotazione` (
   `id_utente` int(11) NOT NULL,
   `id_auto` int(11) NOT NULL,
   `data_inizio` date NOT NULL,
-  `data_fine` date NOT NULL,
-  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `note` varchar(255) DEFAULT NULL
+  `data_fine` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

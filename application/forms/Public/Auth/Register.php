@@ -84,7 +84,7 @@ class Application_Form_Public_Auth_Register extends App_Form_Abstract
     $this->setDecorators(array(
       'FormElements',
       array('HtmlTag', array('tag' => 'table', 'class' =>'zend_form')),
-      array('Description', array('placement' => 'prepend', 'class' => 'formerror')),
+      array('Description', array('placement' => 'prepend', 'class' => 'errors')),
       'Form',
     ));
   }
