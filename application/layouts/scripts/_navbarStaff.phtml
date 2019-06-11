@@ -17,7 +17,7 @@
                             'action' => 'index'),
                             'default', true ); ?>"
                             title = "Home" >Home</a></li>
-                <li <?php if($this->azione == "catalog")
+                <li <?php if($this->azione == "catalog" || $this->azione == "modifica")
                 {
                     echo 'class="active"';
                 }         ?>><a href="<?= $this->url(array(
@@ -35,7 +35,7 @@
                             'default', true ); ?>"
                             title = "Registrati" >Il mio profilo</a>
                 </li>
-                <li <?php if($this->azione == "inserisci" || $this->azione == "modifica" || $this->azione == "cancella" )
+                <li <?php if($this->azione == "inserisci" || $this->azione == "visualizza" )
                 {
                     echo 'class="active"';
                 }         ?>><a class="drop">Gestisci</a>
@@ -49,21 +49,11 @@
                                 title ="Inserisci">Inserisci</a></li>
                                 <li><a href=" <?= $this->url(array(
                                     'controller' => 'staff',
-                                    'action' => 'modifica'),
-                                    'default', true ); ?>"
-                                title ="Modifica">Modifica</a></li>
-                                <li><a href=" <?= $this->url(array(
-                                    'controller' => 'staff',
-                                    'action' => 'cancella'),
-                                    'default', true ); ?>"
-                                title ="Cancella">Cancella</a></li>     
-                            </ul>
-                        </li>
-                        <li><a href=" <?= $this->url(array(
-                                    'controller' => 'staff',
                                     'action' => 'visualizza'),
                                     'default', true ); ?>"
-                                title ="Visualizza">Visualizza elenco</a></li>
+                                title ="Visualizza">Visualizza elenco</a></li>   
+                            </ul>
+                        </li>  
                     </ul>
                     
                 </li>
