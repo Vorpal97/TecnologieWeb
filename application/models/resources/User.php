@@ -15,8 +15,8 @@ class Application_Resource_User extends Zend_Db_Table_Abstract
         $this->insert($newuser);
     }
     
-    public function getUser($mail)
+    public function getUser($user)
     {
-        return $this->fetchRow($this->select()->where('username = ?', $mail));
+        return $this->fetchRow($this->select()->where('username = ?', $user));
     }
 }

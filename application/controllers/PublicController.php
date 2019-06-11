@@ -9,6 +9,7 @@ class PublicController extends Zend_Controller_Action
     protected $_publicModel = null;
     protected $_faqModel = null;
     protected $_authService = null;
+    protected $_adminModel = null;
 
     public function init() {
         $this->_helper->layout->setLayout('main');
@@ -17,6 +18,7 @@ class PublicController extends Zend_Controller_Action
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_publicModel = new Application_Model_Public();
         $this->_faqModel = new Application_Model_Faq();
+        $this->_adminModel = new Application_Model_Admin();
         $this->_authService = new Application_Service_Auth();
         $this->view->registerForm = $this->getRegisterForm();
         $this->view->livello = $this->_authService->getIdentity()->autenticazione;
@@ -109,8 +111,15 @@ class PublicController extends Zend_Controller_Action
             return $this->render('register');
         }
         $values = $form->getValues();
-        $this->_publicModel->addUser($values);
-        $this->_helper->redirector('login');
+        if (!is_null($this->_adminModel->getUser($values['username'])))
+        {
+            $form->setDescription('Username già in utilizzo.');
+            $this->render('register');
+        } else
+            {
+                $this->_publicModel->addUser($values);
+                $this->_helper->redirector('login');
+            }    
     }
 
     private function getRegisterForm()
