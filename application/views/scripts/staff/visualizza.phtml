@@ -30,8 +30,11 @@
                 $mese = $this->mese;
                 if (!is_null($mese)) {
                     echo '<caption><b>Prenotazioni del mese di ' . $this->mese . '<b></caption>';
+                } else {
+                    echo '<caption><b>Prenotazioni del mese di ' . $this->oggi . '<b></caption>';
                 }
                 $i = 1;
+                $costoTot = 0;
                 ?>
                 <tbody>
                     <tr>
@@ -59,13 +62,16 @@
                              <td class="tab20">' . $pren->data_inizio . '</td>
                              <td class="tab20">' . $pren->data_fine . '</td>
                              <td class="tab10">' . $pren->durata . ' giorni</td>
-                             <td class="tab10">' . $pren->costo . '</td>';
+                             <td class="tab10">' . $this->prezzo($pren->costo) . '</td>';
                         $i += 1;
                         $costoTot += $pren->costo;
                         echo '</tr>'
                         ?>
-                    <?php endforeach;
-                    ?>
+                    <?php endforeach; ?>
+                    <?php if ($costoTot!=0){
+                        echo '<tr class="grigio"><th class="tab10h2">ricavo totale</th>
+                              <td class="tab10"></td><td class="tab10"></td><td class="tab10"></td><td class="tab10"></td><td class="tab10"></td><td class="tab10"></td><td class="tab10">' . $this->prezzo($costoTot) . '</td>';
+                    }?>
                 </tbody>
             </table>
         </div>

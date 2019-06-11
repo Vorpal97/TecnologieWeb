@@ -149,40 +149,40 @@ class StaffController extends Zend_Controller_Action {
         
         switch ($oggi){
             case 1:
-                $query = 'Gennaio';
+                $query2 = 'Gennaio';
                 break;
             case 2:
-                $query = 'Febbraio';
+                $query2 = 'Febbraio';
                 break;
             case 3:
-                $query = 'Marzo';
+                $query2 = 'Marzo';
                 break;
             case 4:
-                $query = 'Aprile';
+                $query2 = 'Aprile';
                 break;
             case 5:
-                $query = 'Maggio';
+                $query2 = 'Maggio';
                 break;
             case 6:
-                $query = 'Giugno';
+                $query2 = 'Giugno';
                 break;
             case 7:
-                $query = 'Luglio';
+                $query2 = 'Luglio';
                 break;
             case 8:
-                $query = 'Agosto';
+                $query2 = 'Agosto';
                 break;
             case 9:
-                $query = 'Settembre';
+                $query2 = 'Settembre';
                 break;
             case 10:
-                $query = 'Ottobre';
+                $query2 = 'Ottobre';
                 break;
             case 11:
-                $query = 'Novembre';
+                $query2 = 'Novembre';
                 break;
             case 12:
-                $query = 'Dicembre';
+                $query2 = 'Dicembre';
         }
         
         if (!is_null($mese)){
@@ -190,6 +190,6 @@ class StaffController extends Zend_Controller_Action {
         } else {
             $pren = $this->_reservationModel->getPrenotazioni($oggi);
         }
-        $this->view->assign(array('prenotazioni' => $pren, 'mese' => $query));
+        $this->view->assign(array('prenotazioni' => $pren, 'mese' => $query, 'oggi' => $query2));
     }
 }
