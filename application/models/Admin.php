@@ -11,6 +11,27 @@ class Application_Model_Admin extends App_Model_Abstract
         return $this->getResource('User')->getUser($info);
     }
 
+    public function getUserList()
+    {
+        return $this->getResource('User')->getUserList();
+    }
+
+    public function getUserStatus($userid){
+
+        return $this->getResource('User')->getUserStatus($userid);
+    }
+
+    public function setUserStatus($userid, $userState){
+
+        return $this->getResource('User')->setUserStatus($userid, $userState);
+    }
+
+
+    public function removeUser($userid)
+    {
+        return $this->getResource('User')->removeUser($userid);
+    }
+
     public function addFaq($newfaq)
     {
         return $this->getResource('Faq')->addNewFaq($newfaq);

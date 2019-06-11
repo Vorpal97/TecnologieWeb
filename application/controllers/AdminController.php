@@ -50,6 +50,8 @@ class AdminController extends Zend_Controller_Action
   public function usermanagerAction()
   {
     $this->view->livello = $this->_authService->getIdentity()->autenticazione;
+    $users = $this->_adminModel->getUserList();
+    $this->view->assign(array('users' => $users));
   }
 
   public function staffmanagerAction()
@@ -128,8 +130,6 @@ class AdminController extends Zend_Controller_Action
       'default'
     ));
     $this->view->form = $editFaqForm;
-
-    //      $this->view->faq = $faq;
 
   }
 
@@ -211,4 +211,25 @@ class AdminController extends Zend_Controller_Action
     }
   }
 
+  public function toggleuserAction(){
+      $userid = $this->_getParam('userid', null);
+      if($userid != null){
+        $user =  $this->_adminModel->getUserStatus($userid);
+        switch($user['abilitato']){
+          case 0: $this->_adminModel->setUserStatus($userid, 1); break;
+          case 1: $this->_adminModel->setUserStatus($userid, 0); break;
+        }
+      }
+      $this->_helper->redirector('usermanager');
+
+  }
+
+  public function removeuserAction(){
+    $userid = $this->_getParam('userid', null);
+    if($userid != null){
+      $this->_adminModel->removeUser($userid);
+      $this->_helper->redirector('usermanager');
+
+    }
+  }
 }
