@@ -23,24 +23,10 @@
                             echo '<div style = "text-align: center; margin-top: 5px;">';
                             echo '<p>Prenota ora</p>';
                             echo '<div><button style="margin-bottom: 30px;" onclick="window.location.href =\' ' . $this->url(array('controller' => 'user',
-                                 'action' => 'preventivo',
-                                 'idAuto' => $auto->id_auto,), 'default', true) . '\'">Procedi</button></div>';
-
-                            /* <form method = "post" style = "height: 100px;">
-                              <label style = "text-align: center;  height: 25px; position: relative; margin-left: 10px; float: left;">Data di inizio<input type = "date" style = "width: 150px;"name = "dataInizio"></label>
-                              <label style = "text-align: center; height: 25px; position: relative; margin-right: 10px;  float: right;">Data di fine<input type = "date" style = "width: 150px;"name = "dataFine"></label>
-                              <button type = "submit" style = "width: 150px; height: auto; position: absolute; margin-top: 60px; margin-left: 10px;">Verifica disponibilità</button>
-                              </form>
-                              </div>;*
-                              $id = $auto->id_auto;
-                              $in = $_POST['dataInizio'];
-                              $fin = $_POST['dataFine'];
-                              echo '<div>' . $in . '</div>';
-                              echo '<div>' . $fin . '</div>';
-                              echo '<div>' . $id . '</div>';*/
-
-                              echo '</div>';
-                              echo '</div>';
+                                'action' => 'preventivo',
+                                'idAuto' => $auto->id_auto,), 'default', true) . '\'">Procedi</button></div>';
+                            echo '</div>';
+                            echo '</div>';
                             break;
 
                         case 'staff':
@@ -63,10 +49,6 @@
                             echo $this->render('public/_noPrenotazione.phtml');
                             break;
                     }
-                    //caso in cui non sia loggato
-                    //echo $this->render('/public/_noPrenotazione.phtml'); 
-                    //caso in cui sia registrato
-                    //echo $this->render('public/_prenotazione.phtml');*/
                     ?>
 
                     <ul class="meta">
@@ -85,7 +67,7 @@
             <?php endforeach; ?>
 
             <?php
-            if ($this->products instanceof Zend_Paginator) { 
+            if ($this->products instanceof Zend_Paginator) {
                 echo $this->paginationControl($this->products, 'Sliding', 'public/_paginator.phtml');
             }
             ?>
@@ -137,7 +119,7 @@
 
                 <button style="margin-top: 20px; margin-bottom:20px;" type="submit">Applica filtri</button>
                 <!--
-                
+
                 if ($min!=0 || $max!=9999 || $posti!=0){
                     $query = '"location: http:/TecnologieWeb/public/public/catalog/minimo' . $min . '/massimo' . $max . '/posti' . $posti . '"';
                     header($query);
