@@ -13,7 +13,7 @@
                 <div class="prod">
                     <?php echo'<h1 class="title">' . $auto->marca . ':  ' . $auto->modello . '</h1>' ?>
                     <div class="image">
-                        <?php echo '<img class="imagefrm" src="http://localhost/TecnologieWeb/public/images/catalog/' . $auto->immagine . '">' ?>
+                        <?php echo $this->immagine($auto->immagine, array('class' => 'imagefrm')) ?>
                     </div>
 
                     <?php
@@ -65,12 +65,12 @@
                     ?>
 
                     <ul class="meta">
-                        <?php echo '<li>prezzo: ' . $auto->prezzo . '</li>' ?>
+                        <?php echo '<li>prezzo: ' . $this->prezzo($auto->prezzo) . '</li>' ?>
                         <?php echo '<li>posti: ' . $auto->n_posti . '</li>' ?>
                         <?php echo '<li>segmento: ' . $auto->segmento . '</li>' ?>
-                        <?php echo '<li>cilindrata: ' . $auto->cilindrata . '</li>' ?>
-                        <?php echo '<li>potenza: ' . $auto->potenza . '</li>' ?>
-                        <?php echo '<li>cavalli: ' . $auto->cavalli . '</li>' ?>
+                        <?php echo '<li>cilindrata: ' . $auto->cilindrata . 'cc</li>' ?>
+                        <?php echo '<li>potenza: ' . $auto->potenza . 'kw</li>' ?>
+                        <?php echo '<li>cavalli: ' . $auto->cavalli . 'cv</li>' ?>
                         <?php echo '<li>alimentazione: ' . $auto->alimentazione . '</li>' ?>
                         <?php echo '<li>colore: ' . $auto->colore . '</li>' ?>
                         <?php echo '<li>targa: ' . $auto->targa . '</li>' ?>

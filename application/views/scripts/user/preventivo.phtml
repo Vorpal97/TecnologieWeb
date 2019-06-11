@@ -30,43 +30,72 @@
                     $in = $_POST['dataInizio'];
                     $fin = $_POST['dataFine'];
                     $idU = $this->id_utente;
-                    //echo '<p>ID' . $idU . '</p>';
                     $c = 0;
-                    $oggi = date("Y-m-d");
-
-                    if ($in < $oggi && $in != 0) {
-                        echo '<p style="text-align: center;">Non possiamo tornare indietro nel tempo</p>';
-                        echo '<p style="text-align: center">La data di inizio inserita è: ' . $in . '</p>';
-                        $c = $c + 1;
-                    } else if ($in > $fin) {
-                        echo '<p style="text-align: center;">La data di fine precede la data di inizio</p>';
-                        echo '<p style="text-align: center;">Inserire le date nel giusto ordine</p>';
-                        $c = $c + 1;
-                    } else if ($in == 0 || $fin == 0) {
-                        echo '<p style="text-align: center;">Inserire la data di inizio e fine desiderate<p>';
-                        $c = $c + 1;
-                    } else {
+                    $res = $this->date($in, $fin);
+                    if ($res === 1) {
                         foreach ($this->prenotazioni as $prenotazioni) {
                             $inizio = $prenotazioni->data_inizio;
                             $fine = $prenotazioni->data_fine;
                             if (($in < $inizio && $fin > $inizio) || ($in > $inizio && $in < $fine) || ($in < $inizio && $fin > $fine) || ($in == $inizio && $fin == $fine)) {
                                 echo '<p style="text-align: center;">L\'auto non è disponibile <br> dal: ' . $inizio . ' al: ' . $fine . '.</p>';
-                                $c = $c + 1;
+                                $c = 1;
                             }
                         }
+                        if ($c >= 1) {
+                            echo '<p style="text-align: center;">Si prega di scegliere un\'altra data</p>';
+                        } else {
+                            echo '<p style="text-align: center;">Confermare la prenotazione</p><p style="text-align: center;">dal: ' . $in . ' al:' . $fin . '?</p>';
+                            $durata = $this->durata($in, $fin);
+                            echo '<p style="text-align: center;">Durata: ' . $durata . ' giorni</p>';
+                            $style = 'style="text-align: center;"';
+                            $tipo = 'Preventivo';
+                            echo $this->costo($auto->prezzo, $durata, $tipo, $style);
+                            echo '<button onclick="window.location.href =\' ' . $this->url(array('controller' => 'user',
+                                'action' => 'prenotazione',
+                                'id_auto' => $auto->id_auto,
+                                'data_inizio' => $in,
+                                'data_fine' => $fin,
+                                'id_utente' => $idU), 'default', true) . '\'">Prenota</button>';
+                        }
+                    } else {
+                        echo $res;
                     }
-                    if ($c == 0 && (!is_null($in) || !is_null($fine))) {
-                        echo '<p style="text-align: center;">Confermare la prenotazione</p>';
-                        echo '<p style="text-align: center;">dal: ' . $in . ' al:' . $fin . '?</p>';
-                        echo '<button onclick="window.location.href =\' ' . $this->url(array('controller' => 'user',
-                            'action' => 'prenotazione',
-                            'id_auto' => $auto->id_auto,
-                            'data_inizio' => $in,
-                            'data_fine' => $fin,
-                            'id_utente' => $idU), 'default', true) . '\'">Prenota</button>';
-                    } else if ($c >= 1 && ($in!=0 && $fin!=0)) {
-                        echo '<p style="text-align: center;">Si prega di scegliere un\'altra data</p>';
-                    }
+                    /* $c = 0;
+                      $oggi = date("Y-m-d");
+
+                      if ($in < $oggi && $in != 0) {
+                      echo '<p style="text-align: center;">Non possiamo tornare indietro nel tempo</p>';
+                      echo '<p style="text-align: center">La data di inizio inserita è: ' . $in . '</p>';
+                      $c = $c + 1;
+                      } else if ($in > $fin) {
+                      echo '<p style="text-align: center;">La data di fine precede la data di inizio</p>';
+                      echo '<p style="text-align: center;">Inserire le date nel giusto ordine</p>';
+                      $c = $c + 1;
+                      } else if ($in == 0 || $fin == 0) {
+                      echo '<p style="text-align: center;">Inserire la data di inizio e fine desiderate<p>';
+                      $c = $c + 1;
+                      } else {
+                      foreach ($this->prenotazioni as $prenotazioni) {
+                      $inizio = $prenotazioni->data_inizio;
+                      $fine = $prenotazioni->data_fine;
+                      if (($in < $inizio && $fin > $inizio) || ($in > $inizio && $in < $fine) || ($in < $inizio && $fin > $fine) || ($in == $inizio && $fin == $fine)) {
+                      echo '<p style="text-align: center;">L\'auto non è disponibile <br> dal: ' . $inizio . ' al: ' . $fine . '.</p>';
+                      $c = $c + 1;
+                      }
+                      }
+                      }
+                      if ($c == 0 && (!is_null($in) || !is_null($fine))) {
+                      echo '<p style="text-align: center;">Confermare la prenotazione</p>';
+                      echo '<p style="text-align: center;">dal: ' . $in . ' al:' . $fin . '?</p>';
+                      echo '<button onclick="window.location.href =\' ' . $this->url(array('controller' => 'user',
+                      'action' => 'prenotazione',
+                      'id_auto' => $auto->id_auto,
+                      'data_inizio' => $in,
+                      'data_fine' => $fin,
+                      'id_utente' => $idU), 'default', true) . '\'">Prenota</button>';
+                      } else if ($c >= 1 && ($in!=0 && $fin!=0)) {
+                      echo '<p style="text-align: center;">Si prega di scegliere un\'altra data</p>';
+                      } */
                     ?>
                 </div>
 

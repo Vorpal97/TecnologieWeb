@@ -19,10 +19,11 @@
             $idu = $this->id_utente;
             $prezzo = $auto->prezzo;
             $durata = $this->durata($inizio, $fine);
+            $tipo = 'Costo';
             echo '<p>Data di inizio: ' . $inizio . '</p>';
             echo '<p>Data di fine: ' . $fine . '</p>';
             echo '<p>Durata: ' . $durata . ' giorni</p>';
-            echo $this->costo($prezzo, $durata);
+            echo $this->costo($prezzo, $durata, $tipo);
             }
             ?>
         </div>
