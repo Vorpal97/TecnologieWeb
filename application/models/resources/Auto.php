@@ -98,6 +98,6 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract {
     
     public function editAuto($data, $id)
     {
-        $this->update($data, 'id_auto = '.$id);
+        $this->update($data,'id_auto = ' .$id);
     }
 }

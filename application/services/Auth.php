@@ -20,7 +20,7 @@ class Application_Service_Auth
         {
             return false;
         }
-        $user = $this->_adminModel->getUser($credenzials['email']);
+        $user = $this->_adminModel->getUser($credenzials['username']);
         $auth->getStorage()->write($user);
         return true;
     }
@@ -55,9 +55,9 @@ class Application_Service_Auth
     {
         $authAdapter = new Zend_Auth_Adapter_DbTable(Zend_Db_Table_Abstract::getDefaultAdapter(),
                 'utente',
-                'email',
+                'username',
                 'psw');
-        $authAdapter->setIdentity($values['email']);
+        $authAdapter->setIdentity($values['username']);
         $authAdapter->setCredential($values['psw']);
         return $authAdapter;
     }

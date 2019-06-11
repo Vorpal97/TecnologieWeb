@@ -139,7 +139,7 @@ class PublicController extends Zend_Controller_Action
         }
         if (false === $this->_authService->authenticate($form->getValues()))
         {
-            $form->setDescription('Email o password errati, riprova.');
+            $form->setDescription('Username o password errati, riprova.');
             return $this->render('login');
         }
         return $this->_helper->redirector('index', 'public');
