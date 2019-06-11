@@ -26,4 +26,14 @@ class Application_Model_Admin extends App_Model_Abstract
         return $this->getResource('Faq')->getFaqById($faqId);
     }
 
+    public function getStaffList()
+    {
+        return $this->getResource('Staff')->getStaffList();
+    }
+
+    public function addStaff($newstaff)
+    {
+        return $this->getResource('Staff')->addStaff($newstaff);
+    }
+
 }
