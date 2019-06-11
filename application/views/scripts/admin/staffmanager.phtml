@@ -42,7 +42,15 @@
             <article>
               <header>
                 <address style="text-align: right;">
-                  <a href=""> Modifica </a> &nbsp <a href=""> Elimina </a>
+                  <a href="<?= $this->url(array('controller' => 'admin',
+                                                'action' => 'editstaffmember',
+                                                'userid' => $member->id_utente),
+                                                'default', true)?>"> Modifica </a>
+                                                 &nbsp
+                  <a href="<?= $this->url(array('controller' => 'admin',
+                                                'action' => 'removestaffmember',
+                                                'userid' => $member->id_utente),
+                                                'default', true)?>"> Elimina </a>
                 </address>
               </header>
               <div class="comcont">
