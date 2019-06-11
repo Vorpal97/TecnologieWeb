@@ -8,10 +8,10 @@ class Application_Form_Public_Auth_Login extends App_Form_Abstract
         $this->setName('login');
         $this->setAction('');   //la action la definisco dal controller che gestisce la form
 
-        $this->addElement('text', 'email', array(
-            'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('EmailAddress',true, array('messages' => "L'email inserita non è nel formato emailaddress@hostname"))),
+        $this->addElement('text', 'username', array(
+            'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),),
             'required' =>true,
-            'label' => 'E-mail',
+            'label' => 'Username',
             'decorators' => $this->elementDecorators,
             ));
 

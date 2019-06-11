@@ -106,6 +106,15 @@ class StaffController extends Zend_Controller_Action
     public function cancellaAction()
     {
         $this->view->azione = $this->getRequest()->getActionName();
+        $autoid = $this->_getParam('idauto', null);
+        if (is_null($autoid))
+        {
+            $this->_helper->redirector('index', 'public');
+        } else
+            {
+                $this->_staffModel->removeAuto($autoid);
+                $this->_helper->redirector('catalog', 'public');
+            }
     }
 
     public function visualizzaAction()
