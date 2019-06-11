@@ -1,4 +1,83 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Admin</b> and script/action name <b>staffmanager</b></p>
+<style type="text/css">
+/* DEMO ONLY */
+.container .demo{text-align:center;}
+.container .demo div{padding:8px 0;}
+.container .demo div{background:#EEEEEE;}
+@media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
+/* DEMO ONLY */
+</style>
+
+<div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <section id="breadcrumb" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <h6 class="heading">Gestisci staff</h6>
+    <!-- ################################################################################################ -->
+    <ul>
+      <li><a href="#">Gestisci</a></li>
+      <li><a href="#">Staff</a></li>
+    </ul>
+    <!-- ################################################################################################ -->
+  </section>
+  <!-- ################################################################################################ -->
+</div>
+
+
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="content">
+      <!-- ################################################################################################ -->
+      <h2>Membri dello staff</h2>
+      <!-- ################################################################################################ -->
+
+      <div id="comments">
+        <ul>
+          <?php foreach ($this->staff as $member) : ?>
+          <li>
+            <article>
+              <header>
+                <address style="text-align: right;">
+                  <a href="<?= $this->url(array('controller' => 'admin',
+                                                'action' => 'editstaffmember',
+                                                'userid' => $member->id_utente),
+                                                'default', true)?>"> Modifica </a>
+                                                 &nbsp
+                  <a href="<?= $this->url(array('controller' => 'admin',
+                                                'action' => 'removestaffmember',
+                                                'userid' => $member->id_utente),
+                                                'default', true)?>"> Elimina </a>
+                </address>
+              </header>
+              <div class="comcont">
+                <div class="group btmspace-50" style="margin-bottom: 0em">
+                  <div class="one_quarter first">Nome</div>
+                  <div class="one_quarter ">Cognome</div>
+                  <div class="one_quarter ">Username</div>
+                  <div class="one_quarter ">Password</div>
+                </div>
+                <div class="group btmspace-50 demo">
+                  <div class="one_quarter first"><?= $member->nome?></div>
+                  <div class="one_quarter"><?= $member->cognome?></div>
+                  <div class="one_quarter"><?= $member->username?></div>
+                  <div class="one_quarter"><?= $member->psw?></div>
+                </div>
+              </div>
+            </article>
+          </li>
+        <?php endforeach; ?>
+        </ul>
+        <h2> Inserisci un nuovo membro dello staff </h2>
+        <?= $this->staffForm; ?>
+      </div>
+      <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
 </div>

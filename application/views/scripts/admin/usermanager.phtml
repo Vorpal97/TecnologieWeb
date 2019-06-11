@@ -1,4 +1,110 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Admin</b> and script/action name <b>usermanager</b></p>
+<style type="text/css">
+/* DEMO ONLY */
+.container .demo{text-align:center;}
+.container .demo div{padding:8px 0;}
+.container .demo div{background:#EEEEEE;}
+@media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
+/* DEMO ONLY */
+</style>
+
+<div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <section id="breadcrumb" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <h6 class="heading">Elimina utenti</h6>
+    <!-- ################################################################################################ -->
+    <ul>
+      <li><a href="#">Gestisci</a></li>
+      <li><a href="#">Utenti</a></li>
+    </ul>
+    <!-- ################################################################################################ -->
+  </section>
+  <!-- ################################################################################################ -->
+</div>
+
+
+<div class="wrapper row3">
+  <main class="hoc container clear" style="width: 1100">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="content">
+      <!-- ################################################################################################ -->
+      <h2>Utenti attivi</h2>
+      <!-- ################################################################################################ -->
+
+      <div id="comments">
+        <ul>
+
+          <li>
+            <article>
+              <header>
+                <address style="text-align: right;">
+                </address>
+              </header>
+              <div class="comcont" style="text-align: center;">
+                <div class="group btmspace-50" style="margin-bottom: 0em">
+                  <div class="one_ottavo first">Nome</div>
+                  <div class="one_ottavo ">Cognome</div>
+                  <div class="one_ottavo ">Username</div>
+									<div class="one_ottavo ">Email</div>
+									<div class="one_ottavo ">Data</div>
+									<div class="one_ottavo ">Residenza</div>
+									<div class="one_ottavo ">Occupazione</div>
+									<div class="one_ottavo ">Abilitato</div>
+                </div>
+              </div>
+            </article>
+          </li>
+					<?php foreach($this->users as $user) : ?>
+						<li>
+	            <article>
+	              <header>
+	                <address style="text-align: right;">
+	                  <a href="<?= $this->url(array('controller' => 'admin',
+	                                                'action' => 'toggleuser',
+	                                                'userid' => $user->id_utente),
+	                                                'default', true)?>"> <img src="http://localhost/TecnologieWeb/public/images/icon/enable.png" style="width:20px; height:20px;"> </a>
+	                                                 &nbsp
+	                  <a href="<?= $this->url(array('controller' => 'admin',
+	                                                'action' => 'removeuser',
+	                                                'userid' => $user->id_utente),
+	                                                'default', true)?>"> <img src="http://localhost/TecnologieWeb/public/images/icon/trash.png" style="width:20px; height:20px;"> </a>
+	                </address>
+	              </header>
+	              <div class="comcont" style="text-align: center;">
+									<div class="group btmspace-50" style="margin-bottom: 0em">
+	                  <div class="one_ottavo first"><?= $user->nome ?></div>
+	                  <div class="one_ottavo "><?= $user->cognome ?></div>
+	                  <div class="one_ottavo "><?= $user->username ?></div>
+										<div class="one_ottavo "><?= $user->email ?></div>
+										<div class="one_ottavo "><?= $user->data ?></div>
+										<div class="one_ottavo "><?= $user->residenza ?></div>
+										<div class="one_ottavo "><?= $user->occupazione ?></div>
+										<div class="one_ottavo "><?php
+																										switch($user->abilitato){
+																											case 0: echo "NO"; break;
+																											case 1: echo "SI"; break;
+																										}
+
+																																			?></div>
+	                </div>
+	              </div>
+	            </article>
+	          </li>
+	        <?php endforeach; ?>
+
+
+        </ul>
+        <h2> Inserisci un nuovo membro dello staff </h2>
+
+      </div>
+      <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
 </div>
