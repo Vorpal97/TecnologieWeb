@@ -4,6 +4,7 @@ class AdminController extends Zend_Controller_Action
 {
 
     protected $_faqform = null;
+    protected $_staffform = null;
     protected $_faqModel = null;
     protected $_adminModel = null;
 
@@ -15,6 +16,7 @@ class AdminController extends Zend_Controller_Action
         $this->_helper->layout->setLayout('main');
         $this->_authService = new Application_Service_Auth();
         $this->view->faqForm = $this->getFaqForm();
+        $this->view->staffForm = $this->getStaffForm();
         $this->_faqModel = new Application_Model_Faq();
         $this->_adminModel = new Application_Model_Admin();
 
@@ -53,6 +55,10 @@ class AdminController extends Zend_Controller_Action
     public function staffmanagerAction()
     {
       $this->view->livello = $this->_authService->getIdentity()->autenticazione;
+      $staffs = $this->_adminModel->getStaffList();
+
+      $this->view->assign(array('staff' => $staffs));
+
     }
 
     public function logoutAction()
@@ -71,6 +77,18 @@ class AdminController extends Zend_Controller_Action
                     'default'
         ));
         return $this->_faqform;
+    }
+
+    private function getStaffForm(){
+      $urlHelper = $this->_helper->getHelper('url');
+      $this->_staffform  = new Application_Form_Admin_Manage_Staff();
+      $this->_staffform->setAction($urlHelper->url(array(
+                  'controller' => 'admin',
+                  'action' => 'addnewstaffmember'),
+                  'default'
+      ));
+      return $this->_staffform;
+
     }
 
     public function addnewfaqAction()
@@ -132,5 +150,19 @@ class AdminController extends Zend_Controller_Action
         $this->_adminModel->addFaq($values);
         $this->_helper->redirector('managefaq');
       }
+    }
+
+    public function addnewstaffmemberAction(){
+      if (!$this->getRequest()->isPost()) {
+          $this->_helper->redirector('index');
+      }
+      $form = $this->_staffform;
+      if (!$form->isValid($_POST)) {
+          return $this->render('staffmanager');
+      }
+      $values = $form->getValues();
+      $this->_adminModel->addStaff($values);
+      $this->_helper->redirector('staffmanager');
+
     }
 }
