@@ -7,9 +7,9 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract {
     protected $_rowClass = 'Application_Resource_Auto_Item';
 
     public function init() {
-        
+
     }
-    
+
     public function addNewAuto($newauto)
     {
         $this->insert($newauto);
@@ -28,7 +28,7 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract {
             //zend_paginator opera in modalità lazy, ritorna solo la pagina richiesta ma bufferizza tutte, così quando fa una richiesta ad un altra pagina non rifa tutto, potrebbero servirgli nelle chiamate successive, ottimizza l'accesso al db
             $paginator->setItemCountPerPage(5) //proprietà della paginazione, tuple estratte che vogliamo associare ad ogni pagina, c'è un unica scheda prodotto, lo si vede selezionando una sottocategoria
                     ->setCurrentPageNumber((int) $paged); //il secondo parametro è quello che rappresenta quella estratta, con l'operatore di casting int, questo perche il parametro deriva dalla rotta
-            // acquisito dunque come stringa, invece il metodo vuole come parametro un intero 
+            // acquisito dunque come stringa, invece il metodo vuole come parametro un intero
             return $paginator; //rappresenta la pagina iesima con i suoi contenuti
         }
         //fine paginator
@@ -77,7 +77,7 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract {
         $select = $this->select()
                 ->where($query)
                 ->order('marca');
-        
+
         if (null !== $paged) {
             $adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
             $paginator = new Zend_Paginator($adapter);
@@ -85,21 +85,19 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract {
                     ->setCurrentPageNumber((int) $paged);
             return $paginator;
         }
-        
+
         return $this->fetchAll($select);
     }
-    
+
     public function getAutoById($id){
         $query = 'id_auto = ' . $id;
         $select = $this->select()
                        ->where($query);
         return $this->fetchAll($select);
     }
-    
+
     public function editAuto($data, $id)
     {
-        $mode = "lambo";
-        $ar = array('marca'=>$mode);
-        $this->update($ar, 'id_auto =1');
+        $this->update($data,'id_auto = ' .$id);
     }
 }

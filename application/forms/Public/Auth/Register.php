@@ -26,6 +26,13 @@ class Application_Form_Public_Auth_Register extends App_Form_Abstract
       'label' => 'Cognome',
       'decorators' => $this->elementDecorators,
     ));
+    $this->addElement('text', 'username', array(
+      'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('StringLength', true, array(5,15,'messages'=>"L'usernamedeve contenere min 5 caratteri e max 15"))),
+      'required' => true,
+      'label' => 'Username',
+      'decorators' => $this->elementDecorators,
+       ));
+    
 
     $this->addElement('password', 'psw', array(
       'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('StringLength', true, array(5,15,'messages'=>'La password deve contenere min 5 caratteri e max 15'))),
@@ -33,6 +40,8 @@ class Application_Form_Public_Auth_Register extends App_Form_Abstract
       'label' => 'Password',
       'decorators' => $this->elementDecorators,
     ));
+    
+    
 
     $this->addElement('text', 'email', array(
       'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('EmailAddress',true, array('messages' => "L'email inserita non è nel formato emailaddress@hostname"))),
