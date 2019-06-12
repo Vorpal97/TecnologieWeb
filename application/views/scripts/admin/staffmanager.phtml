@@ -7,7 +7,7 @@
 /* DEMO ONLY */
 </style>
 
-<div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
+<div class="bgded overlay" style="background-image:url('http://localhost/TecnologieWeb/public/images/samples/faq.jpg'); background-position: center;">
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
@@ -17,8 +17,8 @@
     <h6 class="heading">Gestisci staff</h6>
     <!-- ################################################################################################ -->
     <ul>
-      <li><a href="#">Gestisci</a></li>
-      <li><a href="#">Staff</a></li>
+      <li><a href="#">Gestisci staff</a></li>
+      <li></li>
     </ul>
     <!-- ################################################################################################ -->
   </section>
@@ -45,12 +45,12 @@
                   <a href="<?= $this->url(array('controller' => 'admin',
                                                 'action' => 'editstaffmember',
                                                 'userid' => $member->id_utente),
-                                                'default', true)?>"> Modifica </a>
+                                                'default', true)?>"> <img src="http://localhost/TecnologieWeb/public/images/icon/edit.png" style="width:20px; height:20px;"> </a>
                                                  &nbsp
                   <a href="<?= $this->url(array('controller' => 'admin',
                                                 'action' => 'removestaffmember',
                                                 'userid' => $member->id_utente),
-                                                'default', true)?>"> Elimina </a>
+                                                'default', true)?>"> <img src="http://localhost/TecnologieWeb/public/images/icon/trash.png" style="width:20px; height:20px;"> </a>
                 </address>
               </header>
               <div class="comcont">
