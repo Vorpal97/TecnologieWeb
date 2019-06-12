@@ -85,10 +85,7 @@ class UserController extends Zend_Controller_Action {
     public function profiloAction() {
         $this->view->azione = $this->getRequest()->getActionName();
         $data = $this->getloggeduserAction();
-        $mail = array(
-            'email' => $data['email']
-                );
-        $this->_form->populate($mail);
+        $this->_form->populate($data->toArray());
         $urlHelper = $this->_helper->getHelper('url');
         $this->_form->setAction($urlHelper->url(array(
             'controller' => 'user',
