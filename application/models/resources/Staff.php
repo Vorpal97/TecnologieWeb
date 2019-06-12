@@ -29,6 +29,11 @@ class Application_Resource_Staff extends Zend_Db_Table_Abstract{
         $this->delete('id_utente = ' . $userid);
     }
 
+    public function updateStaff($userid, $values){
+        $this->update($faq, 'id_utente = ' . $userid);
+
+    }
+
     public function getStaffMemberById($userid)
     {
         $select = $this->select()

@@ -26,6 +26,8 @@ class AdminController extends Zend_Controller_Action
   public function indexAction()
   {
     $this->view->livello = $this->_authService->getIdentity()->autenticazione;
+    $this->_helper->redirector('index','public');
+
   }
 
   public function managefaqAction()
@@ -155,6 +157,7 @@ class AdminController extends Zend_Controller_Action
   }
 
   public function addnewstaffmemberAction(){
+    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     if (!$this->getRequest()->isPost()) {
       $this->_helper->redirector('index');
     }
@@ -195,22 +198,25 @@ class AdminController extends Zend_Controller_Action
   }
 
   public function savememberAction(){
+    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     $userid = $this->_getParam('userid', null);
-    // remove old faq
-    if($userid != null){
-      $this->_adminModel->removeStaff($userid);
-      // add new edited faq
-      if (!$this->getRequest()->isPost()) {
+
+    if($userid == null){
         $this->_helper->redirector('index');
-      }
-      $form = $this->_staffform;
-      if (!$form->isValid($_POST)) {
-        return $this->render('staffmanager');
-      }
-      $values = $form->getValues();
-      $this->_adminModel->addStaff($values);
-      $this->_helper->redirector('staffmanager');
     }
+    if (!$this->getRequest()->isPost()) {
+      $this->_helper->redirector('index');
+    }
+    $form = $this->_staffform;
+    if (!$form->isValid($_POST)) {
+      return $this->render('staffmanager');
+    }
+    $values = $form->getValues();
+
+    $this->_adminModel->updateStaff($userid,$values);
+
+    $this->_helper->redirector('staffmanager');
+
   }
 
   public function toggleuserAction(){

@@ -67,6 +67,12 @@ class Application_Model_Admin extends App_Model_Abstract
         return $this->getResource('Staff')->removeStaff($userid);
     }
 
+    public function updateStaff($userid, $values)
+    {
+        return $this->getResource('Staff')->updateStaff($userid, $values);
+    }
+
+
     public function getStaffMemberById($userid)
     {
         return $this->getResource('Staff')->getStaffMemberById($userid);
