@@ -67,4 +67,9 @@ class Application_Model_Admin extends App_Model_Abstract
         return $this->getResource('Staff')->getStaffMemberById($userid);
     }
 
+    public function getRentsByMonth()
+    {
+        return $this->getResource('Prospetto')->getRentsByMonth();
+    }
+
 }

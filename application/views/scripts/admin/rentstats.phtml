@@ -1,4 +1,63 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Admin</b> and script/action name <b>rentstats</b></p>
+<style type="text/css">
+/* DEMO ONLY */
+.container .demo{text-align:center;}
+.container .demo div{padding:8px 0;}
+.container .demo div{background:#EEEEEE;}
+@media screen and (max-width:900px){.container .demo div{margin-bottom:0;}}
+/* DEMO ONLY */
+</style>
+
+<div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <section id="breadcrumb" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <h6 class="heading">Statistiche e noleggi</h6>
+    <!-- ################################################################################################ -->
+  </section>
+  <!-- ################################################################################################ -->
+</div>
+
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="content">
+      <!-- ################################################################################################ -->
+      <h2>Prospetto delle auto noleggiate nell'anno corrente</h2>
+      <!-- ################################################################################################ -->
+
+      <div id="comments">
+        <ul>
+          <li>
+            <article>
+              <header>
+                <address style="text-align: right;">
+                </address>
+              </header>
+              <div class="comcont" style="text-align: center;">
+                <div class="group btmspace-50" style="margin-bottom: 0em">
+                  <div class="one_quarter first">Mese</div>
+                  <div class="one_quarter ">Numero auto noleggiate</div>
+                </div>
+								<?php foreach ($this->rents as $rent) : ?>
+                <div class="group btmspace-50 demo">
+                  <div class="one_quarter first"><?= $rent->mese?></div>
+                  <div class="one_quarter"><?= $rent->num_auto?></div>
+                </div>
+							<?php endforeach; ?>
+
+              </div>
+            </article>
+          </li>
+        </ul>
+      </div>
+      <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
 </div>

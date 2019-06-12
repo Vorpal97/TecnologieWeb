@@ -45,6 +45,9 @@ class AdminController extends Zend_Controller_Action
   public function rentstatsAction()
   {
     $this->view->livello = $this->_authService->getIdentity()->autenticazione;
+    $rents = $this->_adminModel->getRentsByMonth();
+    $this->view->assign(array('rents' => $rents));
+
   }
 
   public function usermanagerAction()
