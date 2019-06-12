@@ -11,7 +11,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $logger = new Zend_Log($writer);
         Zend_Registry::set('log', $logger);
         $this->_logger = $logger;
-        $logger->info('Bootstrap ' . __METHOD__);
+        $this->_logger->info('Bootstrap ' . __METHOD__);
     }
 
     protected function _initRequest() {

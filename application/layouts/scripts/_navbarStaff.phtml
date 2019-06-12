@@ -26,15 +26,6 @@
                             'default', true ); ?>"
                             title = "Catalogo" >Catalogo</a>
                 </li>
-                <li <?php if($this->azione == "profilo")
-                {
-                    echo 'class="active"';
-                }         ?>><a href="<?= $this->url(array(
-                            'controller' => 'user',
-                            'action' => 'profilo'),
-                            'default', true ); ?>"
-                            title = "Registrati" >Il mio profilo</a>
-                </li>
                 <li <?php if($this->azione == "inserisci" || $this->azione == "visualizza" )
                 {
                     echo 'class="active"';
