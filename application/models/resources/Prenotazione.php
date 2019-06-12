@@ -11,7 +11,6 @@ class Application_Resource_Prenotazione extends Zend_Db_Table_Abstract {
     }
 
     public function getPrenotazioneByAuto($id) {
-
         $query = 'id_auto = ' . $id;
         $select = $this->select()
                 ->where($query);
@@ -20,8 +19,6 @@ class Application_Resource_Prenotazione extends Zend_Db_Table_Abstract {
     }
     
     public function setPrenotazione ($data){
-        
-        //$query = 'INSERT INTO `prenotazione`(`id_prenotazione`, `id_utente`, `id_auto`, `data_inizio`, `data_fine`) VALUES (\'\',\'' . $utente . '\',\'' . $auto . '\',\'' . $in . '\',\'' . $fin . '\'';
         $this->insert($data);
     }
     
