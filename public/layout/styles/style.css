@@ -159,3 +159,70 @@
 .conflitto {
     color: #9b0606;
 }
+
+.titolo {
+    text-align: center;
+    color: #A2B70D;
+    padding-top: 20px;
+}
+
+.pagMensili {
+    overflow: auto;
+    background-color: #F6F6F6;
+    min-height: 470px;
+}
+
+.mensile {
+
+    border: solid;
+    border-width: 1px;
+    border-color: #D7D7D7;
+}
+
+.resMensile {
+    width: 100%;
+}
+
+.tab10 {
+    width: 10%;
+    height: 10px;
+    text-align: center;
+
+    color: #000000;
+}
+
+.tab20 {
+    width: 20%;
+    height: 10px;
+    text-align: center;
+
+    color: #000000;
+}
+
+.tab10h {
+    width: 10%;
+    height: 10px;
+    text-align: center;
+    background-color: #F6F6F6;
+    color: #000000;
+}
+
+.tab10h2 {
+    width: 10%;
+    height: 10px;
+    text-align: center;
+    background-color: #D7D7D7;
+    color: #000000;
+}
+
+.tab20h {
+    width: 20%;
+    height: 10px;
+    text-align: center;
+    background-color: #F6F6F6;
+    color: #000000;
+}
+
+.grigio {
+    background-color: #D7D7D7;
+}

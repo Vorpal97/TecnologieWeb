@@ -47,13 +47,17 @@
                             echo '<p style="text-align: center;">Durata: ' . $durata . ' giorni</p>';
                             $style = 'style="text-align: center;"';
                             $tipo = 'Preventivo';
+                            $prezzo = $auto->prezzo;
+                            $costo = $prezzo * $durata;
                             echo $this->costo($auto->prezzo, $durata, $tipo, $style);
                             echo '<button onclick="window.location.href =\' ' . $this->url(array('controller' => 'user',
                                 'action' => 'prenotazione',
                                 'id_auto' => $auto->id_auto,
                                 'data_inizio' => $in,
                                 'data_fine' => $fin,
-                                'id_utente' => $idU), 'default', true) . '\'">Prenota</button>';
+                                'id_utente' => $idU,
+                                'costo' => $costo,
+                                'durata' => $durata), 'default', true) . '\'">Prenota</button>';
                         }
                     } else {
                         echo $res;
