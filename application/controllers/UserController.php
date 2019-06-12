@@ -5,6 +5,8 @@ class UserController extends Zend_Controller_Action {
     protected $_catalogModel = null;
     protected $_reservationModel = null;
     protected $_authService = null;
+    protected $_form = null;
+    protected $_adminModel = null;
 
     public function init() {
         $this->_helper->layout->setLayout('main');
@@ -12,9 +14,36 @@ class UserController extends Zend_Controller_Action {
         $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_reservationModel = new Application_Model_Reservation();
+        $this->_adminModel = new Application_Model_Admin();
         $this->view->id_utente = $this->_authService->getIdentity()->id_utente;
+        $this->view->editForm = $this->getForm();
+        
     }
 
+    public function getForm()
+    {
+        $urlHelper = $this->_helper->getHelper('url');
+        $this->_form = new Application_Form_User_Edit_EditProfile();
+        $data = $this->getloggeduserAction();
+        $precompiled = array(
+            "email" => $data->email,
+        );
+        $this->_form->populate($precompiled);
+        $this->_form->setAction($urlHelper->url(array(
+            'controller' => 'user',
+            'action' => ''),
+            'default', true
+        ));
+        return $this->_form;
+    }
+    
+    public function getloggeduserAction()
+    {
+        $username = $this->_authService->getIdentity()->username;
+        $loggeduser = $this->_adminModel->getUser($username);
+        return $loggeduser;
+    }
+    
     public function indexAction() {
         $this->view->azione = $this->getRequest()->getActionName();
     }
