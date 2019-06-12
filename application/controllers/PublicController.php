@@ -151,7 +151,7 @@ class PublicController extends Zend_Controller_Action
             $form->setDescription('Username o password errati, riprova.');
             return $this->render('login');
         }
-        return $this->_helper->redirector('index', 'public');
+        return $this->_helper->redirector('catalog', 'public');
     }
     
     public function prenotazione(){

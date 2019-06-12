@@ -9,12 +9,12 @@ class UserController extends Zend_Controller_Action {
     protected $_adminModel = null;
 
     public function init() {
+        $this->_adminModel = new Application_Model_Admin();
         $this->_helper->layout->setLayout('main');
         $this->_authService = new Application_Service_Auth();
         $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_reservationModel = new Application_Model_Reservation();
-        $this->_adminModel = new Application_Model_Admin();
         $this->view->id_utente = $this->_authService->getIdentity()->id_utente;
         $this->view->editForm = $this->getForm();
         
@@ -24,23 +24,52 @@ class UserController extends Zend_Controller_Action {
     {
         $urlHelper = $this->_helper->getHelper('url');
         $this->_form = new Application_Form_User_Edit_EditProfile();
-        $data = $this->getloggeduserAction();
-        $precompiled = array(
-            "email" => $data->email,
-        );
-        $this->_form->populate($precompiled);
         $this->_form->setAction($urlHelper->url(array(
             'controller' => 'user',
-            'action' => ''),
+            'action' => 'updateprofile',
+            'iduser' => $data->id_utente),
             'default', true
         ));
         return $this->_form;
     }
     
+    public function updateprofileAction()
+    {
+        if(!$this->getRequest()->isPost())
+        {
+            $this->_helper->redirector('index','public');
+        }
+        $form = $this->_form;
+        if (!$form->isValid($_POST)) {
+            return $this->render('profilo');
+        }
+        $id = $this->_getParam('iduser', null);
+        $values = $form->getValues();
+        $oldpass = $values['oldpass'];
+        if($values['psw'] == '' || $values['oldpass'] == '')
+        {
+        $dati = array(
+            'email' => $values['email']
+                );
+        } else if (!is_null($this->_adminModel->getUserByPass($oldpass)))
+        {   
+            $dati = array(
+                'email' => $values['email'],
+                'psw' => $values['psw']
+            );
+        } else 
+            {
+                $form->setDescription('La password attuale non è corretta');
+                return $this->render('profilo');
+            }
+        $this->_adminModel->editUser($dati, $id);
+        $this->_helper->redirector('profilo');
+    }
+    
     public function getloggeduserAction()
     {
-        $username = $this->_authService->getIdentity()->username;
-        $loggeduser = $this->_adminModel->getUser($username);
+        $user = $this->_authService->getIdentity()->username;
+        $loggeduser = $this->_adminModel->getUser($user);
         return $loggeduser;
     }
     
@@ -55,7 +84,19 @@ class UserController extends Zend_Controller_Action {
 
     public function profiloAction() {
         $this->view->azione = $this->getRequest()->getActionName();
-        // action body
+        $data = $this->getloggeduserAction();
+        $mail = array(
+            'email' => $data['email']
+                );
+        $this->_form->populate($mail);
+        $urlHelper = $this->_helper->getHelper('url');
+        $this->_form->setAction($urlHelper->url(array(
+            'controller' => 'user',
+            'action' => 'updateprofile',
+            'iduser' => $data->id_utente),
+            'default'
+        ));
+        return $this->_form;
     }
 
     public function editaprofiloAction() {

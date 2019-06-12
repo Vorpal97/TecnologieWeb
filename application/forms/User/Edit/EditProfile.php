@@ -16,7 +16,7 @@
             
             $this->addElement('password', 'oldpass', array(
                 'validators' => array(array('StringLength', true, array(5,15,'messages'=>'La password deve contenere min 5 caratteri e max 15'))),
-                'label' => 'Vecchia Password',
+                'label' => 'Password attuale',
                 'decorators' => $this->elementDecorators,
             ));
             
@@ -26,15 +26,16 @@
                 'decorators' => $this->elementDecorators,
             ));
             
-            $this->addElement('file', 'immagine', array(
+            /*$this->addElement('file', 'immagine', array(
             'label' => 'Immagine del profilo',
             'destination' => APPLICATION_PATH . '/../public/images/profile',
             'validators' => array(
             array('Count', false, 1),
             array('Size', false, 102400),
-            array('Extension', false, array('jpg'))),
+            array('Extension', false, array('jpg','png'))),
             'decorators' => $this->fileDecorators,
-            )); 
+            )); */
+            
             
             $this->addElement('submit','salva',array(
             'label' => 'Salva',
