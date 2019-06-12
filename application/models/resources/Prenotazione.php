@@ -26,9 +26,10 @@ class Application_Resource_Prenotazione extends Zend_Db_Table_Abstract {
     }
     
     public function getPrenotazioni ($mese){
-        $query = 'mese_rif = ' . $mese;
+        $query = 'MONTH(data_inizio) =' . $mese;
         $select = $this->select()
-                ->where($query);
+                ->where($query)
+                ->order('id_auto');
         
         return $this->fetchAll($select);
     }
