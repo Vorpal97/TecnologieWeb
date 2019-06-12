@@ -11,7 +11,7 @@
             <div class="prodPren">
                 <?php echo'<h1 class="titlePren">' . $auto->marca . ':  ' . $auto->modello . '</h1>' ?>
                 <div class="imagePren">
-                    <?php echo '<img class="imagefrmPren" src="http://localhost/TecnologieWeb/public/images/catalog/' . $auto->immagine . '">' ?>
+                    <?php echo $this->immagine($auto->immagine, array('class' => 'imagefrmPren')) ?>
                 </div>
 
                 <div class="formPren">
@@ -62,42 +62,6 @@
                     } else {
                         echo $res;
                     }
-                    /* $c = 0;
-                      $oggi = date("Y-m-d");
-
-                      if ($in < $oggi && $in != 0) {
-                      echo '<p style="text-align: center;">Non possiamo tornare indietro nel tempo</p>';
-                      echo '<p style="text-align: center">La data di inizio inserita è: ' . $in . '</p>';
-                      $c = $c + 1;
-                      } else if ($in > $fin) {
-                      echo '<p style="text-align: center;">La data di fine precede la data di inizio</p>';
-                      echo '<p style="text-align: center;">Inserire le date nel giusto ordine</p>';
-                      $c = $c + 1;
-                      } else if ($in == 0 || $fin == 0) {
-                      echo '<p style="text-align: center;">Inserire la data di inizio e fine desiderate<p>';
-                      $c = $c + 1;
-                      } else {
-                      foreach ($this->prenotazioni as $prenotazioni) {
-                      $inizio = $prenotazioni->data_inizio;
-                      $fine = $prenotazioni->data_fine;
-                      if (($in < $inizio && $fin > $inizio) || ($in > $inizio && $in < $fine) || ($in < $inizio && $fin > $fine) || ($in == $inizio && $fin == $fine)) {
-                      echo '<p style="text-align: center;">L\'auto non è disponibile <br> dal: ' . $inizio . ' al: ' . $fine . '.</p>';
-                      $c = $c + 1;
-                      }
-                      }
-                      }
-                      if ($c == 0 && (!is_null($in) || !is_null($fine))) {
-                      echo '<p style="text-align: center;">Confermare la prenotazione</p>';
-                      echo '<p style="text-align: center;">dal: ' . $in . ' al:' . $fin . '?</p>';
-                      echo '<button onclick="window.location.href =\' ' . $this->url(array('controller' => 'user',
-                      'action' => 'prenotazione',
-                      'id_auto' => $auto->id_auto,
-                      'data_inizio' => $in,
-                      'data_fine' => $fin,
-                      'id_utente' => $idU), 'default', true) . '\'">Prenota</button>';
-                      } else if ($c >= 1 && ($in!=0 && $fin!=0)) {
-                      echo '<p style="text-align: center;">Si prega di scegliere un\'altra data</p>';
-                      } */
                     ?>
                 </div>
 
