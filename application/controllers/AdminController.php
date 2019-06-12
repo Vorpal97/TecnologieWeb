@@ -96,8 +96,8 @@ class AdminController extends Zend_Controller_Action
 
   }
 
-  public function addnewfaqAction()
-  {
+  public function addnewfaqAction(){
+    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     if (!$this->getRequest()->isPost()) {
       $this->_helper->redirector('index');
     }
@@ -138,21 +138,20 @@ class AdminController extends Zend_Controller_Action
 
   public function savefaqAction(){
     $faqId = $this->_getParam('faqid', null);
-    // remove old faq
-    if($faqId != null){
-      $this->_adminModel->removeFaq($faqId);
-      // add new edited faq
-      if (!$this->getRequest()->isPost()) {
-        $this->_helper->redirector('index');
-      }
-      $form = $this->_faqform;
-      if (!$form->isValid($_POST)) {
-        return $this->render('managefaq');
-      }
-      $values = $form->getValues();
-      $this->_adminModel->addFaq($values);
-      $this->_helper->redirector('managefaq');
+    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
+    if($faqId == null){
+      $this->_helper->redirector('index');
     }
+    if (!$this->getRequest()->isPost()) {
+      $this->_helper->redirector('index');
+    }
+    $form = $this->_faqform;
+    if (!$form->isValid($_POST)) {
+      return $this->render('managefaq');
+    }
+    $values = $form->getValues();
+    $this->_adminModel->updateFaq($faqId, $values);
+    $this->_helper->redirector('managefaq');
   }
 
   public function addnewstaffmemberAction(){

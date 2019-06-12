@@ -35,5 +35,8 @@ class Application_Resource_Faq extends Zend_Db_Table_Abstract{
 
         return $this->fetchAll($select);
     }
+    public function updateFaq($faqId, $faq){
+      $this->update($faq, 'id_faq = ' . $faqId);
+    }
 
 }

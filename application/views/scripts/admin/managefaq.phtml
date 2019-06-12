@@ -8,8 +8,8 @@
     <h6 class="heading">FAQ</h6>
     <!-- ################################################################################################ -->
     <ul>
-      <li><a href="">Home</a></li>
-      <li>FAQ</li>
+      <li><a href="">Gestisci FAQ</a></li>
+      <li></li>
     </ul>
     <!-- ################################################################################################ -->
   </section>
@@ -34,16 +34,17 @@
                 <header>
                   <address>
                     <?php echo $faq->domanda ?>
+                    <div style="text-align:right;">
                     <a href="<?= $this->url(array('controller' => 'admin',
 		     										                      'action' => 'removefaq',
                                                   'faqid' => $faq->id_faq),
-                                                  'default', true)?>"> <b> ELIMINA </b> </a>
+                                                  'default', true)?>"> <b> <img src="http://localhost/TecnologieWeb/public/images/icon/trash.png" style="width:20px; height:20px;"> </b> </a>
                                                   &nbsp
                     <a href="<?= $this->url(array('controller' => 'admin',
                                                   'action' => 'editfaq',
                                                   'faqid' => $faq->id_faq),
-                                                  'default', true)?>"> <b> MODIFICA </b> </a>
-
+                                                  'default', true)?>"> <b> <img src="http://localhost/TecnologieWeb/public/images/icon/edit.png" style="width:20px; height:20px;"> </b> </a>
+                    </div>
                   </address>
                   <?php echo $faq->time_stamp ?>
                 </header>
