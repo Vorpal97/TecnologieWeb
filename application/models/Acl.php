@@ -17,7 +17,7 @@ class Application_Model_Acl extends Zend_Acl
              ->allow('user','user');
 
         //per utente staff
-        $this->addRole(new Zend_Acl_Role('staff'),'user')
+        $this->addRole(new Zend_Acl_Role('staff'),'visitor')
              ->add (new Zend_Acl_Resource ('staff'))
              ->allow ('staff','staff');
 
