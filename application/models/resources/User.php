@@ -14,10 +14,20 @@ class Application_Resource_User extends Zend_Db_Table_Abstract
   {
     $this->insert($newuser);
   }
+  
+  public function editUser ($data, $id)
+  {
+      $this->update($data, 'id_utente = '.$id);
+  }
 
   public function getUser($user)
   {
     return $this->fetchRow($this->select()->where('username = ?', $user));
+  }
+  
+  public function getUserByPass($pass)
+  {
+      return $this->fetchRow($this->select()->where('psw = ?', $pass));
   }
 
   public function getUserList()

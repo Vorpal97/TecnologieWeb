@@ -133,7 +133,7 @@ class Application_Form_Staff_Auto_Save extends App_Form_Abstract {
             'decorators' => $this->fileDecorators,
         ));
 
-        $this->addElement('submit', 'aggiungi', array(
+        $this->addElement('submit', 'salva', array(
             'label' => 'Salva',
             'decorators' => $this->buttonDecorators,
         ));

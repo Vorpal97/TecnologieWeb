@@ -90,10 +90,14 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract {
     }
 
     public function getAutoById($id){
+/* Modificato da Cucchiarelli: tolto il codice commentato e sostituito con un'unica istruzione
         $query = 'id_auto = ' . $id;
         $select = $this->select()
                        ->where($query);
         return $this->fetchAll($select);
+*/
+        return $this->find($id)->current();
+
     }
 
     public function editAuto($data, $id)

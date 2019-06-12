@@ -1,79 +1,80 @@
-<div class="wrapper row2" style="padding: 80px;">
-    <div class="pagMensili">
-        <center> 
-            <h1 class="titolo">Scegli un mese</h1>
-        </center>
+<div class="pagMensili">
+    <center> 
+        <h1 class="titolo">Scegli un mese</h1>
+    </center>
 
-        <hr>
-        <form id="miaForm" method="post" class="formFiltri" name="formMese" action="">
-            <label class="formMese"><select id="selMese" name="mese" size="1">
-                    <option selected value="0"></option>
-                    <option value="1">Gennaio</option>
-                    <option value="2">Febbraio</option>
-                    <option value="3">Marzo</option>
-                    <option value="4">Aprile</option>
-                    <option value="5">Maggio</option>
-                    <option value="6">Giugno</option>
-                    <option value="7">Luglio</option>
-                    <option value="8">Agosto</option>
-                    <option value="9">Settembre</option>
-                    <option value="10">Ottobre</option>
-                    <option value="11">Novembre</option>
-                    <option value="12">Dicembre</option>
-                </select><br>
-            </label>
-            <button style="margin-top: 20px; margin-bottom:20px;" type="submit">Visualizza</button>
-        </form>
-        <div class="mensile">
-            <table border class="resMensile">
-                <?php
-                $mese = $this->mese;
-                if (!is_null($mese)) {
-                    echo '<caption><b>Prenotazioni del mese di ' . $this->mese . '<b></caption>';
-                } else {
-                    echo '<caption><b>Prenotazioni del mese di ' . $this->oggi . '<b></caption>';
-                }
-                $i = 1;
-                $costoTot = 0;
-                ?>
-                <tbody>
-                    <tr>
-                        <th class = "tab10h"></th>
-                        <th class = "tab10h">id prenotazione</th>
-                        <th class = "tab10h">id auto</th>
-                        <th class = "tab10h">id utente</th>
-                        <th class = "tab20h">data inizio</th>
-                        <th class = "tab20h">data fine</th>
-                        <th class = "tab10h">durata</th>
-                        <th class = "tab10h">fatturato</th>
-                    </tr>
+    <hr>
+    <form id="miaForm" method="post" class="formFiltri" name="formMese" action="">
+        <label class="formMese"><select id="selMese" name="mese" size="1">
+                <option selected value="0"></option>
+                <option value="1">Gennaio</option>
+                <option value="2">Febbraio</option>
+                <option value="3">Marzo</option>
+                <option value="4">Aprile</option>
+                <option value="5">Maggio</option>
+                <option value="6">Giugno</option>
+                <option value="7">Luglio</option>
+                <option value="8">Agosto</option>
+                <option value="9">Settembre</option>
+                <option value="10">Ottobre</option>
+                <option value="11">Novembre</option>
+                <option value="12">Dicembre</option>
+            </select><br>
+        </label>
+        <button style="margin-top: 20px; margin-bottom:20px;" type="submit">Visualizza</button>
+    </form>
+    <div class="mensile">
+        <table border class="resMensile">
+            <?php
+            $mese = $this->mese;
 
-                    <?php foreach ($this->prenotazioni as $pren) : ?>
-                        <?php
-                        $c = $i % 2;
-                        if ($c == 0) {
-                            echo '<tr class="grigio"><th class="tab10h2">' . $i . '</th>';
-                        } else {
-                            echo '<tr><th class="tab10h">' . $i . '</th>';
-                        }
-                        echo '<td class="tab10">' . $pren->id_prenotazione . '</td>
+            if (!is_null($mese)) {
+                echo '<caption><b>Prenotazioni del mese di ' . $this->mese . '<b></caption>';
+            } else {
+                echo '<caption><b>Prenotazioni del mese di ' . $this->oggi . '<b></caption>';
+            }
+            $i = 1;
+            $costoTot = 0;
+            ?>
+            <tbody class="bodyMensile">
+                <tr>
+                    <th class = "tab10h"></th>
+                    <th class = "tab10h">id prenotazione</th>
+                    <th class = "tab10h">id auto</th>
+                    <th class = "tab10h">id utente</th>
+                    <th class = "tab20h">data inizio</th>
+                    <th class = "tab20h">data fine</th>
+                    <th class = "tab10h">durata</th>
+                    <th class = "tab10h">fatturato</th>
+                </tr>
+
+                <?php foreach ($this->prenotazioni as $pren) : ?>
+                    <?php
+                    $c = $i % 2;
+                    if ($c == 0) {
+                        echo '<tr class="grigio"><th class="tab10h2">' . $i . '</th>';
+                    } else {
+                        echo '<tr><th class="tab10h">' . $i . '</th>';
+                    }
+                    echo '<td class="tab10">' . $pren->id_prenotazione . '</td>
                              <td class="tab10">' . $pren->id_auto . '</td>
                              <td class="tab10">' . $pren->id_utente . '</td>
                              <td class="tab20">' . $pren->data_inizio . '</td>
                              <td class="tab20">' . $pren->data_fine . '</td>
-                             <td class="tab10">' . $pren->durata . ' giorni</td>
+                             <td class="tab10">' . $this->durata($pren->data_inizio, $pren->data_fine) . ' giorni</td>
                              <td class="tab10">' . $this->prezzo($pren->costo) . '</td>';
-                        $i += 1;
-                        $costoTot += $pren->costo;
-                        echo '</tr>'
-                        ?>
-                    <?php endforeach; ?>
-                    <?php if ($costoTot!=0){
-                        echo '<tr class="grigio"><th class="tab10h2">ricavo totale</th>
+                    $i += 1;
+                    $costoTot += $pren->costo;
+                    echo '</tr>';
+                    ?>
+                <?php endforeach; ?>
+                <?php
+                if ($costoTot != 0) {
+                    echo '<tr class="grigio"><th class="tab10h2">ricavo totale</th>
                               <td class="tab10"></td><td class="tab10"></td><td class="tab10"></td><td class="tab10"></td><td class="tab10"></td><td class="tab10"></td><td class="tab10">' . $this->prezzo($costoTot) . '</td>';
-                    }?>
-                </tbody>
-            </table>
-        </div>
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
 </div>
