@@ -38,10 +38,10 @@
             $durataTot = 0;
             ?>
             <tbody class="bodyMensile">
-                <tr>
+                <tr class="tab">
                     <th class = "tab5h"></th>
-                    <th class = "tab5h">Id prenotazione</th>
-                    <th class = "tab5h">Id utente</th>
+                    <th class = "tab5h">Prenotazione</th>
+                    <th class = "tab5h">Utente</th>
                     <th class = "tab10h">Nome</th>
                     <th class = "tab10h">Cognome</th>
                     <th class = "tab15h">Marca</th>
@@ -56,13 +56,8 @@
                     <?php
                     $auto = $this->product;
                     $i += 1;
-                    $c = $i % 2;
                     $durata = $this->durata($pren->data_inizio, $pren->data_fine);
-                    if ($c == 0) {
-                        echo '<tr class="grigio"><th class="tab5h2">' . $i . '</th>';
-                    } else {
-                        echo '<tr><th class="tab5h">' . $i . '</th>';
-                    }
+                    echo '<tr class="tab"><td class="tab5">' . $i . '</td>';
                     echo '<td class="tab5">' . $pren->id_prenotazione . '</td>
                              <td class="tab5">' . $pren->id_utente . '</td>
                              <td class="tab10">' . $pren->nome . '</td>
@@ -74,14 +69,12 @@
                              <td class="tab10">' . $durata . ' giorni</td>
                              <td class="tab10">' . $this->prezzo($pren->costo) . '</td></tr>';
                     $costoTot += $pren->costo;
-                    $durataTot += $durata;
                     ?>
                 <?php endforeach; ?>
                 <?php
                 $entrate = $this->prezzo($costoTot);
-                echo $this->RigheTot($i, 'Totale noleggi');
+                echo $this->RigheTot($i, 'Noleggi');
                 echo $this->RigheTot($entrate, 'Entrate');
-                echo $this->RigheTot($durataTot, 'Giorni prenotazione');
                 ?>
             </tbody>
         </table>
