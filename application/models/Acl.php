@@ -6,10 +6,9 @@ class Application_Model_Acl extends Zend_Acl
     {
         //per visitatori del sito
         $this->addRole(new Zend_Acl_Role('visitor'))
-                ->add(new Zend_Acl_Resource('index'))
                 ->add(new Zend_Acl_Resource('error'))
                 ->add(new Zend_Acl_resource('public'))
-                ->allow('visitor', array('index','error','public'));
+                ->allow('visitor', array('error','public'));
 
         //per utente registrato
         $this->addRole(new Zend_Acl_Role('user'), 'visitor')
