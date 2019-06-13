@@ -12,7 +12,7 @@
         <div>
             <b style="color:#A2B70D;">Dettaglio prenotazione</b> 
             <?php
-            foreach ($this->dataAuto as $auto){
+            $auto = $this->dataAuto;
             $inizio = $this->data_inizio;
             $fine = $this->data_fine;
             $ida = $this->id_auto;
@@ -24,7 +24,6 @@
             echo '<p>Data di fine: ' . $fine . '</p>';
             echo '<p>Durata: ' . $durata . ' giorni</p>';
             echo $this->costo($prezzo, $durata, $tipo);
-            }
             ?>
         </div>
     </div>

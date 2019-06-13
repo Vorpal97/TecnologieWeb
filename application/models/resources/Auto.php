@@ -85,7 +85,6 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract {
                     ->setCurrentPageNumber((int) $paged);
             return $paginator;
         }
-
         return $this->fetchAll($select);
     }
 

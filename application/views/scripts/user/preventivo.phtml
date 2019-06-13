@@ -7,7 +7,7 @@
 </div>
 <div class="paginaCat">
     <div class="contenutoPren">
-        <?php foreach ($this->products as $auto) : ?>
+        <?php $auto = $this->products ?>
             <div class="prodPren">
                 <?php echo'<h1 class="titlePren">' . $auto->marca . ':  ' . $auto->modello . '</h1>' ?>
                 <div class="imagePren">
@@ -66,17 +66,17 @@
                 </div>
 
                 <ul class="metaPren">
-                    <?php echo '<li>prezzo: ' . $auto->prezzo . '</li>' ?>
+                    <?php echo '<li>prezzo: ' . $this->prezzo($auto->prezzo) . '</li>' ?>
                     <?php echo '<li>posti: ' . $auto->n_posti . '</li>' ?>
                     <?php echo '<li>segmento: ' . $auto->segmento . '</li>' ?>
-                    <?php echo '<li>cilindrata: ' . $auto->cilindrata . '</li>' ?>
-                    <?php echo '<li>potenza: ' . $auto->potenza . '</li>' ?>
-                    <?php echo '<li>cavalli: ' . $auto->cavalli . '</li>' ?>
+                    <?php echo '<li>cilindrata: ' . $auto->cilindrata . 'cc</li>' ?>
+                    <?php echo '<li>potenza: ' . $auto->potenza . 'kw</li>' ?>
+                    <?php echo '<li>cavalli: ' . $auto->cavalli . 'cv</li>' ?>
                     <?php echo '<li>alimentazione: ' . $auto->alimentazione . '</li>' ?>
                     <?php echo '<li>colore: ' . $auto->colore . '</li>' ?>
                     <?php echo '<li>targa: ' . $auto->targa . '</li>' ?>
                 </ul>
             </div>
-        <?php endforeach; ?>
+
     </div>
 </div>
