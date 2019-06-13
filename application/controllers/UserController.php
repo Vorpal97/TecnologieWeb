@@ -52,7 +52,7 @@ class UserController extends Zend_Controller_Action {
             'residenza' => $values['residenza'],
             'occupazione' => $values['occupazione']
                 );
-        } else if (!is_null($this->_adminModel->getUserByPass($oldpass)))
+        } else if ($this->_adminModel->getUserById($id)->psw == $values['oldpass'])
         {   
             $dati = array(
                 'email' => $values['email'],
