@@ -187,70 +187,45 @@
     height: auto;
 }
 
-.tab10 {
+.tab {
+    text-align: center;
+    color: #000000;
+}
+
+.tab .tab10 {
     width: 10%;
-    height: 10px;
-    text-align: center;
-    height: 10px;
-    color: #000000;
 }
 
-.tab15 {
+.tab .tab15 {
     width: 15%;
-    height: 10px;
-    text-align: center;
-    height: 10px;
-    color: #000000;
 }
 
-.tab5 {
+.tab .tab5 {
     width: 5%;
-    height: 10px;
-    text-align: center;
-    height: 10px;
-    color: #000000;
 }
 
-.tab10h {
+.tab .tab10h {
     width: 10%;
-    height: 10px;
-    text-align: center;
     background-color: #F6F6F6;
     color: #000000;
 }
 
-.tab5h {
+.tab .tab5h {
     width: 5%;
-    height: 10px;
-    text-align: center;
     background-color: #F6F6F6;
     color: #000000;
 }
 
-.tab15h {
+.tab .tab15h {
     width: 15%;
-    height: 10px;
-    text-align: center;
     background-color: #F6F6F6;
     color: #000000;
 }
 
-.tab5h2 {
-    width: 5%;
-    height: 10px;
-    text-align: center;
-    background-color: #D7D7D7;
-    color: #000000;
-}
+.resMensile tr:nth-child(even) { 
+    background-color: #D7D7D7; 
+} 
 
-.tab20h {
-    width: 20%;
-    height: 10px;
-    text-align: center;
-    background-color: #F6F6F6;
-    color: #000000;
-}
-
-.grigio {
-    background-color: #D7D7D7;
+.resMensile tr:nth-child(odd) {
+    background-color: #F6F6F6; 
 }

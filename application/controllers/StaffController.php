@@ -189,8 +189,6 @@ class StaffController extends Zend_Controller_Action {
         } else {
             $pren = $this->_reservationModel->getPrenotazioni($oggi, $anno);
         }
-        $id = $pren->id_auto;
-        $prod = $this->_catalogModel->getAutoById($id);
-        $this->view->assign(array('prenotazioni' => $pren, 'product' => $prod, 'mese' => $query, 'oggi' => $query2));
+        $this->view->assign(array('prenotazioni' => $pren, 'mese' => $query, 'oggi' => $query2));
     }
 }
