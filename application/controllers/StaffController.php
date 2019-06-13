@@ -11,19 +11,30 @@ class StaffController extends Zend_Controller_Action {
         $this->_helper->layout->setLayout('main');
         $this->_authService = new Application_Service_Auth();
         $this->_staffModel = new Application_Model_Staff();
-        $this->view->form = $this->getForm();
+        $this->view->insertform = $this->getinsertForm();
+        $this->view->editform = $this->geteditForm();
         $this->_catalogModel = new Application_Model_Catalog();
         $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $this->_reservationModel = new Application_Model_Reservation();
     }
 
-    private function getForm() {
+    private function getinsertForm() {
 
         $urlHelper = $this->_helper->getHelper('url');
         $this->_form = new Application_Form_Staff_Auto_Save();
         $this->_form->setAction($urlHelper->url(array(
                     'controller' => 'staff',
-                    'action' => 'addauto'), 'default', true
+                    'action' => 'addauto'), 'default'
+        ));
+        return $this->_form;
+    }
+    private function geteditForm() {
+
+        $urlHelper = $this->_helper->getHelper('url');
+        $this->_form = new Application_Form_Staff_Auto_Save();
+        $this->_form->setAction($urlHelper->url(array(
+                    'controller' => 'staff',
+                    'action' => 'updateauto'), 'default'
         ));
         return $this->_form;
     }
