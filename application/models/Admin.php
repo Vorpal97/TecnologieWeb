@@ -10,12 +10,12 @@ class Application_Model_Admin extends App_Model_Abstract
     {
         return $this->getResource('User')->getUser($info);
     }
-    
+
     public function editUser($data, $id)
     {
         return $this->getResource('User')->editUser($data, $id);
     }
-    
+
     public function getUserByPass($pass)
     {
         return $this->getResource('User')->getUserByPass($pass);
@@ -91,6 +91,10 @@ class Application_Model_Admin extends App_Model_Abstract
     public function getRentsByMonth()
     {
         return $this->getResource('Prospetto')->getRentsByMonth();
+    }
+
+    public function getSender(){
+        return $this->getResource('Sender')->getSender();
     }
 
 }
