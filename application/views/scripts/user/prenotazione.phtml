@@ -9,7 +9,7 @@
 
     <div class="prod">
         <h1 style="color: #A2B70D; text-align: center;">Prenotazione avvenuta con successo!!</h1>
-        <div>
+        <div style="text-align: center">
             <b style="color:#A2B70D;">Dettaglio prenotazione</b> 
             <?php
             $auto = $this->dataAuto;
@@ -24,6 +24,8 @@
             echo '<p>Data di fine: ' . $fine . '</p>';
             echo '<p>Durata: ' . $durata . ' giorni</p>';
             echo $this->costo($prezzo, $durata, $tipo);
+            echo '<button onclick="window.location.href =\' ' . $this->url(array('controller' => 'public',
+                'action' => 'catalog',), 'default', true) . '\'">Torna al catalogo</button>';
             ?>
         </div>
     </div>
