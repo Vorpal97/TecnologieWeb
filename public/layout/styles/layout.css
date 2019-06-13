@@ -225,7 +225,7 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 /* Tables
 --------------------------------------------------------------------------------------------------------------- */
 
-table{width:70%; margin-bottom:15px;height:250px}
+table{width:100%; margin-bottom:15px;height:250px}
 tbody{height:250px;}
 td{width: 33.33%;height: auto;}
 tr{margin-top: auto;margin-bottom: auto;}
@@ -424,6 +424,7 @@ table a, #comments a{background-color:inherit;}
 }
 .errors{
     color:#9b0606;
+    width:350px;
 }
 
 .message{
