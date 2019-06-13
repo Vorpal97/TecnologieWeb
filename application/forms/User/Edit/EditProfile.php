@@ -54,7 +54,7 @@
             $this->setDecorators(array(
             'FormElements',
             array('HtmlTag', array('tag' => 'table', 'class' => 'zend_form')),
-            array('Description', array('placement' => 'prepend', 'class' => 'errors')),
+            array('Description', array('placement' => 'prepend', 'class' => 'message')),
             'Form',
             ));
 

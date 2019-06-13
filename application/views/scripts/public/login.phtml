@@ -1,6 +1,23 @@
-<div class="wrapper row2" style="padding: 80px;">
-    <h1 style="padding-top: 20px; color: black; text-align: center;">Inserisci i tuoi dati</h1>
+<?php $this->headScript()
+	->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js')
+	->appendFile($this->baseUrl('js/functions.js'))
+	->captureStart() ?>
+
+$(function()
+{
+	var actionUrl='<?= $this->url(array('controller' => 'public', 'action' => 'validatelogin',), 'default'); ?>';
+	var formName='<?= $this->loginForm->getName() ?>';
+	$(":input").on('blur', function(event) {
+        var formElementId = $(this).attr('id');
+        doValidation(formElementId, actionUrl, formName);
+    });
+});
+
+<?php $this->headScript()->captureEnd() ?>
+
+<div class="wrapper2 row2">
     <center> 
+    <h1 class="wrapper2 row6">Inserisci i tuoi dati</h1>
     <?= $this->loginForm; ?>
     </center>
 </div>

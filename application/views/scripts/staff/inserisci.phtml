@@ -1,4 +1,22 @@
-<div class="wrapper row2" style="padding:80px">
+<?php $this->headScript()
+	->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js')
+	->appendFile($this->baseUrl('js/functions.js'))
+	->captureStart() ?>
+
+
+$(function()
+{
+	var actionUrl='<?= $this->url(array('controller' => 'staff', 'action' => 'validateinsert',), 'default'); ?>';
+	var formName='<?= $this->insertform->getName() ?>';
+	$(":input").on('blur', function(event) {
+        var formElementId = $(this).attr('id');
+        doValidation(formElementId, actionUrl, formName);
+    });
+});
+
+<?php $this->headScript()->captureEnd() ?>
+
+<div class="wrapper2 row2" >
     <center>
     <h1 class="wrapper2 row6">Inserisci una nuova auto</h1>
     <?= $this->insertform; ?>

@@ -40,6 +40,32 @@ class StaffController extends Zend_Controller_Action {
         ));
         return $this->_editform;
     }
+    
+    public function validateinsertAction() 
+    {
+        $this->_helper->getHelper('layout')->disableLayout();
+    		$this->_helper->viewRenderer->setNoRender();
+
+        $insertform = new Application_Form_Staff_Auto_Insert();
+        $response = $insertform->processAjax($_POST); 
+        if ($response !== null) {
+        	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
+        }
+    }
+    
+    public function validateeditAction() 
+    {
+        $this->_helper->getHelper('layout')->disableLayout();
+    		$this->_helper->viewRenderer->setNoRender();
+
+        $editform = new Application_Form_Staff_Auto_Edit();
+        $response = $editform->processAjax($_POST); 
+        if ($response !== null) {
+        	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
+        }
+    }
+    
+    
 
     public function updateautoAction() {
         if (!$this->getRequest()->isPost()) {
