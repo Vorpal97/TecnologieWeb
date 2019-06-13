@@ -2,10 +2,12 @@
 
 class StaffController extends Zend_Controller_Action {
 
-    protected $_form = null;
+    protected $_editform = null;
+    protected $_insertform = null;
     protected $_catalogModel = null;
     protected $_staffModel = null;
     protected $_reservationModel = null;
+    
 
     public function init() {
         $this->_helper->layout->setLayout('main');
@@ -21,29 +23,29 @@ class StaffController extends Zend_Controller_Action {
     private function getinsertForm() {
 
         $urlHelper = $this->_helper->getHelper('url');
-        $this->_form = new Application_Form_Staff_Auto_Save();
-        $this->_form->setAction($urlHelper->url(array(
+        $this->_insertform = new Application_Form_Staff_Auto_Insert();
+        $this->_insertform->setAction($urlHelper->url(array(
                     'controller' => 'staff',
                     'action' => 'addauto'), 'default'
         ));
-        return $this->_form;
+        return $this->_insertform;
     }
     private function geteditForm() {
 
         $urlHelper = $this->_helper->getHelper('url');
-        $this->_form = new Application_Form_Staff_Auto_Save();
-        $this->_form->setAction($urlHelper->url(array(
+        $this->_editform = new Application_Form_Staff_Auto_Edit();
+        $this->_editform->setAction($urlHelper->url(array(
                     'controller' => 'staff',
                     'action' => 'updateauto'), 'default'
         ));
-        return $this->_form;
+        return $this->_editform;
     }
 
     public function updateautoAction() {
         if (!$this->getRequest()->isPost()) {
             $this->_helper->redirector('index', 'public');
         }
-        $form = $this->_form;
+        $form = $this->_editform;
         if (!$form->isValid($_POST)) {
             return $this->render('modifica');
         }
@@ -57,7 +59,7 @@ class StaffController extends Zend_Controller_Action {
         if (!$this->getRequest()->isPost()) {
             $this->_helper->redirector('index');
         }
-        $form = $this->_form;
+        $form = $this->_insertform;
         if (!$form->isValid($_POST)) {
             return $this->render('inserisci');
         }
@@ -78,17 +80,16 @@ class StaffController extends Zend_Controller_Action {
     {
         $this->view->azione = $this->getRequest()->getActionName();
         $autoid = $this->_getParam('idauto', null);
-        $this->view->idauto = $autoid;
         $urlHelper = $this->_helper->getHelper('url');
         $data = $this->_catalogModel->getAutoById($autoid);
-        $this->_form->populate($data->toArray());
-        $this->_form->setAction($urlHelper->url(array(
+        $this->_editform->populate($data->toArray());
+        $this->_editform->setAction($urlHelper->url(array(
         'controller' => 'staff',
         'action' => 'updateauto',
         'idauto' => $autoid),
         'default'
          ));
-        return $this->_form;
+        return $this->_editform;
     }
 
     public function cancellaAction() {
