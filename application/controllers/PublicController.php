@@ -68,6 +68,18 @@ class PublicController extends Zend_Controller_Action
         }
     }
     
+    public function validateregisterAction() 
+    {
+        $this->_helper->getHelper('layout')->disableLayout();
+    		$this->_helper->viewRenderer->setNoRender();
+
+        $registerform = new Application_Form_Public_Auth_Register();
+        $response = $registerform->processAjax($_POST); 
+        if ($response !== null) {
+        	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
+        }
+    }
+    
     public function faqAction()
     {
         $this->view->azione = $this->getRequest()->getActionName();

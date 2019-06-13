@@ -3,7 +3,6 @@
 	->appendFile($this->baseUrl('js/functions.js'))
 	->captureStart() ?>
 
-// codice jQuery inserito da view-script nella sezione head della pagina
 $(function()
 {
 	var actionUrl='<?= $this->url(array('controller' => 'public', 'action' => 'validatelogin',), 'default'); ?>';
