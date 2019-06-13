@@ -39,14 +39,17 @@
             ?>
             <tbody class="bodyMensile">
                 <tr>
-                    <th class = "tab10h"></th>
-                    <th class = "tab10h">Id prenotazione</th>
-                    <th class = "tab10h">Id utente</th>
+                    <th class = "tab5h"></th>
+                    <th class = "tab5h">Id prenotazione</th>
+                    <th class = "tab5h">Id utente</th>
+                    <th class = "tab10h">Nome</th>
+                    <th class = "tab10h">Cognome</th>
+                    <th class = "tab15h">Marca</th>
+                    <th class = "tab10h">Modello</th>
                     <th class = "tab10h">Targa</th>
-                    <th class = "tab20h">Marca e modello</th>
-                    <th class = "tab20h">data inizio</th>
+                    <th class = "tab10h">Data inizio</th>
                     <th class = "tab10h">Durata</th>
-                    <th class = "tab10h">Guadagno</th>
+                    <th class = "tab10h">Entrata</th>
                 </tr>
 
                 <?php foreach ($this->prenotazioni as $pren) : ?>
@@ -56,26 +59,29 @@
                     $c = $i % 2;
                     $durata = $this->durata($pren->data_inizio, $pren->data_fine);
                     if ($c == 0) {
-                        echo '<tr class="grigio"><th class="tab10h2">' . $i . '</th>';
+                        echo '<tr class="grigio"><th class="tab5h2">' . $i . '</th>';
                     } else {
-                        echo '<tr><th class="tab10h">' . $i . '</th>';
+                        echo '<tr><th class="tab5h">' . $i . '</th>';
                     }
-                    echo '<td class="tab10">' . $pren->id_prenotazione . '</td>
-                             <td class="tab10">' . $pren->id_utente . '</td>
-                             <td class="tab10">' . $auto->targa . '</td>
-                             <td class="tab20">' . $auto->marca. ', ' . $auto->modello . '</td>
-                             <td class="tab20">' . $pren->data_inizio . '</td>
+                    echo '<td class="tab5">' . $pren->id_prenotazione . '</td>
+                             <td class="tab5">' . $pren->id_utente . '</td>
+                             <td class="tab10">' . $pren->nome . '</td>
+                             <td class="tab10">' . $pren->cognome . '</td>
+                             <td class="tab15">' . $pren->marca . '</td>
+                             <td class="tab10">' . $pren->modello . '</td>
+                             <td class="tab10">' . $pren->targa . '</td>
+                             <td class="tab10">' . $pren->data_inizio . '</td>
                              <td class="tab10">' . $durata . ' giorni</td>
                              <td class="tab10">' . $this->prezzo($pren->costo) . '</td></tr>';
                     $costoTot += $pren->costo;
-                    $durataTot +=$durata;
+                    $durataTot += $durata;
                     ?>
                 <?php endforeach; ?>
                 <?php
-                    $entrate = $this->prezzo($costoTot);
-                    echo $this->RigheTot($i, 'Totale noleggi');
-                    echo $this->RigheTot($entrate, 'Entrate');
-                    echo $this->RigheTot($durataTot, 'Giorni prenotazione');
+                $entrate = $this->prezzo($costoTot);
+                echo $this->RigheTot($i, 'Totale noleggi');
+                echo $this->RigheTot($entrate, 'Entrate');
+                echo $this->RigheTot($durataTot, 'Giorni prenotazione');
                 ?>
             </tbody>
         </table>
