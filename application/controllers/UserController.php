@@ -26,9 +26,8 @@ class UserController extends Zend_Controller_Action {
         $this->_form = new Application_Form_User_Edit_EditProfile();
         $this->_form->setAction($urlHelper->url(array(
             'controller' => 'user',
-            'action' => 'updateprofile',
-            'iduser' => $data->id_utente),
-            'default', true
+            'action' => 'updateprofile'),
+            'default'
         ));
         return $this->_form;
     }
