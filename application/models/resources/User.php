@@ -25,9 +25,9 @@ class Application_Resource_User extends Zend_Db_Table_Abstract
     return $this->fetchRow($this->select()->where('username = ?', $user));
   }
   
-  public function getUserByPass($pass)
+  public function getUserById($id)
   {
-      return $this->fetchRow($this->select()->where('psw = ?', $pass));
+      return $this->fetchRow($this->select()->where('id_utente = ?', $id));
   }
 
   public function getUserList()
