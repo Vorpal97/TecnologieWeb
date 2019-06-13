@@ -47,14 +47,18 @@ class UserController extends Zend_Controller_Action {
         $oldpass = $values['oldpass'];
         if($values['psw'] == '' || $values['oldpass'] == '')
         {
-        $dati = array(
-            'email' => $values['email']
+        $dati = array(        //popolamento dell'array di valori barbaro necessario se si vuole modificare questi dati senza per forza modificare la password
+            'email' => $values['email'],
+            'residenza' => $values['residenza'],
+            'occupazione' => $values['occupazione']
                 );
         } else if (!is_null($this->_adminModel->getUserByPass($oldpass)))
         {   
             $dati = array(
                 'email' => $values['email'],
-                'psw' => $values['psw']
+                'psw' => $values['psw'],
+                'residenza' => $values['residenza'],
+                'occupazione' => $values['occupazione']
             );
         } else 
             {

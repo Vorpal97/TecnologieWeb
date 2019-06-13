@@ -26,15 +26,24 @@
                 'decorators' => $this->elementDecorators,
             ));
             
-            /*$this->addElement('file', 'immagine', array(
-            'label' => 'Immagine del profilo',
-            'destination' => APPLICATION_PATH . '/../public/images/profile',
-            'validators' => array(
-            array('Count', false, 1),
-            array('Size', false, 102400),
-            array('Extension', false, array('jpg','png'))),
-            'decorators' => $this->fileDecorators,
-            )); */
+            $this->addElement('text', 'residenza', array(
+                'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('StringLength', true, array(2,30,'messages'=>'Il campo deve contenere min 2 caratteri e max 30'))),
+                'required' => true,
+                'label' => 'Residenza',
+                'decorators' => $this->elementDecorators,
+            ));
+            
+            $categories = array(
+      'altro' => 'Altro',
+      'lavoratore' => 'Lavoratore',
+      'studente' => 'Studente');
+      $this->addElement('select', 'occupazione', array(
+      'label' => 'Occupazione',
+      'required' => true,
+      'multiOptions' => $categories,
+      'decorators' => $this->elementDecorators,
+		));
+            
             
             
             $this->addElement('submit','salva',array(
