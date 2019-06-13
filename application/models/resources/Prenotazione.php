@@ -22,8 +22,8 @@ class Application_Resource_Prenotazione extends Zend_Db_Table_Abstract {
         $this->insert($data);
     }
     
-    public function getPrenotazioni ($mese){
-        $query = 'MONTH(data_inizio) =' . $mese;
+    public function getPrenotazioni ($mese, $anno){
+        $query = 'MONTH(data_inizio) =' . $mese . ' AND YEAR(data_inizio) =' . $anno;
         $select = $this->select()
                 ->where($query)
                 ->order('id_auto');

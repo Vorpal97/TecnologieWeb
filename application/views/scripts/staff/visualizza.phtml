@@ -40,17 +40,18 @@
             <tbody class="bodyMensile">
                 <tr>
                     <th class = "tab10h"></th>
-                    <th class = "tab10h">id prenotazione</th>
-                    <th class = "tab10h">id auto</th>
-                    <th class = "tab10h">id utente</th>
+                    <th class = "tab10h">Id prenotazione</th>
+                    <th class = "tab10h">Id utente</th>
+                    <th class = "tab10h">Targa</th>
+                    <th class = "tab20h">Marca e modello</th>
                     <th class = "tab20h">data inizio</th>
-                    <th class = "tab20h">data fine</th>
-                    <th class = "tab10h">durata</th>
-                    <th class = "tab10h">fatturato</th>
+                    <th class = "tab10h">Durata</th>
+                    <th class = "tab10h">Guadagno</th>
                 </tr>
 
                 <?php foreach ($this->prenotazioni as $pren) : ?>
                     <?php
+                    $auto = $this->product;
                     $i += 1;
                     $c = $i % 2;
                     $durata = $this->durata($pren->data_inizio, $pren->data_fine);
@@ -60,10 +61,10 @@
                         echo '<tr><th class="tab10h">' . $i . '</th>';
                     }
                     echo '<td class="tab10">' . $pren->id_prenotazione . '</td>
-                             <td class="tab10">' . $pren->id_auto . '</td>
                              <td class="tab10">' . $pren->id_utente . '</td>
+                             <td class="tab10">' . $auto->targa . '</td>
+                             <td class="tab20">' . $auto->marca. ', ' . $auto->modello . '</td>
                              <td class="tab20">' . $pren->data_inizio . '</td>
-                             <td class="tab20">' . $pren->data_fine . '</td>
                              <td class="tab10">' . $durata . ' giorni</td>
                              <td class="tab10">' . $this->prezzo($pren->costo) . '</td></tr>';
                     $costoTot += $pren->costo;
@@ -72,9 +73,9 @@
                 <?php endforeach; ?>
                 <?php
                     $entrate = $this->prezzo($costoTot);
-                    echo $this->RigheTot($i, 'totale auto');
-                    echo $this->RigheTot($entrate, 'entrate');
-                    echo $this->RigheTot($durataTot, 'totale giorni');
+                    echo $this->RigheTot($i, 'Totale noleggi');
+                    echo $this->RigheTot($entrate, 'Entrate');
+                    echo $this->RigheTot($durataTot, 'Giorni prenotazione');
                 ?>
             </tbody>
         </table>
