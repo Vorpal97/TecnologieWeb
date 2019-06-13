@@ -13,7 +13,7 @@ class App_Form_Abstract extends Zend_Form
 
     public $elementFaqDecorators = array(
             'ViewHelper',
-            array(array('elem1' => 'HtmlTag'),array('tag' => 'td', 'class' => 'element')),
+            array(array('elem1' => 'HtmlTag'),array('tag' => 'td', 'class' => 'elementfaq')),
     		array(array('elem2' => 'HtmlTag'), array('tag' => 'td', 'class' => 'errors','openOnly' => true, 'placement' => 'append')),
     		'Errors',
     		array(array('elem3' => 'HtmlTag'), array('tag' => 'td', 'closeOnly' => true, 'placement' => 'append')),
