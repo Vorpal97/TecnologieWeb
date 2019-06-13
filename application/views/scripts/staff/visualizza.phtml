@@ -33,8 +33,9 @@
             } else {
                 echo '<caption><b>Prenotazioni del mese di ' . $this->oggi . '<b></caption>';
             }
-            $i = 1;
+            $i = 0;
             $costoTot = 0;
+            $durataTot = 0;
             ?>
             <tbody class="bodyMensile">
                 <tr>
@@ -50,7 +51,9 @@
 
                 <?php foreach ($this->prenotazioni as $pren) : ?>
                     <?php
+                    $i += 1;
                     $c = $i % 2;
+                    $durata = $this->durata($pren->data_inizio, $pren->data_fine);
                     if ($c == 0) {
                         echo '<tr class="grigio"><th class="tab10h2">' . $i . '</th>';
                     } else {
@@ -61,18 +64,17 @@
                              <td class="tab10">' . $pren->id_utente . '</td>
                              <td class="tab20">' . $pren->data_inizio . '</td>
                              <td class="tab20">' . $pren->data_fine . '</td>
-                             <td class="tab10">' . $this->durata($pren->data_inizio, $pren->data_fine) . ' giorni</td>
-                             <td class="tab10">' . $this->prezzo($pren->costo) . '</td>';
-                    $i += 1;
+                             <td class="tab10">' . $durata . ' giorni</td>
+                             <td class="tab10">' . $this->prezzo($pren->costo) . '</td></tr>';
                     $costoTot += $pren->costo;
-                    echo '</tr>';
+                    $durataTot +=$durata;
                     ?>
                 <?php endforeach; ?>
                 <?php
-                if ($costoTot != 0) {
-                    echo '<tr class="grigio"><th class="tab10h2">ricavo totale</th>
-                              <td class="tab10"></td><td class="tab10"></td><td class="tab10"></td><td class="tab10"></td><td class="tab10"></td><td class="tab10"></td><td class="tab10">' . $this->prezzo($costoTot) . '</td>';
-                }
+                    $entrate = $this->prezzo($costoTot);
+                    echo $this->RigheTot($i, 'totale auto');
+                    echo $this->RigheTot($entrate, 'entrate');
+                    echo $this->RigheTot($durataTot, 'totale giorni');
                 ?>
             </tbody>
         </table>
