@@ -66,7 +66,8 @@ class UserController extends Zend_Controller_Action {
                 return $this->render('profilo');
             }
         $this->_adminModel->editUser($dati, $id);
-        $this->_helper->redirector('profilo');
+        $form->setDescription('Modifica avvenuta con successo');
+        $this->render('profilo');
     }
     
     public function getloggeduserAction()
