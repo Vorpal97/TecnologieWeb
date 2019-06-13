@@ -2,21 +2,13 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Creato il: Giu 06, 2019 alle 20:41
--- Versione del server: 10.1.38-MariaDB
--- Versione PHP: 5.6.40
+-- Host: localhost:3306
+-- Creato il: Giu 13, 2019 alle 08:07
+-- Versione del server: 5.7.25
+-- Versione PHP: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `tweb_db`
@@ -49,7 +41,6 @@ CREATE TABLE `auto` (
 --
 
 INSERT INTO `auto` (`id_auto`, `targa`, `marca`, `modello`, `segmento`, `alimentazione`, `cilindrata`, `potenza`, `cavalli`, `prezzo`, `colore`, `n_posti`, `immagine`) VALUES
-(1, 'AL743OM', 'Alfa Romeo', 'Giulia', 'Berlina sportiva', 'Diesel', 2143, 110, 150, 30, 'Bianco', 5, 'giulia.jpg'),
 (2, 'AL745TE', 'Alfa Romeo', 'Stelvio', 'SUV', 'Diesel', 2143, 154, 210, 45, 'Rosso', 5, 'stelvio.jpg'),
 (3, 'FR471AM', 'Lamborghini', 'Huracan', 'Supercar', 'Benzina', 5204, 449, 610, 120, 'Nero', 2, 'huracan.jpg'),
 (4, 'CD439FA', 'Chevrolet', 'Camaro', 'Musclecar', 'Benzina', 6200, 333, 453, 55, 'Nero', 4, 'camaro.jpg'),
@@ -80,8 +71,8 @@ CREATE TABLE `faq` (
 --
 
 INSERT INTO `faq` (`id_faq`, `time_stamp`, `domanda`, `risposta`) VALUES
-(1, '2019-06-04 15:27:12', 'Come funziona la questione carburante?', 'Le auto vengono fornite con il serbatoio pieno e vanno riconsegnate nelle medesime condizioni.'),
-(2, '2019-06-04 15:27:12', 'Se prendo una multa come devo comportarmi?', 'La somma della multa verr? addebitata automaticamente sulla carta di credito fornita in fase di prenotazione.');
+(2, '2019-06-04 15:27:12', 'Se prendo una multa come devo comportarmi?', 'La somma della multa verr? addebitata automaticamente sulla carta di credito fornita in fase di prenotazione.'),
+(14, '2019-06-12 18:00:35', 'fadsf', 'gsfdgsd');
 
 -- --------------------------------------------------------
 
@@ -108,8 +99,27 @@ CREATE TABLE `prenotazione` (
   `id_utente` int(11) NOT NULL,
   `id_auto` int(11) NOT NULL,
   `data_inizio` date NOT NULL,
-  `data_fine` date NOT NULL
+  `data_fine` date NOT NULL,
+  `costo` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `prenotazione`
+--
+
+INSERT INTO `prenotazione` (`id_prenotazione`, `id_utente`, `id_auto`, `data_inizio`, `data_fine`, `costo`) VALUES
+(1, 7, 1, '2019-06-17', '2019-06-18', 960);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura stand-in per le viste `prospetto`
+-- (Vedi sotto per la vista effettiva)
+--
+CREATE TABLE `prospetto` (
+`mese` int(2)
+,`num_auto` bigint(21)
+);
 
 -- --------------------------------------------------------
 
@@ -119,15 +129,15 @@ CREATE TABLE `prenotazione` (
 
 CREATE TABLE `utente` (
   `id_utente` int(11) NOT NULL,
-  `nome` varchar(30) NOT NULL,
-  `cognome` varchar(30) NOT NULL,
+  `nome` varchar(30) DEFAULT NULL,
+  `cognome` varchar(30) DEFAULT NULL,
   `username` varchar(30) NOT NULL,
-  `email` varchar(30) NOT NULL,
+  `email` varchar(30) DEFAULT NULL,
   `psw` varchar(30) NOT NULL,
-  `data` date NOT NULL,
+  `data` date DEFAULT NULL,
   `autenticazione` varchar(30) NOT NULL DEFAULT 'user',
-  `residenza` varchar(30) NOT NULL,
-  `occupazione` varchar(30) NOT NULL,
+  `residenza` varchar(30) DEFAULT NULL,
+  `occupazione` varchar(30) DEFAULT NULL,
   `abilitato` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -136,8 +146,19 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`id_utente`, `nome`, `cognome`, `username`, `email`, `psw`, `data`, `autenticazione`, `residenza`, `occupazione`, `abilitato`) VALUES
-(7, 'simone', 'Cappella', '', 'ciao@ciao.it', 'ciaociao', '1997-11-21', 'user', 'SBT', 'altro', 1),
-(8, '', '', 'admin', 'admin@admin.it', 'admin', '0000-00-00', 'admin', '', '', 1);
+(7, 'simone', 'Cappella', 'ciao', 'ciao@ciao.it', 'ciaociao', '1997-11-21', 'user', 'SBT', 'altro', 1),
+(8, NULL, NULL, 'admin', 'admin@admin.it', 'admin', NULL, 'admin', NULL, NULL, 1),
+(11, 'manuel', 'Manelli', 'manuel', NULL, 'manuel', NULL, 'staff', NULL, NULL, 1),
+(12, 'manuel', 'Manelli', 'manuel97', NULL, 'manuel', NULL, 'staff', NULL, NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura per vista `prospetto`
+--
+DROP TABLE IF EXISTS `prospetto`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `prospetto`  AS  select month(`prenotazione`.`data_inizio`) AS `mese`,count(`prenotazione`.`id_auto`) AS `num_auto` from `prenotazione` where (year(`prenotazione`.`data_inizio`) = year(curdate())) group by month(`prenotazione`.`data_inizio`) order by month(`prenotazione`.`data_inizio`) ;
 
 --
 -- Indici per le tabelle scaricate
@@ -187,7 +208,7 @@ ALTER TABLE `auto`
 -- AUTO_INCREMENT per la tabella `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `id_faq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_faq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT per la tabella `messaggio`
@@ -199,15 +220,10 @@ ALTER TABLE `messaggio`
 -- AUTO_INCREMENT per la tabella `prenotazione`
 --
 ALTER TABLE `prenotazione`
-  MODIFY `id_prenotazione` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_prenotazione` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `id_utente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  MODIFY `id_utente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
