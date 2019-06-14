@@ -6,17 +6,18 @@
     overflow: auto;
     background-color: #F6F6F6;
     min-height: 470px;
+    width: 90%;
 }
 
 .contenutoPren {
-    height: auto;
+    width: 90%;
 }
 
 .contenuto {
     float: right;
-    width: 1150px;
-    height: auto;
-    margin-right: 40px;
+    width: 70%;
+    height: 90%;
+
 }
 
 .prod {
@@ -26,6 +27,7 @@
     padding: 10px 10px 10px 10px;
     margin: 40px;
     height: 350px;
+
 }
 
 .prodPren {
@@ -34,13 +36,13 @@
     border-color: #D7D7D7;
     padding: 10px 10px 10px 10px;
     margin: 40px;
-    height: 800px;
+    min-height: 800px;
 }
 
 .prodPren .imagePren {
     float: left;
     text-align: left;
-    width: auto;
+    width: 40%;
 }
 
 .prodPren .imagePren .imagefrmPren {
@@ -52,10 +54,10 @@
     float: left;
     text-align: left;
     width: auto;
+    width: 40%;
 }
 
 .prod .image .imagefrm {
-    width: 350px;
     box-shadow:  10px  10px .9px #dedede;
 }
 
@@ -66,15 +68,13 @@
 }
 
 .metaPren {
-    margin-left: 710px;
     list-style-type: none;
-    width: 400px;
+    width: 30%;
 }
 
-.meta {
-    margin-left: 350px;
+.prod .meta {
     list-style-type: none;
-    width: 350px;
+    width: 30%;
     height: 200px;
 }
 
@@ -91,14 +91,14 @@
 .prod .noPrenotazione{
     float: right;
     background-color: #D7D7D7;
-    width: 350px;
+    width: 35%;
     height: 200px;
 }
 
 .prod .okPrenotazione{
     float: right;
     background-color: #F6F6F6;
-    width: 350px;
+    width: 35%;
     height: 200px;
     border: solid;
     border-width: 1px;
@@ -118,7 +118,7 @@
 .prod .modifica{
     float: right;
     background-color: #a2b70d40;
-    width: 350px;
+    width: 35%;
     height: 200px;
 }
 
@@ -129,7 +129,7 @@
     padding: 10px 10px 10px 10px;
     height: auto;
     float: left;
-    width: 250px;
+    width: 20%;
     background-color: #F6F6F6;
     border-color: #D7D7D7;
     border-style: solid;
