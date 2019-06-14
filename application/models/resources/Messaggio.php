@@ -9,4 +9,15 @@ class Application_Resource_Messaggio extends Zend_Db_Table_Abstract {
     public function init() {
 
     }
+
+    public function getUserMessage($userid){
+    $select = $this->select()->where('id_mittente = ' . $userid . ' OR id_destinatario = ' . $userid)
+                               ->order('time_stamp');
+
+      return $this->fetchAll($select);
+    }
+
+    public function sendMessage($message){
+          $this->insert($message);
+    }
 }

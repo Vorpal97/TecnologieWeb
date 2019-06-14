@@ -14,7 +14,7 @@ class Application_Resource_User extends Zend_Db_Table_Abstract
   {
     $this->insert($newuser);
   }
-  
+
   public function editUser ($data, $id)
   {
       $this->update($data, 'id_utente = '.$id);
@@ -24,7 +24,7 @@ class Application_Resource_User extends Zend_Db_Table_Abstract
   {
     return $this->fetchRow($this->select()->where('username = ?', $user));
   }
-  
+
   public function getUserByPass($pass)
   {
       return $this->fetchRow($this->select()->where('psw = ?', $pass));
@@ -51,6 +51,14 @@ class Application_Resource_User extends Zend_Db_Table_Abstract
   public function setUserStatus($userid, $userState){
     $data = array('abilitato' => $userState);
     $this->update($data, 'id_utente = ' . $userid);
+  }
+
+  public function getUserById($userid){
+    return $this->fetchRow($this->select()->where('id_utente = ' . $userid));
+  }
+
+  public function getAdmin(){
+    return $this->fetchRow($this->select()->where('autenticazione LIKE "admin"'));
   }
 
 }
