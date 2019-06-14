@@ -11,15 +11,15 @@ class App_Form_Abstract extends Zend_Form
     array(array('elem4' => 'HtmlTag'), array('tag' => 'tr')),
   );
 
-  public $elementFaqDecorators = array(
-    'ViewHelper',
-    array(array('elem1' => 'HtmlTag'),array('tag' => 'td', 'class' => 'element')),
-    array(array('elem2' => 'HtmlTag'), array('tag' => 'td', 'class' => 'errors','openOnly' => true, 'placement' => 'append')),
-    'Errors',
-    array(array('elem3' => 'HtmlTag'), array('tag' => 'td', 'closeOnly' => true, 'placement' => 'append')),
-    array('Label', array('tag' => 'td', 'style' => 'float:right;')),
-    array(array('elem4' => 'HtmlTag'), array('tag' => 'tr')),
-  );
+    public $elementFaqDecorators = array(
+            'ViewHelper',
+            array(array('elem1' => 'HtmlTag'),array('tag' => 'td', 'class' => 'elementfaq')),
+    		array(array('elem2' => 'HtmlTag'), array('tag' => 'td', 'class' => 'errors','openOnly' => true, 'placement' => 'append')),
+    		'Errors',
+    		array(array('elem3' => 'HtmlTag'), array('tag' => 'td', 'closeOnly' => true, 'placement' => 'append')),
+            array('Label', array('tag' => 'td', 'style' => 'float:right;')),
+            array(array('elem4' => 'HtmlTag'), array('tag' => 'tr')),
+            );
 
   public $elementMessageDecorators = array(
     'ViewHelper',

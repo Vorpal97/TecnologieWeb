@@ -56,6 +56,30 @@ class PublicController extends Zend_Controller_Action
         $this->view->assign(array('products' => $prods));
     }
 
+    public function validateloginAction() 
+    {
+        $this->_helper->getHelper('layout')->disableLayout();
+    		$this->_helper->viewRenderer->setNoRender();
+
+        $loginform = new Application_Form_Public_Auth_Login();
+        $response = $loginform->processAjax($_POST); 
+        if ($response !== null) {
+        	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
+        }
+    }
+    
+    public function validateregisterAction() 
+    {
+        $this->_helper->getHelper('layout')->disableLayout();
+    		$this->_helper->viewRenderer->setNoRender();
+
+        $registerform = new Application_Form_Public_Auth_Register();
+        $response = $registerform->processAjax($_POST); 
+        if ($response !== null) {
+        	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
+        }
+    }
+    
     public function faqAction()
     {
         $this->view->azione = $this->getRequest()->getActionName();
@@ -151,7 +175,7 @@ class PublicController extends Zend_Controller_Action
             $form->setDescription('Username o password errati, riprova.');
             return $this->render('login');
         }
-        return $this->_helper->redirector('catalog', 'public');
+        return $this->_helper->redirector('index', 'public');
     }
     
     public function prenotazione(){

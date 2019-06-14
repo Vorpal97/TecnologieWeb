@@ -8,14 +8,16 @@ class Application_Form_Admin_Faq_Add extends App_Form_Abstract
         $this->setName('add');
         $this->setAction('');   //la action la definisco dal controller che gestisce la form
 
-        $this->addElement('text', 'domanda', array(
+        $this->addElement('textarea', 'domanda', array(
+            'style' => array("height: 150px;"),
             'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true)),
             'required' =>true,
             'label' => 'Domanda',
             'decorators' => $this->elementFaqDecorators,
             ));
 
-            $this->addElement('text', 'risposta', array(
+            $this->addElement('textarea', 'risposta', array(
+                'style' => array("height: 150px;"),
                 'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true)),
                 'required' =>true,
                 'label' => 'Risposta',

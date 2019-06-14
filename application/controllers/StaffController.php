@@ -7,7 +7,6 @@ class StaffController extends Zend_Controller_Action {
     protected $_catalogModel = null;
     protected $_staffModel = null;
     protected $_reservationModel = null;
-    
 
     public function init() {
         $this->_helper->layout->setLayout('main');
@@ -30,6 +29,7 @@ class StaffController extends Zend_Controller_Action {
         ));
         return $this->_insertform;
     }
+
     private function geteditForm() {
 
         $urlHelper = $this->_helper->getHelper('url');
@@ -40,6 +40,32 @@ class StaffController extends Zend_Controller_Action {
         ));
         return $this->_editform;
     }
+    
+    public function validateinsertAction() 
+    {
+        $this->_helper->getHelper('layout')->disableLayout();
+    		$this->_helper->viewRenderer->setNoRender();
+
+        $insertform = new Application_Form_Staff_Auto_Insert();
+        $response = $insertform->processAjax($_POST); 
+        if ($response !== null) {
+        	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
+        }
+    }
+    
+    public function validateeditAction() 
+    {
+        $this->_helper->getHelper('layout')->disableLayout();
+    		$this->_helper->viewRenderer->setNoRender();
+
+        $editform = new Application_Form_Staff_Auto_Edit();
+        $response = $editform->processAjax($_POST); 
+        if ($response !== null) {
+        	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
+        }
+    }
+    
+    
 
     public function updateautoAction() {
         if (!$this->getRequest()->isPost()) {
@@ -76,19 +102,17 @@ class StaffController extends Zend_Controller_Action {
         $this->view->azione = $this->getRequest()->getActionName();
     }
 
-    public function modificaAction()
-    {
+    public function modificaAction() {
         $this->view->azione = $this->getRequest()->getActionName();
         $autoid = $this->_getParam('idauto', null);
         $urlHelper = $this->_helper->getHelper('url');
         $data = $this->_catalogModel->getAutoById($autoid);
         $this->_editform->populate($data->toArray());
         $this->_editform->setAction($urlHelper->url(array(
-        'controller' => 'staff',
-        'action' => 'updateauto',
-        'idauto' => $autoid),
-        'default'
-         ));
+                    'controller' => 'staff',
+                    'action' => 'updateauto',
+                    'idauto' => $autoid), 'default'
+        ));
         return $this->_editform;
     }
 
@@ -105,11 +129,12 @@ class StaffController extends Zend_Controller_Action {
 
     public function visualizzaAction() {
         $this->view->azione = $this->getRequest()->getActionName();
-        
+
         $mese = $this->_getParam('mese', null);
         $oggi = date("m");
+        $anno = date("Y");
         
-        switch ($mese){
+        switch ($mese) {
             case 1:
                 $query = 'Gennaio';
                 break;
@@ -146,8 +171,8 @@ class StaffController extends Zend_Controller_Action {
             case 12:
                 $query = 'Dicembre';
         }
-        
-        switch ($oggi){
+
+        switch ($oggi) {
             case 1:
                 $query2 = 'Gennaio';
                 break;
@@ -184,15 +209,12 @@ class StaffController extends Zend_Controller_Action {
             case 12:
                 $query2 = 'Dicembre';
         }
-        
-        if (!is_null($mese)){
-            $pren = $this->_reservationModel->getPrenotazioni($mese);
+
+        if (!is_null($mese)) {
+            $pren = $this->_reservationModel->getPrenotazioni($mese, $anno);
         } else {
-            $pren = $this->_reservationModel->getPrenotazioni($oggi);
+            $pren = $this->_reservationModel->getPrenotazioni($oggi, $anno);
         }
-        if ($pren->id_prenotazione != 0){
-            $p = 1;
-        } else {$p = 0;}
-        $this->view->assign(array('prenotazioni' => $pren, 'mese' => $query, 'oggi' => $query2, 'novuoto' => $p));
+        $this->view->assign(array('prenotazioni' => $pren, 'mese' => $query, 'oggi' => $query2));
     }
 }

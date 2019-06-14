@@ -64,6 +64,7 @@ class Application_Form_Staff_Auto_Insert extends App_Form_Abstract {
 
         $this->addElement('file', 'immagine', array(
             'label' => 'Immagine di anteprima',
+            'required' => true,
             'destination' => APPLICATION_PATH . '/../public/images/catalog',
             'validators' => array(
                 array('Count', false, 1),

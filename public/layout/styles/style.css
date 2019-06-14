@@ -187,36 +187,43 @@
     height: auto;
 }
 
-.tab10 {
-    width: 10%;
-    height: 10px;
+.tab {
     text-align: center;
-
     color: #000000;
 }
 
-.tab20 {
-    width: 20%;
-    height: 10px;
-    text-align: center;
-    height: 10px;
-    color: #000000;
+.tab .tab10 {
+    width: 10%;
 }
 
-.tab10h {
+.tab .tab15 {
+    width: 15%;
+}
+
+.tab .tab5 {
+    width: 5%;
+}
+
+.tab .tab10h {
     width: 10%;
-    height: 10px;
-    text-align: center;
     background-color: #F6F6F6;
     color: #000000;
 }
 
-.tab10h2 {
-    width: 10%;
-    height: 10px;
-    text-align: center;
-    background-color: #D7D7D7;
+.tab .tab5h {
+    width: 5%;
+    background-color: #F6F6F6;
     color: #000000;
+}
+
+.tab .tab15h {
+    width: 15%;
+    background-color: #F6F6F6;
+    color: #000000;
+}
+
+.resMensile tr:nth-child(even) {
+    background-color: #D7D7D7;
 }
 
 .tab20h {
@@ -230,3 +237,14 @@
 .grigio {
     background-color: #D7D7D7;
 }
+
+.elementfaq{
+    width:200%;
+}
+.resMensile tr:nth-child(odd) {
+    background-color: #F6F6F6;
+  }
+
+  .errorsfaq{
+      width:150px;
+  }
