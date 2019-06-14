@@ -17,7 +17,7 @@
     float: right;
     width: 70%;
     height: 90%;
-    
+
 }
 
 .prod {
@@ -27,7 +27,7 @@
     padding: 10px 10px 10px 10px;
     margin: 40px;
     height: 350px;
-    
+
 }
 
 .prodPren {
@@ -243,4 +243,8 @@
 }
 .resMensile tr:nth-child(odd) {
     background-color: #F6F6F6;
-}
+  }
+
+  .errorsfaq{
+      width:150px;
+  }
