@@ -32,13 +32,13 @@
                         $idU = $this->id_utente;
                         $c = 0;
                         $res = $this->date($in, $fin);
-                        if ($res === 1) {
+                        if ($res == 1) {
                             foreach ($this->prenotazioni as $prenotazioni) {
                                 $inizio = $prenotazioni->data_inizio;
                                 $fine = $prenotazioni->data_fine;
-                                if (($in < $inizio && $fin > $inizio) || ($in > $inizio && $in < $fine) || ($in < $inizio && $fin > $fine) || ($in == $inizio && $fin == $fine)) {
+                                if (($in <= $inizio && $fin >= $inizio) || ($in >= $inizio && $in <= $fine) || ($in <= $inizio && $fin >= $fine) || ($in == $inizio && $fin == $fine)) {
                                     echo '<p style="text-align: center;">L\'auto non è disponibile <br> dal: ' . $inizio . ' al: ' . $fine . '.</p>';
-                                    $c = 1;
+                                    $c += 1;
                                 }
                             }
                             if ($c >= 1) {
