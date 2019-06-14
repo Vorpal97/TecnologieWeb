@@ -14,7 +14,7 @@ class Application_Form_Inbox_Send extends App_Form_Abstract
             'decorators' => $this->elementMessageDecorators,
             ));
 
-        $this->addElement ('submit', 'aggiungi', array(
+        $this->addElement ('submit', 'invia', array(
             'label' => 'Invia',
             'decorators' => $this->buttonDecorators,
             ));
