@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Giu 13, 2019 alle 14:40
+-- Creato il: Giu 14, 2019 alle 09:34
 -- Versione del server: 5.7.25
 -- Versione PHP: 7.3.1
 
@@ -95,7 +95,28 @@ CREATE TABLE `messaggio` (
 INSERT INTO `messaggio` (`id_messaggio`, `id_mittente`, `id_destinatario`, `corpo`, `time_stamp`) VALUES
 (1, 7, 8, 'Salve, prova messaggio', '2019-06-13 08:44:09'),
 (2, 14, 8, 'ihh ihh ihhhhhhhh', '2019-06-13 07:00:48'),
-(3, 14, 8, 'salve a tutti', '2019-06-13 07:01:14');
+(3, 14, 8, 'salve a tutti', '2019-06-13 07:01:14'),
+(4, 8, 14, 'non faccia il coglione', '2019-06-13 16:09:43'),
+(5, 8, 14, 'qewrqwer', '2019-06-14 07:13:33'),
+(6, 8, 7, 'sdfg', '2019-06-14 07:33:45'),
+(7, 8, 7, 'sono l\'amministratore', '2019-06-14 07:37:46'),
+(8, 7, 8, 'prova', '2019-06-14 07:38:59'),
+(9, 8, 14, 'prova', '2019-06-14 08:07:09'),
+(10, 8, 7, 'a ri prova', '2019-06-14 08:07:47'),
+(11, 7, 8, 'asdf', '2019-06-14 09:22:01'),
+(12, 7, 8, 'sono l\'utente', '2019-06-14 09:22:09');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura stand-in per le viste `messaggi_username`
+-- (Vedi sotto per la vista effettiva)
+--
+CREATE TABLE `messaggi_username` (
+`id_mittente` int(11)
+,`nome` varchar(30)
+,`cognome` varchar(30)
+);
 
 -- --------------------------------------------------------
 
@@ -147,6 +168,7 @@ CREATE TABLE `prospettostaff` (
 ,`id_prenotazione` int(11)
 ,`data_inizio` date
 ,`data_fine` date
+,`costo` float
 );
 
 -- --------------------------------------------------------
@@ -157,6 +179,8 @@ CREATE TABLE `prospettostaff` (
 --
 CREATE TABLE `sender` (
 `id_mittente` int(11)
+,`nome` varchar(30)
+,`cognome` varchar(30)
 ,`username` varchar(30)
 );
 
@@ -185,12 +209,21 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`id_utente`, `nome`, `cognome`, `username`, `email`, `psw`, `data`, `autenticazione`, `residenza`, `occupazione`, `abilitato`) VALUES
-(7, 'simone', 'Cappella', 'ciao', 'ciao@ciao.it', 'ciaociao', '1997-11-21', 'user', 'SBT', 'altro', 1),
+(7, 'simone', 'Cappella', 'ciaoci', 'ciao@ciao.it', 'ciaociao', '1997-11-21', 'user', 'SBT', 'altro', 1),
 (8, NULL, NULL, 'admin', 'admin@admin.it', 'admin', NULL, 'admin', NULL, NULL, 1),
 (11, 'manuel', 'Manelli', 'manuel', NULL, 'manuel', NULL, 'staff', NULL, NULL, 1),
 (12, 'manuel', 'Manelli', 'manuel97', NULL, 'manuel', NULL, 'staff', NULL, NULL, 1),
 (13, 'staff', 'staff', 'staff', NULL, 'staff', NULL, 'staff', NULL, NULL, 1),
 (14, 'paolino', 'paperino', 'paolopap', 'pp@p.it', 'paolopap', '1987-04-12', 'user', 'Paradiso', 'altro', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura per vista `messaggi_username`
+--
+DROP TABLE IF EXISTS `messaggi_username`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `messaggi_username`  AS  select distinct `m`.`id_mittente` AS `id_mittente`,`u`.`nome` AS `nome`,`u`.`cognome` AS `cognome` from (`messaggio` `m` join `utente` `u` on((`m`.`id_mittente` = `u`.`id_utente`))) ;
 
 -- --------------------------------------------------------
 
@@ -208,7 +241,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `prospettostaff`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `prospettostaff`  AS  select `a`.`id_auto` AS `id_auto`,`a`.`targa` AS `targa`,`a`.`marca` AS `marca`,`a`.`modello` AS `modello`,`u`.`id_utente` AS `id_utente`,`u`.`nome` AS `nome`,`u`.`cognome` AS `cognome`,`p`.`id_prenotazione` AS `id_prenotazione`,`p`.`data_inizio` AS `data_inizio`,`p`.`data_fine` AS `data_fine` from ((`auto` `a` join `prenotazione` `p` on((`a`.`id_auto` = `p`.`id_auto`))) join `utente` `u` on((`p`.`id_utente` = `u`.`id_utente`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `prospettostaff`  AS  select `a`.`id_auto` AS `id_auto`,`a`.`targa` AS `targa`,`a`.`marca` AS `marca`,`a`.`modello` AS `modello`,`u`.`id_utente` AS `id_utente`,`u`.`nome` AS `nome`,`u`.`cognome` AS `cognome`,`p`.`id_prenotazione` AS `id_prenotazione`,`p`.`data_inizio` AS `data_inizio`,`p`.`data_fine` AS `data_fine`,`p`.`costo` AS `costo` from ((`auto` `a` join `prenotazione` `p` on((`a`.`id_auto` = `p`.`id_auto`))) join `utente` `u` on((`p`.`id_utente` = `u`.`id_utente`))) ;
 
 -- --------------------------------------------------------
 
@@ -217,7 +250,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `sender`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sender`  AS  select distinct `m`.`id_mittente` AS `id_mittente`,`u`.`username` AS `username` from (`messaggio` `m` join `utente` `u` on((`m`.`id_mittente` = `u`.`id_utente`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sender`  AS  select distinct `m`.`id_mittente` AS `id_mittente`,`u`.`nome` AS `nome`,`u`.`cognome` AS `cognome`,`u`.`username` AS `username` from (`messaggio` `m` join `utente` `u` on((`m`.`id_mittente` = `u`.`id_utente`))) where (`u`.`username` <> 'admin') ;
 
 --
 -- Indici per le tabelle scaricate
@@ -273,7 +306,7 @@ ALTER TABLE `faq`
 -- AUTO_INCREMENT per la tabella `messaggio`
 --
 ALTER TABLE `messaggio`
-  MODIFY `id_messaggio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_messaggio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT per la tabella `prenotazione`
