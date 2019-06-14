@@ -6,132 +6,132 @@
     </section>
 </div>
 
-<div id="pagina" style="text-align: center;">
-    <div class="paginaCat">
-        <div class="contenuto">
-            <?php foreach ($this->products as $auto) : ?>
-                <div class="prod">
-                    <?php echo'<h1 class="title">' . $auto->marca . ':  ' . $auto->modello . '</h1>' ?>
-                    <div class="image">
-                        <?php echo $this->immagine($auto->immagine, array('class' => 'imagefrm')) ?>
+<div id="pagina" style="text-align: center; background-color: #F6F6F6;">
+    <center>
+        <div class="paginaCat">
+            <div class="contenuto">
+                <?php foreach ($this->products as $auto) : ?>
+                    <div class="prod">
+                        <?php echo'<h1 class="title">' . $auto->marca . ':  ' . $auto->modello . '</h1>' ?>
+                        <div class="image">
+                            <?php echo $this->immagine($auto->immagine, array('class' => 'imagefrm')) ?>
+                        </div>
+
+                        <?php
+                        switch ($this->livello) {
+                            case 'user':
+                                echo '<div class = "okPrenotazione">';
+                                echo '<div style = "text-align: center; margin-top: 5px;">';
+                                echo '<p>Prenota ora</p>';
+                                echo '<div><button style="margin-bottom: 30px;" onclick="window.location.href =\' ' . $this->url(array('controller' => 'user',
+                                    'action' => 'preventivo',
+                                    'idAuto' => $auto->id_auto,), 'default', true) . '\'">Procedi</button></div>';
+                                echo '</div>';
+                                echo '</div>';
+                                break;
+
+                            case 'staff' || 'admin':
+                                echo '<div class="modifica">';
+                                echo '<div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">';
+                                echo '<p>Vuoi modificare l auto sul listino?</p>';
+                                echo '</div><div><button style="width: 150px; height: 25px; position: relative;" onclick="window.location.href =\'' . $this->url(array(
+                                    'controller' => 'staff',
+                                    'action' => 'modifica',
+                                    'idauto' => $auto->id_auto,), 'default', true) . '\'">Modifica</button></div>';
+                                echo '<div style="margin-top:10px;"><button style="width: 150px; height: 25px; position: relative;" onclick="window.location.href =\'' . $this->url(array(
+                                    'controller' => 'staff',
+                                    'action' => 'cancella',
+                                    'idauto' => $auto->id_auto,), 'default', true) . '\'">Rimuovi auto</button></div></div>';
+                                break;
+
+                            default:
+                                echo $this->render('public/_noPrenotazione.phtml');
+                                break;
+                        }
+                        ?>
+
+                        <ul class="meta">
+                            <?php echo '<li>prezzo: ' . $this->prezzo($auto->prezzo) . '</li>' ?>
+                            <?php echo '<li>posti: ' . $auto->n_posti . '</li>' ?>
+                            <?php echo '<li>segmento: ' . $auto->segmento . '</li>' ?>
+                            <?php echo '<li>cilindrata: ' . $auto->cilindrata . 'cc</li>' ?>
+                            <?php echo '<li>potenza: ' . $auto->potenza . 'kw</li>' ?>
+                            <?php echo '<li>cavalli: ' . $auto->cavalli . 'cv</li>' ?>
+                            <?php echo '<li>alimentazione: ' . $auto->alimentazione . '</li>' ?>
+                            <?php echo '<li>colore: ' . $auto->colore . '</li>' ?>
+                            <?php echo '<li>targa: ' . $auto->targa . '</li>' ?>
+                            <!--<li> <button onclick="window.location.href = 'http:/TecnologieWeb/public/public/register'">Registrati</button> </li>-->
+                        </ul>
                     </div>
+                <?php endforeach; ?>
 
-                    <?php
-                    switch ($this->livello) {
-                        case 'user':
-                            echo '<div class = "okPrenotazione">';
-                            echo '<div style = "text-align: center; margin-top: 5px;">';
-                            echo '<p>Prenota ora</p>';
-                            echo '<div><button style="margin-bottom: 30px;" onclick="window.location.href =\' ' . $this->url(array('controller' => 'user',
-                                'action' => 'preventivo',
-                                'idAuto' => $auto->id_auto,), 'default', true) . '\'">Procedi</button></div>';
-                            echo '</div>';
-                            echo '</div>';
-                            break;
+                <?php
+                if ($this->products instanceof Zend_Paginator) {
+                    echo $this->paginationControl($this->products, 'Sliding', 'public/_paginator.phtml');
+                }
+                ?>
 
-                        case 'staff' || 'admin':
-                            echo '<div class="modifica">';
-                           echo '<div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">';
-                           echo '<p>Vuoi modificare l auto sul listino?</p>';
-                           echo '</div><div><button style="width: 150px; height: 25px; position: relative;" onclick="window.location.href =\''.$this->url(array(
-                                'controller' => 'staff',
-                                'action' => 'modifica',
-                                'idauto' => $auto->id_auto,),
-                                'default', true ).'\'">Modifica</button></div>';
-                                echo '<div style="margin-top:10px;"><button style="width: 150px; height: 25px; position: relative;" onclick="window.location.href =\''.$this->url(array(
-                                'controller' => 'staff',
-                                'action' => 'cancella',
-                                'idauto' => $auto->id_auto,),
-                                'default', true ).'\'">Rimuovi auto</button></div></div>';
-                            break;
+            </div>
+            <div class="sidebarFiltri">
+                <h1 class="sidebarTitolo">Filtri</h1>
+                <hr>
+                <form id="miaForm" method="post" class="formFiltri" name="formFiltri" action="">
+                    <label class="formTitolo">Prezzo minimo <select id="selPrezzoMin" name="minimo" size="1">
+                            <option selected value="0">Qualsiasi</option>
+                            <option value="30">30€</option>
+                            <option value="50">50€</option>
+                            <option value="70">70€</option>
+                            <option value="90">90€</option>
+                            <option value="110">110€</option>
+                            <option value="130">130€</option>
+                        </select><br>
+                    </label>
+                    <label class="formTitolo">Prezzo massimo <select id="selPrezzoMax" name="massimo" size="1">
+                            <option selected value="9999">Qualsiasi</option>
+                            <option value="30">30€</option>
+                            <option value="50">50€</option>
+                            <option value="70">70€</option>
+                            <option value="90">90€</option>
+                            <option value="110">110€</option>
+                            <option value="130">130€</option>
+                        </select><br>
+                    </label>
+                    <label class="formTitolo">Numero posti <select id="selPosti" name="posti" size="1">
+                            <option selected value="0">Qualsiasi</option>
+                            <option value="2">almeno 2 posti</option>
+                            <option value="3">almeno 3 posti</option>
+                            <option value="4">almeno 4 posti</option>
+                            <option value="5">almeno 5 posti</option>
+                            <option value="6">almeno 6 posti</option>
+                            <option value="7">almeno 7 posti</option>
+                        </select>
+                    </label><br>
+                    <!--<input type="submit" value="Applica filtri" name="btnFiltra" style="margin-top: 10px; margin-bottom: 10px;"/>-->
+                    <!--
+                    $min = trim($_POST['minimo']);
+                    global $minimo;
+                    $minimo = $min;
+                    $max = trim($_POST['massimo']);
+                    $posti = trim($_POST['posti']);
+                    echo '<div>' . $minimo . '</div>';
+                    echo '<div>' . $max . '</div>';-->
 
-                        default:
-                            echo $this->render('public/_noPrenotazione.phtml');
-                            break;
-                    }
-                    ?>
-
-                    <ul class="meta">
-                        <?php echo '<li>prezzo: ' . $this->prezzo($auto->prezzo) . '</li>' ?>
-                        <?php echo '<li>posti: ' . $auto->n_posti . '</li>' ?>
-                        <?php echo '<li>segmento: ' . $auto->segmento . '</li>' ?>
-                        <?php echo '<li>cilindrata: ' . $auto->cilindrata . 'cc</li>' ?>
-                        <?php echo '<li>potenza: ' . $auto->potenza . 'kw</li>' ?>
-                        <?php echo '<li>cavalli: ' . $auto->cavalli . 'cv</li>' ?>
-                        <?php echo '<li>alimentazione: ' . $auto->alimentazione . '</li>' ?>
-                        <?php echo '<li>colore: ' . $auto->colore . '</li>' ?>
-                        <?php echo '<li>targa: ' . $auto->targa . '</li>' ?>
-                        <!--<li> <button onclick="window.location.href = 'http:/TecnologieWeb/public/public/register'">Registrati</button> </li>-->
-                    </ul>
-                </div>
-            <?php endforeach; ?>
-
-            <?php
-            if ($this->products instanceof Zend_Paginator) {
-                echo $this->paginationControl($this->products, 'Sliding', 'public/_paginator.phtml');
-            }
-            ?>
-
+                    <button style="margin-top: 20px; margin-bottom:20px;" type="submit">Applica filtri</button>
+                    <!--
+    
+                    if ($min!=0 || $max!=9999 || $posti!=0){
+                        $query = '"location: http:/TecnologieWeb/public/public/catalog/minimo' . $min . '/massimo' . $max . '/posti' . $posti . '"';
+                        header($query);
+                    }*/
+                    /*if($min!=0 || $max!=9999 || $posti!=0){
+                        echo '<div><a style="margin-bottom: 30px;" href =\' ' . $this->url(array('controller' => 'public',
+                        'action' => 'catalog',
+                        'minimo' => $min,
+                        'massimo' => $max,
+                        'posti' => $posti), 'default', true) . '\'">Applica i filtri</a></div>';
+                    }-->
+                </form>
+            </div>
         </div>
-        <div class="sidebarFiltri">
-            <h1 class="sidebarTitolo">Filtri</h1>
-            <hr>
-            <form id="miaForm" method="post" class="formFiltri" name="formFiltri" action="">
-                <label class="formTitolo">Prezzo minimo <select id="selPrezzoMin" name="minimo" size="1">
-                        <option selected value="0">Qualsiasi</option>
-                        <option value="30">30€</option>
-                        <option value="50">50€</option>
-                        <option value="70">70€</option>
-                        <option value="90">90€</option>
-                        <option value="110">110€</option>
-                        <option value="130">130€</option>
-                    </select><br>
-                </label>
-                <label class="formTitolo">Prezzo massimo <select id="selPrezzoMax" name="massimo" size="1">
-                        <option selected value="9999">Qualsiasi</option>
-                        <option value="30">30€</option>
-                        <option value="50">50€</option>
-                        <option value="70">70€</option>
-                        <option value="90">90€</option>
-                        <option value="110">110€</option>
-                        <option value="130">130€</option>
-                    </select><br>
-                </label>
-                <label class="formTitolo">Numero posti <select id="selPosti" name="posti" size="1">
-                        <option selected value="0">Qualsiasi</option>
-                        <option value="2">almeno 2 posti</option>
-                        <option value="3">almeno 3 posti</option>
-                        <option value="4">almeno 4 posti</option>
-                        <option value="5">almeno 5 posti</option>
-                        <option value="6">almeno 6 posti</option>
-                        <option value="7">almeno 7 posti</option>
-                    </select>
-                </label><br>
-                <!--<input type="submit" value="Applica filtri" name="btnFiltra" style="margin-top: 10px; margin-bottom: 10px;"/>-->
-                <!--
-                $min = trim($_POST['minimo']);
-                global $minimo;
-                $minimo = $min;
-                $max = trim($_POST['massimo']);
-                $posti = trim($_POST['posti']);
-                echo '<div>' . $minimo . '</div>';
-                echo '<div>' . $max . '</div>';-->
-
-                <button style="margin-top: 20px; margin-bottom:20px;" type="submit">Applica filtri</button>
-                <!--
-
-                if ($min!=0 || $max!=9999 || $posti!=0){
-                    $query = '"location: http:/TecnologieWeb/public/public/catalog/minimo' . $min . '/massimo' . $max . '/posti' . $posti . '"';
-                    header($query);
-                }*/
-                /*if($min!=0 || $max!=9999 || $posti!=0){
-                    echo '<div><a style="margin-bottom: 30px;" href =\' ' . $this->url(array('controller' => 'public',
-                    'action' => 'catalog',
-                    'minimo' => $min,
-                    'massimo' => $max,
-                    'posti' => $posti), 'default', true) . '\'">Applica i filtri</a></div>';
-                }-->
-            </form>
-        </div>
-    </div>
+    </center>
 </div>
