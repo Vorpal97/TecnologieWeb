@@ -39,6 +39,7 @@
     <div class="content three_quarter">
       <div id="comments">
         <h2><?php echo $this->user->nome . ' ' . $this->user->cognome?></h2>
+        <div style="overflow: auto;height: 40em;">
         <ul>
           <?php foreach ($this->messaggi as $messaggio) : ?>
           <li<?php if($messaggio->id_mittente == $this->admin["id_utente"])
@@ -61,6 +62,7 @@
           </li>
           <?php endforeach; ?>
         </ul>
+      </div>
         <?php
           if(isset($this->user)){
               echo' <h2>Rispondi</h2>';
