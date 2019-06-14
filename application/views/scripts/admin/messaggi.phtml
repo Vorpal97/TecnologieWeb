@@ -1,0 +1,77 @@
+<div class="bgded overlay" style="background-image:url('http://localhost/TecnologieWeb/public/images/samples/faq.jpg'); background-position: center;">
+  <!-- ################################################################################################ -->
+  <section id="breadcrumb" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <h6 class="heading">Messaggi degli utenti</h6>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+  </section>
+  <!-- ################################################################################################ -->
+</div>
+
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="sidebar one_quarter first">
+      <!-- ################################################################################################ -->
+      <h6>Conversazioni</h6>
+      <nav class="sdb_holder">
+        <ul>
+          <?php foreach ($this->senders as $sender) : ?>
+            <li><a href="
+                          <?= $this->url(array('controller' => 'admin',
+                                               'action' => 'messaggi',
+                                               'userid' => $sender->id_mittente),
+                                               'default', true)?>
+                          "><?php echo $sender->nome . ' ' . $sender->cognome ?></a></li>
+          <?php endforeach; ?>
+        </ul>
+      </nav>
+      <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="content three_quarter">
+      <div id="comments">
+        <h2><?php echo $this->user->nome . ' ' . $this->user->cognome?></h2>
+        <ul>
+          <?php foreach ($this->messaggi as $messaggio) : ?>
+          <li<?php if($messaggio->id_mittente == $this->admin["id_utente"])
+                      echo' class="senderm messageBorder"';
+                   else
+                   echo' class="receiverm messageBorder"';
+              ?>>
+            <article>
+              <header>
+                <?php
+                      $timestamp = strtotime($messaggio->time_stamp);
+
+
+                      echo date("d F Y H:i", $timestamp); ?>
+              </header>
+              <div class="comcont">
+                <p><?= $messaggio->corpo ?></p>
+              </div>
+            </article>
+          </li>
+          <?php endforeach; ?>
+        </ul>
+        <?php
+          if(isset($this->user)){
+              echo' <h2>Rispondi</h2>';
+              echo $this->messageForm;
+            }
+        ?>
+      </div>
+      <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>

@@ -344,6 +344,25 @@ th{color:#FFFFFF; background-color:#373737;}
 #comments li:nth-child(even){color:inherit; background-color:#F7F7F7;}
 table a, #comments a{background-color:inherit;}
 
+.senderm{
+	text-align: right;
+	width: 40%;
+	border-radius: 1em 1em 0em 1em;
+	margin-left: 70%            !important;
+	background: #EAFFC9         !important;
+}
+
+.receiverm{
+	width: 40%;
+	border-radius: 1em 1em 1em 0em;
+	background: #FFFFFF         !important;
+}
+
+.messageBorder{
+		border-style: solid;
+    border-width: 1px;
+    border-color: lightgray;
+}
 
 /* ------------------------------------------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------------------------------------------ */

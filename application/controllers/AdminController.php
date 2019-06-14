@@ -7,6 +7,7 @@ class AdminController extends Zend_Controller_Action
   protected $_staffform = null;
   protected $_faqModel = null;
   protected $_adminModel = null;
+  protected $_messageform = null;
 
 
 
@@ -17,6 +18,7 @@ class AdminController extends Zend_Controller_Action
     $this->_authService = new Application_Service_Auth();
     $this->view->faqForm = $this->getFaqForm();
     $this->view->staffForm = $this->getStaffForm();
+    $this->view->messageForm = $this->getMessageForm();
     $this->_faqModel = new Application_Model_Faq();
     $this->_adminModel = new Application_Model_Admin();
 
@@ -95,6 +97,12 @@ class AdminController extends Zend_Controller_Action
       'default'
     ));
     return $this->_staffform;
+  }
+
+  private function getMessageForm(){
+    $urlHelper = $this->_helper->getHelper('url');
+    $this->_messageform  = new Application_Form_Inbox_Send();
+    return $this->_messageform;
 
   }
 
@@ -240,4 +248,46 @@ class AdminController extends Zend_Controller_Action
 
     }
   }
+
+  public function messaggiAction(){
+    $userid = $this->_getParam('userid', null);
+    $urlHelper = $this->_helper->getHelper('url');
+    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
+    $this->view->senders = $this->_adminModel->getSender();
+    if($userid != null){
+      $messaggi = $this->_adminModel->getUserMessage($userid);
+      $user = $this->_adminModel->getUserById($userid);
+      $this->view->assign(array('messaggi' => $messaggi));
+      $this->view->user = $user;
+      $admin = $this->_adminModel->getAdmin();
+      $this->view->admin = $admin;
+      $this->_messageform->setAction($urlHelper->url(array(
+        'controller' => 'admin',
+        'action' => 'sendmessage',
+        'destinatario' => $destinatario ),
+        'default'
+      ));
+
+    }
+  }
+
+  public function sendmessageAction(){
+    $destinatario = $this->_getParam('userid', null);
+    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
+    if (!$this->getRequest()->isPost()) {
+      $this->_helper->redirector('index');
+    }
+    $form = $this->_messageform;
+    if (!$form->isValid($_POST)) {
+      return $this->render('messaggi');
+    }
+    $values = $form->getValues();
+    $admin = $this->_adminModel->getAdmin();
+    $values['id_mittente'] = $admin['id_utente'];
+    $values['id_destinatario'] = $destinatario;
+    $this->_adminModel->sendMessage($values);
+    $this->_helper->redirector('messaggi','admin',null,array('userid' => $destinatario));
+
+  }
+
 }
