@@ -18,8 +18,8 @@ class Application_Model_Reservation extends App_Model_Abstract {
         return $this->getResource('Prenotazione')->setPrenotazione($dati);
     }
 
-    public function getPrenotazioni($mese) {
-        return $this->getResource('Prenotazione')->getPrenotazioni($mese);
+    public function getPrenotazioni($mese, $anno) {
+        return $this->getResource('ProspettoStaff')->getPrenotazioni($mese, $anno);
     }
 
 }

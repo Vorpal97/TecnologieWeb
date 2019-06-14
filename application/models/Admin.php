@@ -16,9 +16,9 @@ class Application_Model_Admin extends App_Model_Abstract
         return $this->getResource('User')->editUser($data, $id);
     }
 
-    public function getUserByPass($pass)
+    public function getUserById($id)
     {
-        return $this->getResource('User')->getUserByPass($pass);
+        return $this->getResource('User')->getUserById($id);
     }
 
     public function getUserList()

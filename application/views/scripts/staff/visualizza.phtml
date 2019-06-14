@@ -33,46 +33,48 @@
             } else {
                 echo '<caption><b>Prenotazioni del mese di ' . $this->oggi . '<b></caption>';
             }
-            $i = 1;
+            $i = 0;
             $costoTot = 0;
+            $durataTot = 0;
             ?>
             <tbody class="bodyMensile">
-                <tr>
-                    <th class = "tab10h"></th>
-                    <th class = "tab10h">id prenotazione</th>
-                    <th class = "tab10h">id auto</th>
-                    <th class = "tab10h">id utente</th>
-                    <th class = "tab20h">data inizio</th>
-                    <th class = "tab20h">data fine</th>
-                    <th class = "tab10h">durata</th>
-                    <th class = "tab10h">fatturato</th>
+                <tr class="tab">
+                    <th class = "tab5h"></th>
+                    <th class = "tab5h">Prenotazione</th>
+                    <th class = "tab5h">Utente</th>
+                    <th class = "tab10h">Nome</th>
+                    <th class = "tab10h">Cognome</th>
+                    <th class = "tab15h">Marca</th>
+                    <th class = "tab10h">Modello</th>
+                    <th class = "tab10h">Targa</th>
+                    <th class = "tab10h">Data inizio</th>
+                    <th class = "tab10h">Durata</th>
+                    <th class = "tab10h">Entrata</th>
                 </tr>
 
                 <?php foreach ($this->prenotazioni as $pren) : ?>
                     <?php
-                    $c = $i % 2;
-                    if ($c == 0) {
-                        echo '<tr class="grigio"><th class="tab10h2">' . $i . '</th>';
-                    } else {
-                        echo '<tr><th class="tab10h">' . $i . '</th>';
-                    }
-                    echo '<td class="tab10">' . $pren->id_prenotazione . '</td>
-                             <td class="tab10">' . $pren->id_auto . '</td>
-                             <td class="tab10">' . $pren->id_utente . '</td>
-                             <td class="tab20">' . $pren->data_inizio . '</td>
-                             <td class="tab20">' . $pren->data_fine . '</td>
-                             <td class="tab10">' . $this->durata($pren->data_inizio, $pren->data_fine) . ' giorni</td>
-                             <td class="tab10">' . $this->prezzo($pren->costo) . '</td>';
+                    $auto = $this->product;
                     $i += 1;
+                    $durata = $this->durata($pren->data_inizio, $pren->data_fine);
+                    echo '<tr class="tab"><td class="tab5">' . $i . '</td>';
+                    echo '<td class="tab5">' . $pren->id_prenotazione . '</td>
+                             <td class="tab5">' . $pren->id_utente . '</td>
+                             <td class="tab10">' . $pren->nome . '</td>
+                             <td class="tab10">' . $pren->cognome . '</td>
+                             <td class="tab15">' . $pren->marca . '</td>
+                             <td class="tab10">' . $pren->modello . '</td>
+                             <td class="tab10">' . $pren->targa . '</td>
+                             <td class="tab10">' . $pren->data_inizio . '</td>
+                             <td class="tab10">' . $durata . ' giorni</td>
+                             <td class="tab10">' . $this->prezzo($pren->costo) . '</td></tr>';
                     $costoTot += $pren->costo;
-                    echo '</tr>';
                     ?>
                 <?php endforeach; ?>
                 <?php
-                if ($costoTot != 0) {
-                    echo '<tr class="grigio"><th class="tab10h2">ricavo totale</th>
-                              <td class="tab10"></td><td class="tab10"></td><td class="tab10"></td><td class="tab10"></td><td class="tab10"></td><td class="tab10"></td><td class="tab10">' . $this->prezzo($costoTot) . '</td>';
-                }
+                $entrate = $this->prezzo($costoTot);
+                echo $this->RigheTot($i, 'Noleggi');
+                echo $this->RigheTot($entrate, 'Entrate');
                 ?>
             </tbody>
         </table>
