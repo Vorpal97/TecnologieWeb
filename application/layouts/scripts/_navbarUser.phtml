@@ -17,6 +17,15 @@
                             'action' => 'index'),
                             'default', true ); ?>"
                             title = "Home" >Home</a></li>
+
+                <li <?php if($this->azione == "messaggi")
+                {
+                    echo 'class="active"';
+                }         ?>><a href="<?= $this->url(array(
+                            'controller' => 'user',
+                            'action' => 'messaggi'),
+                            'default', true ); ?>"
+                            title = "rentstats" >Messaggi</a></li>
                 <li <?php if($this->azione == "catalog")
                 {
                     echo 'class="active"';

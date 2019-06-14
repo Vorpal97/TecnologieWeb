@@ -1,0 +1,60 @@
+<div class="bgded overlay" style="background-image:url('http://localhost/TecnologieWeb/public/images/samples/faq.jpg'); background-position: center;">
+  <!-- ################################################################################################ -->
+  <section id="breadcrumb" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <h6 class="heading">Messagga con l'amministratore</h6>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+  </section>
+  <!-- ################################################################################################ -->
+</div>
+
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="content three_quarter">
+      <div id="comments">
+        <h2>Amministratore</h2>
+        <div style="overflow: auto;height: 40em;">
+        <ul>
+          <?php foreach ($this->messaggi as $messaggio) : ?>
+          <li<?php if($messaggio->id_mittente == $this->user["id_utente"])
+                      echo' class="senderm messageBorder"';
+                   else
+                   echo' class="receiverm messageBorder"';
+              ?>>
+            <article>
+              <header>
+                <?php
+                      $timestamp = strtotime($messaggio->time_stamp);
+
+
+                      echo date("d F Y H:i", $timestamp); ?>
+              </header>
+              <div class="comcont">
+                <p><?= $messaggio->corpo ?></p>
+              </div>
+            </article>
+          </li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+        <?php
+          if(isset($this->user)){
+              echo' <h2>Rispondi</h2>';
+              echo $this->messageForm;
+            }
+        ?>
+      </div>
+      <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>

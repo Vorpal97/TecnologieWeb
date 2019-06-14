@@ -7,6 +7,7 @@ class UserController extends Zend_Controller_Action {
     protected $_authService = null;
     protected $_form = null;
     protected $_adminModel = null;
+    protected $_messageform = null;
 
     public function init() {
         $this->_adminModel = new Application_Model_Admin();
@@ -17,7 +18,9 @@ class UserController extends Zend_Controller_Action {
         $this->_reservationModel = new Application_Model_Reservation();
         $this->view->id_utente = $this->_authService->getIdentity()->id_utente;
         $this->view->editForm = $this->getForm();
-        
+        $this->view->messageForm = $this->getMessageForm();
+
+
     }
 
     public function getForm()
@@ -31,7 +34,14 @@ class UserController extends Zend_Controller_Action {
         ));
         return $this->_form;
     }
-    
+
+    private function getMessageForm(){
+      $urlHelper = $this->_helper->getHelper('url');
+      $this->_messageform  = new Application_Form_Inbox_Send();
+      return $this->_messageform;
+
+    }
+
     public function updateprofileAction()
     {
         if(!$this->getRequest()->isPost())
@@ -53,14 +63,14 @@ class UserController extends Zend_Controller_Action {
             'occupazione' => $values['occupazione']
                 );
         } else if ($this->_adminModel->getUserById($id)->psw == $values['oldpass'])
-        {   
+        {
             $dati = array(
                 'email' => $values['email'],
                 'psw' => $values['psw'],
                 'residenza' => $values['residenza'],
                 'occupazione' => $values['occupazione']
             );
-        } else 
+        } else
             {
                 $form->setDescription('La password attuale non è corretta');
                 return $this->render('profilo');
@@ -69,14 +79,14 @@ class UserController extends Zend_Controller_Action {
         $form->setDescription('Modifica avvenuta con successo');
         $this->render('profilo');
     }
-    
+
     public function getloggeduserAction()
     {
         $user = $this->_authService->getIdentity()->username;
         $loggeduser = $this->_adminModel->getUser($user);
         return $loggeduser;
     }
-    
+
     public function indexAction() {
         $this->view->azione = $this->getRequest()->getActionName();
     }
@@ -136,4 +146,40 @@ class UserController extends Zend_Controller_Action {
         }
         $this->view->assign(array('data_inizio' => $dataInizio, 'data_fine' => $dataFine, 'id_auto' => $idAuto, 'id_utente' => $idUtente, 'dataAuto' => $dataAuto));
     }
+
+    public function messaggiAction(){
+      $userid = $this->_authService->getIdentity()->id_utente;
+      $urlHelper = $this->_helper->getHelper('url');
+      $this->view->livello = $this->_authService->getIdentity()->autenticazione;
+      if($userid != null){
+        $messaggi = $this->_adminModel->getUserMessage($userid);
+        $user = $this->_adminModel->getUserById($userid);
+        $this->view->assign(array('messaggi' => $messaggi));
+        $this->view->user = $user;
+        $this->_messageform->setAction($urlHelper->url(array(
+          'controller' => 'user',
+          'action' => 'sendmessage'),
+          'default'
+        ));
+    }
+  }
+
+  public function sendmessageAction(){
+    $admin = $this->_adminModel->getAdmin();
+    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
+    if (!$this->getRequest()->isPost()) {
+      $this->_helper->redirector('index');
+    }
+    $form = $this->_messageform;
+    if (!$form->isValid($_POST)) {
+      return $this->render('messaggi');
+    }
+    $values = $form->getValues();
+    $values['id_mittente'] = $this->_authService->getIdentity()->id_utente;
+    $values['id_destinatario'] = $admin->id_utente;
+    $this->_adminModel->sendMessage($values);
+    $this->_helper->redirector('messaggi','user');
+
+  }
+
 }
