@@ -2,9 +2,10 @@
     <div style="text-align: center; margin-top: 50px; margin-bottom: 30px;">
         <p>Vuoi modificare l'auto sul listino?</p>
     </div>
-    <button style="width: 150px; height: 25px; position: relative;" onclick="window.location.href = '<?= $this->url(array(
+    <button style="width: 150px; height: 25px; position: relative;" onclick="window.location.href = '<?=
+            $this->url(array(
                 'controller' => 'staff',
                 'action' => 'modifica',
-                 'targa' => $auto->targa),
-                'default', true ); ?>'">Modifica</button>
+                'targa' => $auto->targa), 'default', true);
+            ?>'">Modifica</button>
 </div>

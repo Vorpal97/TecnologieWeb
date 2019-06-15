@@ -1,83 +1,95 @@
 <div class="wrapper row1" style="z-index: 2;">
     <header id="header" class="hoc clear">
         <div id="logo" class="fl_left">
-            <h1><a href=" <?= $this->url(array(
-                'controller' => 'public',
-                'action' => 'index'),
-                'default', true ); ?>"
-                title="Izy Car Rent">Izy car rent</a></h1>
+            <h1><a href=" <?=
+                $this->url(array(
+                    'controller' => 'public',
+                    'action' => 'index'), 'default', true);
+                ?>"
+                   title="Izy Car Rent">Izy car rent</a></h1>
         </div>
         <nav id="mainav" class="fl_right">
             <ul class="clear">
-                <li><a href=" <?= $this->url(array(
+                <li><a href=" <?=
+                    $this->url(array(
+                        'controller' => 'public',
+                        'action' => 'index'), 'default', true);
+                    ?>"
+                       title = "Home" >Home</a></li>
+                <li <?php
+                    if ($this->azione == "catalog" || $this->azione == "modifica") {
+                        echo 'class="active"';
+                    }
+                    ?>><a href="<?=
+                        $this->url(array(
                             'controller' => 'public',
-                            'action' => 'index'),
-                            'default', true ); ?>"
-                            title = "Home" >Home</a></li>
-                <li <?php if($this->azione == "catalog" || $this->azione == "modifica")
-                {
-                    echo 'class="active"';
-                }         ?>><a href="<?= $this->url(array(
-                            'controller' => 'public',
-                            'action' => 'catalog'),
-                            'default', true ); ?>"
-                            title = "Catalogo" >Catalogo</a>
+                            'action' => 'catalog'), 'default', true);
+                    ?>"
+                    title = "Catalogo" >Catalogo</a>
                 </li>
-                <li><a href="<?= $this->url(array(
+                <li><a href="<?=
+                        $this->url(array(
                             'controller' => 'admin',
-                            'action' => 'rentstats'),
-                            'default', true ); ?>"
-                            title = "rentstats" >Statistiche noleggi</a>
+                            'action' => 'rentstats'), 'default', true);
+                    ?>"
+                       title = "rentstats" >Statistiche noleggi</a>
                 </li>
-                <li><a href="<?= $this->url(array(
-                            'controller' => 'admin',
-                            'action' => 'messaggi'),
-                            'default', true ); ?>"
-                            title = "rentstats" >Messaggi</a>
+                <li><a href="<?=
+                    $this->url(array(
+                        'controller' => 'admin',
+                        'action' => 'messaggi'), 'default', true);
+                    ?>"
+                       title = "rentstats" >Messaggi</a>
                 </li>
 
                 <li><a class="drop">Gestisci</a>
                     <ul>
                         <li><a class="drop">Auto</a>
                             <ul>
-                                <li><a href=" <?= $this->url(array(
-                                    'controller' => 'staff',
-                                    'action' => 'inserisci'),
-                                    'default', true ); ?>"
-                                title ="Inserisci">Inserisci</a></li>
-                                <li><a href=" <?= $this->url(array(
-                                    'controller' => 'staff',
-                                    'action' => 'visualizza'),
-                                    'default', true ); ?>"
-                                title ="Visualizza">Visualizza prenotazioni</a></li>   
+                                <li><a href=" <?=
+                                    $this->url(array(
+                                        'controller' => 'staff',
+                                        'action' => 'inserisci'), 'default', true);
+                                    ?>"
+                                       title ="Inserisci">Inserisci</a></li>
+                                <li><a href=" <?=
+                            $this->url(array(
+                                'controller' => 'staff',
+                                'action' => 'visualizza'), 'default', true);
+                            ?>"
+                                       title ="Visualizza">Visualizza prenotazioni</a></li>   
                             </ul>
                         </li>
-                        <li><a href="<?= $this->url(array(
-                                    'controller' => 'admin',
-                                    'action' => 'managefaq'),
-                                    'default', true ); ?>"
-                                    >FAQ</a></li>
-                        <li><a href="<?= $this->url(array(
-                                    'controller' => 'admin',
-                                    'action' => 'staffmanager'),
-                                    'default', true ); ?>"
-                                    >Staff</a></li>
-                        <li><a href="<?= $this->url(array(
-                                    'controller' => 'admin',
-                                    'action' => 'usermanager'),
-                                    'default', true ); ?>"
-                                    >Utenti</a></li>
+                        <li><a href="<?=
+                               $this->url(array(
+                                   'controller' => 'admin',
+                                   'action' => 'managefaq'), 'default', true);
+                            ?>"
+                               >FAQ</a></li>
+                        <li><a href="<?=
+                            $this->url(array(
+                                'controller' => 'admin',
+                                'action' => 'staffmanager'), 'default', true);
+                            ?>"
+                               >Staff</a></li>
+                        <li><a href="<?=
+                            $this->url(array(
+                                'controller' => 'admin',
+                                'action' => 'usermanager'), 'default', true);
+                            ?>"
+                               >Utenti</a></li>
 
 
 
                     </ul>
 
                 </li>
-                <li><a href="<?= $this->url(array(
-                            'controller' => 'admin',
-                            'action' => 'logout'),
-                            'default', true); ?>"
-                            title = "Logout" >Logout</a>
+                <li><a href="<?=
+                    $this->url(array(
+                        'controller' => 'admin',
+                        'action' => 'logout'), 'default', true);
+                            ?>"
+                       title = "Logout" >Logout</a>
                 </li>
             </ul>
         </nav>

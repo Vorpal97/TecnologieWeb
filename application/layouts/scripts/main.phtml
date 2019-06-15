@@ -1,47 +1,41 @@
 <?php echo $this->doctype() ?>
 <html>
     <head>
-      <?= $this->headMeta(); ?>
-      <?= $this->headLink(); ?>
-      <?= $this->headTitle(); ?>
-      <?= $this->headScript(); ?> 
+        <?= $this->headMeta(); ?>
+        <?= $this->headLink(); ?>
+        <?= $this->headTitle(); ?>
+        <?= $this->headScript(); ?> 
     </head>
     <body id="top">
         <?php
-
-        if(!isset($this->livello)){
-          echo $this->render('_navbar.phtml');
+        if (!isset($this->livello)) {
+            echo $this->render('_navbar.phtml');
         } else {
 
-          switch ($this->livello) {
-            case 'user':
-              echo $this->render('_navbarUser.phtml');
-              break;
+            switch ($this->livello) {
+                case 'user':
+                    echo $this->render('_navbarUser.phtml');
+                    break;
 
-            case 'staff':
-              echo $this->render('_navbarStaff.phtml');
-              break;
+                case 'staff':
+                    echo $this->render('_navbarStaff.phtml');
+                    break;
 
-            case 'admin':
-              echo $this->render('_navbarAdmin.phtml');
-              break;
+                case 'admin':
+                    echo $this->render('_navbarAdmin.phtml');
+                    break;
 
-              default:
-              echo $this->render('_navbar.phtml');
-              break;
+                default:
+                    echo $this->render('_navbar.phtml');
+                    break;
             }
-          }
-
-
-         ?>
+        }
+        ?>
         <div>
-            <?php echo $this->layout()->content; ?>
+        <?php echo $this->layout()->content; ?>
         </div>
-
-        <!-- ################################################################################################ -->
-        <!-- ################################################################################################ -->
         <div class="wrapper row4 bgded overlay" style="background-image:url('http://localhost/TecnologieWeb/public/images/samples/footer_wallpaper.jpg');">
-          <?= $this->render('_footer.phtml'); ?>
+            <?= $this->render('_footer.phtml'); ?>
         </div>
         <div class="wrapper row5">
             <div id="copyright" class="hoc clear">
