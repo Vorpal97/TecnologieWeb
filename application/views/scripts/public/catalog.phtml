@@ -78,22 +78,22 @@
                 <form id="miaForm" method="post" class="formFiltri" name="formFiltri" action="">
                     <label class="formTitolo">Prezzo minimo <select id="selPrezzoMin" name="minimo" size="1">
                             <option selected value="0">Qualsiasi</option>
-                            <option value="30">30€</option>
-                            <option value="50">50€</option>
-                            <option value="70">70€</option>
-                            <option value="90">90€</option>
-                            <option value="110">110€</option>
-                            <option value="130">130€</option>
+                            <?php echo '<option value="30">' . $this->prezzo(30) . '</option>
+                            <option value="50">' . $this->prezzo(50) . '</option>
+                            <option value="70">' . $this->prezzo(70) . '</option>
+                            <option value="90">' . $this->prezzo(90) . '</option>
+                            <option value="110">' . $this->prezzo(110) . '</option>
+                            <option value="130">' . $this->prezzo(130) . '</option>'?>
                         </select><br>
                     </label>
                     <label class="formTitolo">Prezzo massimo <select id="selPrezzoMax" name="massimo" size="1">
                             <option selected value="9999">Qualsiasi</option>
-                            <option value="30">30€</option>
-                            <option value="50">50€</option>
-                            <option value="70">70€</option>
-                            <option value="90">90€</option>
-                            <option value="110">110€</option>
-                            <option value="130">130€</option>
+                            <?php echo '<option value="30">' . $this->prezzo(30) . '</option>
+                            <option value="50">' . $this->prezzo(50) . '</option>
+                            <option value="70">' . $this->prezzo(70) . '</option>
+                            <option value="90">' . $this->prezzo(90) . '</option>
+                            <option value="110">' . $this->prezzo(110) . '</option>
+                            <option value="130">' . $this->prezzo(130) . '</option>'?>
                         </select><br>
                     </label>
                     <label class="formTitolo">Numero posti <select id="selPosti" name="posti" size="1">
