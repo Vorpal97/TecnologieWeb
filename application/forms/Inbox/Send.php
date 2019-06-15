@@ -9,12 +9,14 @@ class Application_Form_Inbox_Send extends App_Form_Abstract
         $this->setAction('');   //la action la definisco dal controller che gestisce la form
 
         $this->addElement('text', 'corpo', array(
+            'style' => array("width: 40em;"),
+            'label' => 'Messaggio:',
             'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true)),
             'required' =>true,
             'decorators' => $this->elementMessageDecorators,
             ));
 
-        $this->addElement ('submit', 'aggiungi', array(
+        $this->addElement ('submit', 'invia', array(
             'label' => 'Invia',
             'decorators' => $this->buttonDecorators,
             ));
