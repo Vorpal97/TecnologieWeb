@@ -1,54 +1,64 @@
 <div class="wrapper row1" style="z-index: 2;">
     <header id="header" class="hoc clear">
         <div id="logo" class="fl_left">
-            <h1><a href=" <?= $this->url(array(
-                'controller' => 'public',
-                'action' => 'index'),
-                'default', true ); ?>"
-                title="Izy Car Rent">Izy car rent</a></h1>
+            <h1><a href=" <?=
+                $this->url(array(
+                    'controller' => 'public',
+                    'action' => 'index'), 'default', true);
+                ?>"
+                   title="Izy Car Rent">Izy car rent</a></h1>
         </div>
         <nav id="mainav" class="fl_right">
             <ul class="clear">
-                <li <?php if($this->azione == "index")
-                {
+                <li <?php
+                if ($this->azione == "index") {
                     echo 'class="active"';
-                }         ?>><a href=" <?= $this->url(array(
-                            'controller' => 'user',
-                            'action' => 'index'),
-                            'default', true ); ?>"
-                            title = "Home" >Home</a></li>
+                }
+                ?>><a href=" <?=
+                    $this->url(array(
+                        'controller' => 'user',
+                        'action' => 'index'), 'default', true);
+                    ?>"
+                    title = "Home" >Home</a></li>
 
-                <li <?php if($this->azione == "messaggi")
-                {
-                    echo 'class="active"';
-                }         ?>><a href="<?= $this->url(array(
-                            'controller' => 'user',
-                            'action' => 'messaggi'),
-                            'default', true ); ?>"
-                            title = "rentstats" >Messaggi</a></li>
-                <li <?php if($this->azione == "catalog")
-                {
-                    echo 'class="active"';
-                }         ?>><a href="<?= $this->url(array(
-                            'controller' => 'public',
-                            'action' => 'catalog'),
-                            'default', true ); ?>"
-                            title = "Catalogo" >Catalogo</a>
+                <li <?php
+                        if ($this->azione == "messaggi") {
+                            echo 'class="active"';
+                        }
+                        ?>><a href="<?=
+                    $this->url(array(
+                        'controller' => 'user',
+                        'action' => 'messaggi'), 'default', true);
+                        ?>"
+                    title = "rentstats" >Messaggi</a></li>
+                <li <?php
+                    if ($this->azione == "catalog") {
+                        echo 'class="active"';
+                    }
+                    ?>><a href="<?=
+                $this->url(array(
+                    'controller' => 'public',
+                    'action' => 'catalog'), 'default', true);
+                ?>"
+                    title = "Catalogo" >Catalogo</a>
                 </li>
-                <li <?php if($this->azione == "profilo")
-                {
-                    echo 'class="active"';
-                }         ?>><a href="<?= $this->url(array(
-                            'controller' => 'user',
-                            'action' => 'profilo'),
-                            'default', true ); ?>"
-                            title = "Registrati" >Il mio profilo</a>
+                <li <?php
+                    if ($this->azione == "profilo") {
+                        echo 'class="active"';
+                    }
+                ?>><a href="<?=
+                       $this->url(array(
+                           'controller' => 'user',
+                           'action' => 'profilo'), 'default', true);
+                       ?>"
+                    title = "Registrati" >Il mio profilo</a>
                 </li>
-                <li><a href="<?= $this->url(array(
-                            'controller' => 'user',
-                            'action' => 'logout'),
-                            'default', true); ?>"
-                            title = "Logout" >Logout</a>
+                <li><a href="<?=
+                       $this->url(array(
+                           'controller' => 'user',
+                           'action' => 'logout'), 'default', true);
+                       ?>"
+                       title = "Logout" >Logout</a>
                 </li>
             </ul>
         </nav>

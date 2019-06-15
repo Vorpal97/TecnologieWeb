@@ -1,54 +1,62 @@
 <div class="wrapper row1" style="z-index: 2;">
     <header id="header" class="hoc clear">
         <div id="logo" class="fl_left">
-            <h1><a href=" <?= $this->url(array(
-                'controller' => 'public',
-                'action' => 'index'),
-                'default', true ); ?>"
-                title="Izy Car Rent">Izy car rent</a></h1>
+            <h1><a href=" <?=
+                $this->url(array(
+                    'controller' => 'public',
+                    'action' => 'index'), 'default', true);
+                ?>"
+                   title="Izy Car Rent">Izy car rent</a></h1>
         </div>
         <nav id="mainav" class="fl_right">
             <ul class="clear">
-                <li <?php if($this->azione == "index")
-                {
+                <li <?php
+                if ($this->azione == "index") {
                     echo 'class="active"';
-                }         ?>
-                            ><a href=" <?= $this->url(array(                             //classe active evidenzia elemento
+                }
+                ?>
+                    ><a href=" <?=
+                    $this->url(array(//classe active evidenzia elemento
+                        'controller' => 'public',
+                        'action' => 'index'), 'default', true);
+                    ?>"
+                    title = "Home" >Home</a></li>
+                <li <?php
+                    if ($this->azione == "catalog") {
+                        echo 'class="active"';
+                    }
+                    ?>
+                    ><a href="<?=
+                        $this->url(array(//classe drop per inserire menù a tendina
                             'controller' => 'public',
-                            'action' => 'index'),
-                            'default', true ); ?>"
-                            title = "Home" >Home</a></li>
-                <li <?php if($this->azione == "catalog")
-                {
-                    echo 'class="active"';
-                }         ?>
-                            ><a href="<?= $this->url(array(                              //classe drop per inserire menù a tendina
-                            'controller' => 'public',
-                            'action' => 'catalog'),
-                            'default', true ); ?>"
-                            title = "Catalogo" >Catalogo</a>
+                            'action' => 'catalog'), 'default', true);
+                    ?>"
+                    title = "Catalogo" >Catalogo</a>
                 </li>
-                <li <?php if($this->azione == "register")
-                {
-                    echo 'class="active"';
-                }         ?>
-                            ><a href="<?= $this->url(array(
-                            'controller' => 'public',
-                            'action' => 'register'),
-                            'default', true ); ?>"
-                            title = "Registrati" >Registrati</a>
+                <li <?php
+                        if ($this->azione == "register") {
+                            echo 'class="active"';
+                        }
+                        ?>
+                    ><a href="<?=
+                $this->url(array(
+                    'controller' => 'public',
+                    'action' => 'register'), 'default', true);
+                ?>"
+                    title = "Registrati" >Registrati</a>
                 </li>
-                <li <?php if($this->azione == "login")
-                {
+                <li <?php
+                if ($this->azione == "login") {
                     echo 'class="active"';
-                }         ?>
-                            ><a href="<?= $this->url(array(
-                            'controller' => 'public',
-                            'action' => 'login'),
-                            'default', true); ?>"
-                            title = "Login" >Accedi</a>
+                }
+                ?>
+                    ><a href="<?=
+                $this->url(array(
+                    'controller' => 'public',
+                    'action' => 'login'), 'default', true);
+                ?>"
+                    title = "Login" >Accedi</a>
                 </li>
-          
             </ul>
         </nav>
     </header>
