@@ -1,3 +1,31 @@
+<?php $this->headScript()
+	->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js')
+	->appendFile($this->baseUrl('js/functions.js'))
+	->captureStart() ?>
+
+  $(window).load(function() {
+    $('#messaggi').scrollTop($('#messaggi')[0].scrollHeight - $('#messaggi')[0].clientHeight);
+  });
+
+  $(document).ready(function() {
+      var $submit = $("input[type=submit]"),
+          $inputs = $('input[type=text]');
+
+      function checkEmpty() {
+
+          // filter over the empty inputs
+
+          return $inputs.filter(function() {
+              return !$.trim(this.value);
+          }).length === 0;
+      }
+
+      $inputs.on('blur', function() {
+          $submit.prop("disabled", !checkEmpty());
+      }).blur(); // trigger an initial blur
+  });
+
+<?php $this->headScript()->captureEnd() ?>
 <div class="bgded overlay" style="background-image:url('http://localhost/TecnologieWeb/public/images/samples/faq.jpg'); background-position: center;">
   <!-- ################################################################################################ -->
   <section id="breadcrumb" class="hoc clear">
@@ -20,7 +48,7 @@
     <div class="content three_quarter">
       <div id="comments">
         <h2>Amministratore</h2>
-        <div style="overflow: auto;height: 40em;">
+        <div id="messaggi" style="overflow: auto;height: 40em;">
         <ul>
           <?php foreach ($this->messaggi as $messaggio) : ?>
           <li<?php if($messaggio->id_mittente == $this->user["id_utente"])
