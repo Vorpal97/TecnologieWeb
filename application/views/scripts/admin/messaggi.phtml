@@ -60,6 +60,21 @@
           <?php endforeach; ?>
         </ul>
       </nav>
+
+			<h6>Tutti gli utenti</h6>
+      <nav class="sdb_holder">
+        <ul>
+          <?php foreach ($this->users as $user) : ?>
+            <li><a href="
+                          <?= $this->url(array('controller' => 'admin',
+                                               'action' => 'messaggi',
+                                               'userid' => $user->id_utente),
+                                               'default', true)?>
+                          "><?php echo $user->nome . ' ' . $user->cognome ?></a></li>
+          <?php endforeach; ?>
+        </ul>
+      </nav>
+
       <!-- ################################################################################################ -->
     </div>
     <!-- ################################################################################################ -->
@@ -101,7 +116,6 @@
       </div>
         <?php
           if(isset($this->user)){
-              echo' <h2>Rispondi</h2>';
               echo $this->messageForm;
             }
         ?>
