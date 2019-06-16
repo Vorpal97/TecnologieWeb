@@ -30,7 +30,7 @@ class Application_Resource_Staff extends Zend_Db_Table_Abstract{
     }
 
     public function updateStaff($userid, $values){
-        $this->update($faq, 'id_utente = ' . $userid);
+        $this->update($values, 'id_utente = ' . $userid);
 
     }
 
