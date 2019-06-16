@@ -40,7 +40,7 @@ class Application_Form_Admin_Manage_Staff extends App_Form_Abstract
 
     $this->addElement('password', 'psw', array(
       'id' => 'password',
-      'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('StringLength', true, array(1,15,'messages'=>'La password deve contenere min 3 caratteri e max 15'))),
+      'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('StringLength', true, array(3,15,'messages'=>'La password deve contenere min 3 caratteri e max 15'))),
       'required' => true,
       'label' => 'Password',
       'decorators' => $this->elementDecorators,
