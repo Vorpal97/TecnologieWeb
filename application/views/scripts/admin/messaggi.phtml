@@ -66,13 +66,16 @@
     <!-- ################################################################################################ -->
     <div class="content three_quarter">
       <div id="comments">
-        <?php echo '<h2>' .  $this->user->nome . ' ' . $this->user->cognome . '</h2>';
+        <?php
         if(!isset($this->user)){
           echo '<h2 style="color: #BBB; text-align: center;">Scegli una conversazione per iniziare</h2>';
-          }
+				} else {
+					 echo '<h2>' .  $this->user->nome . ' ' . $this->user->cognome . '</h2>';
+				}
         ?>
         <div id="messaggi" style="overflow: auto;height: 40em;">
         <ul>
+					<?php if(isset($this->messaggi)) : ?>
           <?php foreach ($this->messaggi as $messaggio) : ?>
           <li<?php if($messaggio->id_mittente == $this->admin["id_utente"])
                       echo' class="senderm messageBorder"';
@@ -93,6 +96,7 @@
             </article>
           </li>
           <?php endforeach; ?>
+				<?php endif; ?>
         </ul>
       </div>
         <?php
