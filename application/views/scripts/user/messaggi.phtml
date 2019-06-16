@@ -12,9 +12,6 @@
           $inputs = $('input[type=text]');
 
       function checkEmpty() {
-
-          // filter over the empty inputs
-
           return $inputs.filter(function() {
               return !$.trim(this.value);
           }).length === 0;
@@ -22,7 +19,7 @@
 
       $inputs.on('blur', function() {
           $submit.prop("disabled", !checkEmpty());
-      }).blur(); // trigger an initial blur
+      }).blur();
   });
 
 <?php $this->headScript()->captureEnd() ?>
@@ -48,7 +45,7 @@
     <div class="content three_quarter">
       <div id="comments">
         <h2>Amministratore</h2>
-        <div id="messaggi" style="overflow: auto;height: 40em;">
+        <div id="messaggi" class="messageBox">
         <ul>
 					<?php if(isset($this->messaggi)) : ?>
           <?php foreach ($this->messaggi as $messaggio) : ?>
@@ -76,7 +73,6 @@
       </div>
         <?php
           if(isset($this->user)){
-              echo' <h2>Rispondi</h2>';
               echo $this->messageForm;
             }
         ?>
