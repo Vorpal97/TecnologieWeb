@@ -25,15 +25,9 @@ class AdminController extends Zend_Controller_Action
 
   }
 
-  public function indexAction()
-  {
-    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
-    $this->_helper->redirector('index','public');
-
-  }
-
   public function managefaqAction()
   {
+    $this->view->azione = $this->getRequest()->getActionName();  
     $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     $totFaq = $this->_faqModel->getFaq();
 
@@ -48,6 +42,7 @@ class AdminController extends Zend_Controller_Action
 
   public function rentstatsAction()
   {
+    $this->view->azione = $this->getRequest()->getActionName();  
     $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     $rents = $this->_adminModel->getRentsByMonth();
     $this->view->assign(array('rents' => $rents));
@@ -56,6 +51,7 @@ class AdminController extends Zend_Controller_Action
 
   public function usermanagerAction()
   {
+    $this->view->azione = $this->getRequest()->getActionName();  
     $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     $users = $this->_adminModel->getUserList();
     $this->view->assign(array('users' => $users));
@@ -63,6 +59,7 @@ class AdminController extends Zend_Controller_Action
 
   public function staffmanagerAction()
   {
+    $this->view->azione = $this->getRequest()->getActionName();  
     $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     $staffs = $this->_adminModel->getStaffList();
 
@@ -129,6 +126,7 @@ class AdminController extends Zend_Controller_Action
   }
 
   public function editfaqAction(){
+     $this->view->azione = $this->getRequest()->getActionName();
     $urlHelper = $this->_helper->getHelper('url');
     $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     $faqId = $this->_getParam('faqid', null);
@@ -188,6 +186,7 @@ class AdminController extends Zend_Controller_Action
   }
 
   public function editstaffmemberAction(){
+    $this->view->azione = $this->getRequest()->getActionName();  
     $urlHelper = $this->_helper->getHelper('url');
     $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     $userid = $this->_getParam('userid', null);
@@ -250,6 +249,7 @@ class AdminController extends Zend_Controller_Action
   }
 
   public function messaggiAction(){
+    $this->view->azione = $this->getRequest()->getActionName();  
     $userid = $this->_getParam('userid', null);
     $urlHelper = $this->_helper->getHelper('url');
     $this->view->livello = $this->_authService->getIdentity()->autenticazione;
