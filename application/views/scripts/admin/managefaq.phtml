@@ -37,6 +37,7 @@
       <div id="comments">
         <h2>Frequently Asked Questions</h2>
         <ul>
+          <?php if(isset($this->products)) : ?>
           <?php foreach ($this->products as $faq) : ?>
             <li>
               <article>
@@ -63,6 +64,7 @@
               </article>
             </li>
           <?php endforeach; ?>
+        <?php endif; ?>
           <li>
             <h2 style="text-align: center;">Aggiungi una nuova FAQ</h2>
               <?= $this->faqForm; ?>

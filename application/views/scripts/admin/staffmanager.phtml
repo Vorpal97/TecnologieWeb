@@ -60,6 +60,7 @@
 
       <div id="comments">
         <ul>
+          <?php if(isset($this->staff)) : ?>
           <?php foreach ($this->staff as $member) : ?>
           <li>
             <article>
@@ -93,6 +94,7 @@
             </article>
           </li>
         <?php endforeach; ?>
+      <?php endif; ?>
         </ul>
         <h2> Inserisci un nuovo membro dello staff </h2>
         <?= $this->staffForm; ?>
