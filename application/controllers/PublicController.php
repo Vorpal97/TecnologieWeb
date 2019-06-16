@@ -20,12 +20,15 @@ class PublicController extends Zend_Controller_Action
         $this->_faqModel = new Application_Model_Faq();
         $this->_adminModel = new Application_Model_Admin();
         $this->_authService = new Application_Service_Auth();
+        if($this->_authService->getAuth()->hasIdentity())
+            {
+                $this->view->livello = $this->_authService->getIdentity()->autenticazione;
+            }
         $this->view->registerForm = $this->getRegisterForm();   
     }
 
     public function indexAction()
     {
-        
         $this->_logger->info('Attivato:    ' . __METHOD__);
         $this->view->azione = $this->getRequest()->getActionName();
     }
@@ -173,7 +176,6 @@ class PublicController extends Zend_Controller_Action
             $form->setDescription('Username o password errati, riprova.');
             return $this->render('login');
         }
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         return $this->_helper->redirector('index', 'public');
     }
     

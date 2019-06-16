@@ -21,34 +21,29 @@
                             <p>Prenota ora</p>
 
                             <form method="post" style="height: 100px;">
-                                <label style="text-align: center;  height: 25px; position: relative; margin-left: 10px; float: left;">Data di inizio<input type="date" style="width: 150px;"name="inizio"></label>
-                                <label style="text-align: center; height: 25px; position: relative; margin-right: 10px;  float: right;">Data di fine<input type="date" style="width: 150px;"name="fine"></label>
+                                <label style="text-align: center;  height: 25px; position: relative; margin-left: 10px; float: left;">Data di inizio<input type="date" style="width: 150px;"name="dataInizio"></label>
+                                <label style="text-align: center; height: 25px; position: relative; margin-right: 10px;  float: right;">Data di fine<input type="date" style="width: 150px;"name="dataFine"></label>
                                 <center><button type="submit" style="width: 150px; height: 25px; position: absolute; margin-top: 80px; margin-left: 100px;">Procedi</button></center>
                             </form>
                         </div>
                         <?php
-                        if (isset($_POST['inizio']) && isset($_POST['fine'])) {
-                            $in = $_POST['inizio'];
-                            $fin = $_POST['fine'];
-                            //echo '<p>' . $in . '</p>';
-                            //echo '<p>' . $fin . '</p>';
+                        if (isset($_POST['dataInizio']) && isset($_POST['dataFine'])) {
+                            $in = $_POST['dataInizio'];
+                            $fin = $_POST['dataFine'];
                             $idU = $this->id_utente;
                             $c = 0;
                             $res = $this->date($in, $fin);
-                            if ($res == 1) {
-                                //if (is_object($this->prenotazioni)){
-                                foreach ($this->prenotazioni as $pren) {
-                                    $inizio = $pren->data_inizio;
+                            if ($res == 1) {?>
+                                <?php foreach ($this->prenotazioni as $pren) :?>
+                                    <?php $inizio = $pren->data_inizio;
                                     $fine = $pren->data_fine;
-                                    echo '<p>' . $inizio . '</p>';
-                                    echo '<p>' . $fine . '</p>';
                                     if (($in <= $inizio && $fin >= $inizio) || ($in >= $inizio && $in <= $fine) || ($in <= $inizio && $fin >= $fine) || ($in == $inizio && $fin == $fine)) {
                                         echo '<p style="text-align: center;">L\'auto non è disponibile <br> dal: ' . $inizio . ' al: ' . $fine . '.</p>';
                                         $c += 1;
                                     }
-                                }
-
-                                //    }
+                                    ?>
+                                    <?php endforeach;?>
+                        <?php
                                 if ($c >= 1) {
                                     echo '<p style="text-align: center;">Si prega di scegliere un\'altra data</p>';
                                 } else {
@@ -75,6 +70,7 @@
                         }
                         ?>
                     </div>
+                    
 
                     <ul class="metaPren">
                         <?php echo '<li>prezzo: ' . $this->prezzo($auto->prezzo) . '</li>' ?>
@@ -88,7 +84,6 @@
                         <?php echo '<li>targa: ' . $auto->targa . '</li>' ?>
                     </ul>
                 </div>
-
             </div>
         </div>
     </center>

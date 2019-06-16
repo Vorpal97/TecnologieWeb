@@ -104,8 +104,8 @@ class UserController extends Zend_Controller_Action {
         }
         if ($inizio != 0 && $fine != 0) {
             $pren = $this->_reservationModel->getPrenotazioneByAuto($idAuto);
-        }else ($pren = 0);
-        $this->view->assign(array('products' => $prods, 'prenotazioni' => $pren));
+        } else ($pren=0);
+       $this->view->assign(array('products' => $prods, 'prenotazioni' => $pren));
     }
 
     public function prenotazioneAction() {
