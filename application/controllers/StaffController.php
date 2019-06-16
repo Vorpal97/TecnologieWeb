@@ -15,8 +15,13 @@ class StaffController extends Zend_Controller_Action {
         $this->view->insertform = $this->getinsertForm();
         $this->view->editform = $this->geteditForm();
         $this->_catalogModel = new Application_Model_Catalog();
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $this->_reservationModel = new Application_Model_Reservation();
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
+    }
+    
+    public function indexAction()
+    {
+        $this->_helper->redirector('index','public');
     }
 
     private function getinsertForm() {
@@ -91,11 +96,7 @@ class StaffController extends Zend_Controller_Action {
         }
         $values = $form->getValues();
         $this->_staffModel->addAuto($values);
-        $this->_helper->redirector('inserisci');
-    }
-
-    public function indexAction() {
-        // action body
+        $this->_helper->redirector('catalog','public');
     }
 
     public function inserisciAction() {

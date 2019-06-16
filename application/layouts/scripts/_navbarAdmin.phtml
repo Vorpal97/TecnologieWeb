@@ -10,7 +10,10 @@
         </div>
         <nav id="mainav" class="fl_right">
             <ul class="clear">
-                <li><a href=" <?=
+                <li <?php if ($this->azione == "index") {
+                        echo 'class="active"';
+                }
+                ?>> <a href=" <?=
                     $this->url(array(
                         'controller' => 'public',
                         'action' => 'index'), 'default', true);
@@ -27,14 +30,22 @@
                     ?>"
                     title = "Catalogo" >Catalogo</a>
                 </li>
-                <li><a href="<?=
+                <li <?php
+                    if ($this->azione == "rentstats") {
+                        echo 'class="active"';
+                    }
+                    ?>><a href="<?=
                         $this->url(array(
                             'controller' => 'admin',
                             'action' => 'rentstats'), 'default', true);
                     ?>"
                        title = "rentstats" >Statistiche noleggi</a>
                 </li>
-                <li><a href="<?=
+                <li <?php
+                    if ($this->azione == "messaggi") {
+                        echo 'class="active"';
+                    }
+                    ?>><a href="<?=
                     $this->url(array(
                         'controller' => 'admin',
                         'action' => 'messaggi'), 'default', true);
@@ -42,7 +53,11 @@
                        title = "rentstats" >Messaggi</a>
                 </li>
 
-                <li><a class="drop">Gestisci</a>
+                <li <?php
+                    if ($this->azione == "inserisci" || $this->azione == "visualizza" || $this->azione == "editfaq" || $this->azione == "editstaffmember" || $this->azione == "managefaq" || $this->azione == "staffmanager" || $this->azione == "usermanager") {
+                        echo 'class="active"';
+                    }
+                    ?>><a class="drop">Gestisci</a>
                     <ul>
                         <li><a class="drop">Auto</a>
                             <ul>
