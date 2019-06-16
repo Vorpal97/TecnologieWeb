@@ -13,6 +13,7 @@ class Application_Form_Admin_Manage_Staff extends App_Form_Abstract
 
 
     $this->addElement('text', 'nome', array(
+      'id' => 'nome',
       'filters' => array('StringTrim','StringToLower'),
       'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('StringLength', true, array(3,20,'messages'=>'Il nome deve contenere min 3 caratteri e max 20'))),
       'required' => true,
@@ -21,6 +22,7 @@ class Application_Form_Admin_Manage_Staff extends App_Form_Abstract
     ));
 
     $this->addElement('text', 'cognome', array(
+      'id' => 'cognome',
       'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('StringLength', true, array(3,20,'messages'=>'Il cognome deve contenere min 3 caratteri e max 20'))),
       'required' => true,
       'label' => 'Cognome',
@@ -28,6 +30,7 @@ class Application_Form_Admin_Manage_Staff extends App_Form_Abstract
     ));
 
     $this->addElement('text', 'username', array(
+      'id' => 'username',
       'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('StringLength', true, array(3,20,'messages'=>'Lo username deve contenere min 3 caratteri e max 20'))),
       'required' => true,
       'label' => 'Username',
@@ -36,7 +39,8 @@ class Application_Form_Admin_Manage_Staff extends App_Form_Abstract
 
 
     $this->addElement('password', 'psw', array(
-      'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('StringLength', true, array(5,15,'messages'=>'La password deve contenere min 5 caratteri e max 15'))),
+      'id' => 'password',
+      'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true),array('StringLength', true, array(1,15,'messages'=>'La password deve contenere min 3 caratteri e max 15'))),
       'required' => true,
       'label' => 'Password',
       'decorators' => $this->elementDecorators,
