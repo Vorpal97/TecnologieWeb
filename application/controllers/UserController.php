@@ -18,8 +18,7 @@ class UserController extends Zend_Controller_Action {
         $this->view->id_utente = $this->_authService->getIdentity()->id_utente;
         $this->view->editForm = $this->getForm();
         $this->view->messageForm = $this->getMessageForm();
-
-
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     }
 
     public function getForm()
@@ -43,7 +42,6 @@ class UserController extends Zend_Controller_Action {
 
     public function updateprofileAction()
     {
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         if(!$this->getRequest()->isPost())
         {
             $this->_helper->redirector('index','public');
@@ -94,7 +92,6 @@ class UserController extends Zend_Controller_Action {
     }
 
     public function profiloAction() {
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $this->view->azione = $this->getRequest()->getActionName();
         $data = $this->getloggeduserAction();
         $this->_form->populate($data->toArray());
@@ -109,7 +106,6 @@ class UserController extends Zend_Controller_Action {
     }
 
     public function preventivoAction() {
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $idAuto = $this->_getParam('idAuto', null);
         $inizio = $this->_getParam('dataInizio');
         $fine = $this->_getParam('dataFine');
@@ -124,7 +120,6 @@ class UserController extends Zend_Controller_Action {
     }
 
     public function prenotazioneAction() {
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $dataInizio = $this->_getParam('data_inizio', null);
         $dataFine = $this->_getParam('data_fine', null);
         $idAuto = $this->_getParam('id_auto', null);
@@ -144,7 +139,6 @@ class UserController extends Zend_Controller_Action {
       $userid = $this->_authService->getIdentity()->id_utente;
       $this->view->azione = $this->getRequest()->getActionName();
       $urlHelper = $this->_helper->getHelper('url');
-      $this->view->livello = $this->_authService->getIdentity()->autenticazione;
       if($userid != null){
         $messaggi = $this->_adminModel->getUserMessage($userid);
         $user = $this->_adminModel->getUserById($userid);
@@ -160,7 +154,6 @@ class UserController extends Zend_Controller_Action {
 
   public function sendmessageAction(){
     $admin = $this->_adminModel->getAdmin();
-    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     if (!$this->getRequest()->isPost()) {
       $this->_helper->redirector('index');
     }

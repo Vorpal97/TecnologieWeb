@@ -21,14 +21,13 @@ class AdminController extends Zend_Controller_Action
     $this->view->messageForm = $this->getMessageForm();
     $this->_faqModel = new Application_Model_Faq();
     $this->_adminModel = new Application_Model_Admin();
-
+    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
 
   }
 
   public function managefaqAction()
   {
     $this->view->azione = $this->getRequest()->getActionName();  
-    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     $totFaq = $this->_faqModel->getFaq();
 
     foreach ($totFaq as $faq) {
@@ -43,7 +42,6 @@ class AdminController extends Zend_Controller_Action
   public function rentstatsAction()
   {
     $this->view->azione = $this->getRequest()->getActionName();  
-    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     $rents = $this->_adminModel->getRentsByMonth();
     $this->view->assign(array('rents' => $rents));
 
@@ -52,7 +50,6 @@ class AdminController extends Zend_Controller_Action
   public function usermanagerAction()
   {
     $this->view->azione = $this->getRequest()->getActionName();  
-    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     $users = $this->_adminModel->getUserList();
     $this->view->assign(array('users' => $users));
   }
@@ -60,7 +57,6 @@ class AdminController extends Zend_Controller_Action
   public function staffmanagerAction()
   {
     $this->view->azione = $this->getRequest()->getActionName();  
-    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     $staffs = $this->_adminModel->getStaffList();
 
     $this->view->assign(array('staff' => $staffs));
@@ -104,7 +100,6 @@ class AdminController extends Zend_Controller_Action
   }
 
   public function addnewfaqAction(){
-    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     if (!$this->getRequest()->isPost()) {
       $this->_helper->redirector('index');
     }
@@ -128,7 +123,6 @@ class AdminController extends Zend_Controller_Action
   public function editfaqAction(){
      $this->view->azione = $this->getRequest()->getActionName();
     $urlHelper = $this->_helper->getHelper('url');
-    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     $faqId = $this->_getParam('faqid', null);
     $faq = $this->_adminModel->getFaqById($faqId);
 
@@ -146,7 +140,6 @@ class AdminController extends Zend_Controller_Action
 
   public function savefaqAction(){
     $faqId = $this->_getParam('faqid', null);
-    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     if($faqId == null){
       $this->_helper->redirector('index');
     }
@@ -163,7 +156,6 @@ class AdminController extends Zend_Controller_Action
   }
 
   public function addnewstaffmemberAction(){
-    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     if (!$this->getRequest()->isPost()) {
       $this->_helper->redirector('index');
     }
@@ -188,7 +180,6 @@ class AdminController extends Zend_Controller_Action
   public function editstaffmemberAction(){
     $this->view->azione = $this->getRequest()->getActionName();  
     $urlHelper = $this->_helper->getHelper('url');
-    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     $userid = $this->_getParam('userid', null);
     $member = $this->_adminModel->getStaffMemberById($userid);
 
@@ -205,7 +196,6 @@ class AdminController extends Zend_Controller_Action
   }
 
   public function savememberAction(){
-    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     $userid = $this->_getParam('userid', null);
 
     if($userid == null){
@@ -252,7 +242,6 @@ class AdminController extends Zend_Controller_Action
     $this->view->azione = $this->getRequest()->getActionName();  
     $userid = $this->_getParam('userid', null);
     $urlHelper = $this->_helper->getHelper('url');
-    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     $this->view->senders = $this->_adminModel->getSender();
     if($userid != null){
       $messaggi = $this->_adminModel->getUserMessage($userid);
@@ -273,7 +262,6 @@ class AdminController extends Zend_Controller_Action
 
   public function sendmessageAction(){
     $destinatario = $this->_getParam('userid', null);
-    $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     if (!$this->getRequest()->isPost()) {
       $this->_helper->redirector('index');
     }
