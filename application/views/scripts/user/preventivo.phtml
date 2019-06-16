@@ -37,9 +37,9 @@
                             $res = $this->date($in, $fin);
                             if ($res == 1) {
                                 //if (is_object($this->prenotazioni)){
-                                foreach ($this->prenotazioni as $prenotazioni) {
-                                    $inizio = $prenotazioni->data_inizio;
-                                    $fine = $prenotazioni->data_fine;
+                                foreach ($this->prenotazioni as $pren) {
+                                    $inizio = $pren->data_inizio;
+                                    $fine = $pren->data_fine;
                                     echo '<p>' . $inizio . '</p>';
                                     echo '<p>' . $fine . '</p>';
                                     if (($in <= $inizio && $fin >= $inizio) || ($in >= $inizio && $in <= $fine) || ($in <= $inizio && $fin >= $fine) || ($in == $inizio && $fin == $fine)) {
