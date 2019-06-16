@@ -21,12 +21,12 @@ class PublicController extends Zend_Controller_Action
         $this->_adminModel = new Application_Model_Admin();
         $this->_authService = new Application_Service_Auth();
         $this->view->registerForm = $this->getRegisterForm();
-        
+
     }
 
     public function indexAction()
     {
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
+        $this->view->livello = (string) $this->_authService->getIdentity()->autenticazione;
         $this->_logger->info('Attivato:    ' . __METHOD__);
         $this->view->azione = $this->getRequest()->getActionName();
     }
@@ -41,7 +41,7 @@ class PublicController extends Zend_Controller_Action
         $prezzoMin = $this->_getParam('minimo', null);
         $prezzoMax = $this->_getParam('massimo', null);
         $numeroPosti = $this->_getParam('posti', null);
-        
+
         $paged = $this->_getParam('pagina', 1);
         //$totAuto = $this->_catalogModel->getAuto();
 
@@ -58,30 +58,30 @@ class PublicController extends Zend_Controller_Action
         $this->view->assign(array('products' => $prods));
     }
 
-    public function validateloginAction() 
+    public function validateloginAction()
     {
         $this->_helper->getHelper('layout')->disableLayout();
     		$this->_helper->viewRenderer->setNoRender();
 
         $loginform = new Application_Form_Public_Auth_Login();
-        $response = $loginform->processAjax($_POST); 
+        $response = $loginform->processAjax($_POST);
         if ($response !== null) {
-        	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
+        	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);
         }
     }
-    
-    public function validateregisterAction() 
+
+    public function validateregisterAction()
     {
         $this->_helper->getHelper('layout')->disableLayout();
     		$this->_helper->viewRenderer->setNoRender();
 
         $registerform = new Application_Form_Public_Auth_Register();
-        $response = $registerform->processAjax($_POST); 
+        $response = $registerform->processAjax($_POST);
         if ($response !== null) {
-        	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
+        	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);
         }
     }
-    
+
     public function faqAction()
     {
         $this->view->livello = $this->_authService->getIdentity()->autenticazione;
@@ -145,7 +145,7 @@ class PublicController extends Zend_Controller_Action
             {
                 $this->_publicModel->addUser($values);
                 $this->_helper->redirector('login');
-            }    
+            }
     }
 
     private function getRegisterForm()
@@ -180,7 +180,7 @@ class PublicController extends Zend_Controller_Action
         $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         return $this->_helper->redirector('index', 'public');
     }
-    
+
     public function prenotazione(){
         $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $this->_logger->info('Attivato:    ' . __METHOD__);

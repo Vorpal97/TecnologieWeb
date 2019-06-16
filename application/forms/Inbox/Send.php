@@ -10,6 +10,7 @@ class Application_Form_Inbox_Send extends App_Form_Abstract
 
         $this->addElement('text', 'corpo', array(
             'style' => array("width: 40em;"),
+            'maxlength' =>'255',
             'label' => 'Messaggio:',
             'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true)),
             'required' =>true,
