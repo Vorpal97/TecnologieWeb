@@ -24,6 +24,11 @@ class AdminController extends Zend_Controller_Action
     $this->view->livello = $this->_authService->getIdentity()->autenticazione;
 
   }
+  
+  public function indexAction()
+    {
+        $this->_helper->redirector('index','public');
+    }
 
   public function managefaqAction()
   {

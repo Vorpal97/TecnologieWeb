@@ -20,6 +20,11 @@ class UserController extends Zend_Controller_Action {
         $this->view->messageForm = $this->getMessageForm();
         $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     }
+    
+    public function indexAction()
+    {
+        $this->_helper->redirector('index','public');
+    }
 
     public function getForm()
     {

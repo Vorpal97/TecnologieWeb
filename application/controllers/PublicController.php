@@ -20,20 +20,18 @@ class PublicController extends Zend_Controller_Action
         $this->_faqModel = new Application_Model_Faq();
         $this->_adminModel = new Application_Model_Admin();
         $this->_authService = new Application_Service_Auth();
-        $this->view->registerForm = $this->getRegisterForm();
-        
+        $this->view->registerForm = $this->getRegisterForm();   
     }
 
     public function indexAction()
     {
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
+        
         $this->_logger->info('Attivato:    ' . __METHOD__);
         $this->view->azione = $this->getRequest()->getActionName();
     }
 
     public function catalogAction()
     {
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $this->_logger->info('Attivato:    ' . __METHOD__);
         $this->view->azione = $this->getRequest()->getActionName();
         //parte per il db
@@ -84,7 +82,6 @@ class PublicController extends Zend_Controller_Action
     
     public function faqAction()
     {
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $this->view->azione = $this->getRequest()->getActionName();
         $this->_logger->info('Attivato:    ' . __METHOD__);
         $totFaq = $this->_faqModel->getFaq();
@@ -111,7 +108,6 @@ class PublicController extends Zend_Controller_Action
 
     public function profileAction()
     {
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $this->_logger->info('Attivato:    ' . __METHOD__);
     }
 
@@ -182,7 +178,6 @@ class PublicController extends Zend_Controller_Action
     }
     
     public function prenotazione(){
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $this->_logger->info('Attivato:    ' . __METHOD__);
         $this->view->azione = $this->getRequest()->getActionName();
     }

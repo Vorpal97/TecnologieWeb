@@ -18,6 +18,11 @@ class StaffController extends Zend_Controller_Action {
         $this->_reservationModel = new Application_Model_Reservation();
         $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     }
+    
+    public function indexAction()
+    {
+        $this->_helper->redirector('index','public');
+    }
 
     private function getinsertForm() {
 
