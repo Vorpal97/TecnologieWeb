@@ -50,6 +50,7 @@
         <h2>Amministratore</h2>
         <div id="messaggi" style="overflow: auto;height: 40em;">
         <ul>
+					<?php if(isset($this->messaggi)) : ?>
           <?php foreach ($this->messaggi as $messaggio) : ?>
           <li<?php if($messaggio->id_mittente == $this->user["id_utente"])
                       echo' class="senderm messageBorder"';
@@ -70,6 +71,7 @@
             </article>
           </li>
           <?php endforeach; ?>
+				<?php endif; ?>
         </ul>
       </div>
         <?php
