@@ -264,7 +264,7 @@ class AdminController extends Zend_Controller_Action
       $this->_messageform->setAction($urlHelper->url(array(
         'controller' => 'admin',
         'action' => 'sendmessage',
-        'destinatario' => $destinatario ),
+        'destinatario' => $userid ),
         'default'
       ));
 
