@@ -32,7 +32,7 @@ class AdminController extends Zend_Controller_Action
 
   public function managefaqAction()
   {
-    $this->view->azione = $this->getRequest()->getActionName();  
+    $this->view->azione = $this->getRequest()->getActionName();
     $totFaq = $this->_faqModel->getFaq();
 
     foreach ($totFaq as $faq) {
@@ -46,7 +46,7 @@ class AdminController extends Zend_Controller_Action
 
   public function rentstatsAction()
   {
-    $this->view->azione = $this->getRequest()->getActionName();  
+    $this->view->azione = $this->getRequest()->getActionName();
     $rents = $this->_adminModel->getRentsByMonth();
     $this->view->assign(array('rents' => $rents));
 
@@ -54,14 +54,14 @@ class AdminController extends Zend_Controller_Action
 
   public function usermanagerAction()
   {
-    $this->view->azione = $this->getRequest()->getActionName();  
+    $this->view->azione = $this->getRequest()->getActionName();
     $users = $this->_adminModel->getUserList();
     $this->view->assign(array('users' => $users));
   }
 
   public function staffmanagerAction()
   {
-    $this->view->azione = $this->getRequest()->getActionName();  
+    $this->view->azione = $this->getRequest()->getActionName();
     $staffs = $this->_adminModel->getStaffList();
 
     $this->view->assign(array('staff' => $staffs));
@@ -183,7 +183,7 @@ class AdminController extends Zend_Controller_Action
   }
 
   public function editstaffmemberAction(){
-    $this->view->azione = $this->getRequest()->getActionName();  
+    $this->view->azione = $this->getRequest()->getActionName();
     $urlHelper = $this->_helper->getHelper('url');
     $userid = $this->_getParam('userid', null);
     $member = $this->_adminModel->getStaffMemberById($userid);
@@ -244,10 +244,11 @@ class AdminController extends Zend_Controller_Action
   }
 
   public function messaggiAction(){
-    $this->view->azione = $this->getRequest()->getActionName();  
+    $this->view->azione = $this->getRequest()->getActionName();
     $userid = $this->_getParam('userid', null);
     $urlHelper = $this->_helper->getHelper('url');
     $this->view->senders = $this->_adminModel->getSender();
+    $this->view->users = $this->_adminModel->getUsers();
     if($userid != null){
       $messaggi = $this->_adminModel->getUserMessage($userid);
       $user = $this->_adminModel->getUserById($userid);

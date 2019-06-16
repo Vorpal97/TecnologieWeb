@@ -92,6 +92,10 @@ class Application_Model_Admin extends App_Model_Abstract
         return $this->getResource('Sender')->getSender();
     }
 
+    public function getUsers(){
+        return $this->getResource('User')->getUsers();
+    }
+
     public function getUserMessage($userid){
       return $this->getResource('Messaggio')->getUserMessage($userid);
     }

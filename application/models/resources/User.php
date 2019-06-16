@@ -56,4 +56,9 @@ class Application_Resource_User extends Zend_Db_Table_Abstract
     return $this->fetchRow($this->select()->where('autenticazione LIKE "admin"'));
   }
 
+  public function getUsers(){
+    return $this->fetchAll($this->select()->where('autenticazione LIKE "user"'));
+
+  }
+
 }
