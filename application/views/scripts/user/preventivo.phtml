@@ -1,9 +1,9 @@
-<div class="bgded overlay" style="background-image:url('http://localhost/TecnologieWeb/public/images/samples/copertinaGrandTour.png'); padding-bottom:13%; height: 400px;">
-    <section id="pageintro" class="hoc clear">
-        <div>
-            <h4 class="heading">Prenota in pochi click</h4>
-        </div>
-    </section>
+<?php echo '<div class="bgded overlay" style="background-image:' . $this->immagineBack("copertinaGrandTour.png") . '; padding-bottom:13%; height: 400px;">' ?>
+<section id="pageintro" class="hoc clear">
+    <div>
+        <h4 class="heading">Prenota in pochi click</h4>
+    </div>
+</section>
 </div>
 <div style="text-align: center; background-color: #F6F6F6;">
     <center>
@@ -27,45 +27,50 @@
                             </form>
                         </div>
                         <?php
-                        $in = $_POST['dataInizio'];
-                        $fin = $_POST['dataFine'];
-                        $idU = $this->id_utente;
-                        $c = 0;
-                        $res = $this->date($in, $fin);
-                        if ($res == 1) {
-                            foreach ($this->prenotazioni as $prenotazioni) {
-                                $inizio = $prenotazioni->data_inizio;
-                                $fine = $prenotazioni->data_fine;
-                                if (($in <= $inizio && $fin >= $inizio) || ($in >= $inizio && $in <= $fine) || ($in <= $inizio && $fin >= $fine) || ($in == $inizio && $fin == $fine)) {
-                                    echo '<p style="text-align: center;">L\'auto non è disponibile <br> dal: ' . $inizio . ' al: ' . $fine . '.</p>';
-                                    $c += 1;
+                        if (isset($_POST['dataInizio']) && isset($_POST['dataFine'])) {
+                            $in = $_POST['dataInizio'];
+                            $fin = $_POST['dataFine'];
+                            $idU = $this->id_utente;
+                            $c = 0;
+                            $res = $this->date($in, $fin);
+                            if ($res == 1) {?>
+                                <?php foreach ($this->prenotazioni as $pren) :?>
+                                    <?php $inizio = $pren->data_inizio;
+                                    $fine = $pren->data_fine;
+                                    if (($in <= $inizio && $fin >= $inizio) || ($in >= $inizio && $in <= $fine) || ($in <= $inizio && $fin >= $fine) || ($in == $inizio && $fin == $fine)) {
+                                        echo '<p style="text-align: center;">L\'auto non è disponibile <br> dal: ' . $inizio . ' al: ' . $fine . '.</p>';
+                                        $c += 1;
+                                    }
+                                    ?>
+                                    <?php endforeach;?>
+                        <?php
+                                if ($c >= 1) {
+                                    echo '<p style="text-align: center;">Si prega di scegliere un\'altra data</p>';
+                                } else {
+                                    echo '<p style="text-align: center;">Confermare la prenotazione</p><p style="text-align: center;">dal: ' . $in . ' al:' . $fin . '?</p>';
+                                    $durata = $this->durata($in, $fin);
+                                    echo '<p style="text-align: center;">Durata: ' . $durata . ' giorni</p>';
+                                    $style = 'style="text-align: center;"';
+                                    $tipo = 'Preventivo';
+                                    $prezzo = $auto->prezzo;
+                                    $costo = $prezzo * $durata;
+                                    echo $this->costo($auto->prezzo, $durata, $tipo, $style);
+                                    echo '<button onclick="window.location.href =\' ' . $this->url(array('controller' => 'user',
+                                        'action' => 'prenotazione',
+                                        'id_auto' => $auto->id_auto,
+                                        'data_inizio' => $in,
+                                        'data_fine' => $fin,
+                                        'id_utente' => $idU,
+                                        'costo' => $costo,
+                                        'durata' => $durata), 'default', true) . '\'">Prenota</button>';
                                 }
-                            }
-                            if ($c >= 1) {
-                                echo '<p style="text-align: center;">Si prega di scegliere un\'altra data</p>';
                             } else {
-                                echo '<p style="text-align: center;">Confermare la prenotazione</p><p style="text-align: center;">dal: ' . $in . ' al:' . $fin . '?</p>';
-                                $durata = $this->durata($in, $fin);
-                                echo '<p style="text-align: center;">Durata: ' . $durata . ' giorni</p>';
-                                $style = 'style="text-align: center;"';
-                                $tipo = 'Preventivo';
-                                $prezzo = $auto->prezzo;
-                                $costo = $prezzo * $durata;
-                                echo $this->costo($auto->prezzo, $durata, $tipo, $style);
-                                echo '<button onclick="window.location.href =\' ' . $this->url(array('controller' => 'user',
-                                    'action' => 'prenotazione',
-                                    'id_auto' => $auto->id_auto,
-                                    'data_inizio' => $in,
-                                    'data_fine' => $fin,
-                                    'id_utente' => $idU,
-                                    'costo' => $costo,
-                                    'durata' => $durata), 'default', true) . '\'">Prenota</button>';
+                                echo $res;
                             }
-                        } else {
-                            echo $res;
                         }
                         ?>
                     </div>
+                    
 
                     <ul class="metaPren">
                         <?php echo '<li>prezzo: ' . $this->prezzo($auto->prezzo) . '</li>' ?>
@@ -79,7 +84,6 @@
                         <?php echo '<li>targa: ' . $auto->targa . '</li>' ?>
                     </ul>
                 </div>
-
             </div>
         </div>
     </center>

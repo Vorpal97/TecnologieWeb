@@ -1,4 +1,4 @@
-<div class="bgded overlay" style="background-image:url('http://localhost/TecnologieWeb/public/images/samples/faq.jpg'); background-position: center;">
+<?php echo '<div class="bgded overlay" style="background-image:' . $this->immagineBack("faq.jpg") . '; background-position: center;">'?>
   <section id="breadcrumb" class="hoc clear">
     <h6 class="heading">FAQ</h6>
     <ul>
@@ -26,12 +26,12 @@
                     <a href="<?= $this->url(array('controller' => 'admin',
 		     										                      'action' => 'removefaq',
                                                   'faqid' => $faq->id_faq),
-                                                  'default', true)?>"> <b> <img src="http://localhost/TecnologieWeb/public/images/icon/trash.png" style="width:20px; height:20px;"> </b> </a>
+                                                  'default', true)?>"> <b> <?php echo $this->immaginiIcon("trash.png")?></b> </a>
                                                   &nbsp
                     <a href="<?= $this->url(array('controller' => 'admin',
                                                   'action' => 'editfaq',
                                                   'faqid' => $faq->id_faq),
-                                                  'default', true)?>"> <b> <img src="http://localhost/TecnologieWeb/public/images/icon/edit.png" style="width:20px; height:20px;"> </b> </a>
+                                                  'default', true)?>"> <b> <?php echo $this->immaginiIcon("edit.png")?></b> </a>
                     </div>
                   </address>
                   <?php echo $faq->time_stamp ?>

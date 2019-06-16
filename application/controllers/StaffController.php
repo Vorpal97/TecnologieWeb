@@ -19,6 +19,10 @@ class StaffController extends Zend_Controller_Action {
         $this->view->livello = $this->_authService->getIdentity()->autenticazione;
     }
 
+    public function indexAction() {
+        $this->_helper->redirector('index', 'public');
+    }
+
     private function getinsertForm() {
 
         $urlHelper = $this->_helper->getHelper('url');
@@ -40,32 +44,28 @@ class StaffController extends Zend_Controller_Action {
         ));
         return $this->_editform;
     }
-    
-    public function validateinsertAction() 
-    {
+
+    public function validateinsertAction() {
         $this->_helper->getHelper('layout')->disableLayout();
-    		$this->_helper->viewRenderer->setNoRender();
+        $this->_helper->viewRenderer->setNoRender();
 
         $insertform = new Application_Form_Staff_Auto_Insert();
-        $response = $insertform->processAjax($_POST); 
+        $response = $insertform->processAjax($_POST);
         if ($response !== null) {
-        	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
+            $this->getResponse()->setHeader('Content-type', 'application/json')->setBody($response);
         }
     }
-    
-    public function validateeditAction() 
-    {
+
+    public function validateeditAction() {
         $this->_helper->getHelper('layout')->disableLayout();
-    		$this->_helper->viewRenderer->setNoRender();
+        $this->_helper->viewRenderer->setNoRender();
 
         $editform = new Application_Form_Staff_Auto_Edit();
-        $response = $editform->processAjax($_POST); 
+        $response = $editform->processAjax($_POST);
         if ($response !== null) {
-        	   $this->getResponse()->setHeader('Content-type','application/json')->setBody($response);        	
+            $this->getResponse()->setHeader('Content-type', 'application/json')->setBody($response);
         }
     }
-    
-    
 
     public function updateautoAction() {
         if (!$this->getRequest()->isPost()) {
@@ -91,7 +91,7 @@ class StaffController extends Zend_Controller_Action {
         }
         $values = $form->getValues();
         $this->_staffModel->addAuto($values);
-        $this->_helper->redirector('catalog','public');
+        $this->_helper->redirector('catalog', 'public');
     }
 
     public function inserisciAction() {
@@ -129,7 +129,7 @@ class StaffController extends Zend_Controller_Action {
         $mese = $this->_getParam('mese', null);
         $oggi = date("m");
         $anno = date("Y");
-        
+
         switch ($mese) {
             case 1:
                 $query = 'Gennaio';
@@ -211,6 +211,11 @@ class StaffController extends Zend_Controller_Action {
         } else {
             $pren = $this->_reservationModel->getPrenotazioni($oggi, $anno);
         }
-        $this->view->assign(array('prenotazioni' => $pren, 'mese' => $query, 'oggi' => $query2));
+        if (!is_null($mese)) {
+            $this->view->assign(array('prenotazioni' => $pren, 'mese' => $query, 'oggi' => $query2));
+        } else {
+            $this->view->assign(array('prenotazioni' => $pren, 'oggi' => $query2));
+        }
     }
+
 }
