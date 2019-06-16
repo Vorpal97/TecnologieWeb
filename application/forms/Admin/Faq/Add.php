@@ -10,6 +10,7 @@ class Application_Form_Admin_Faq_Add extends App_Form_Abstract
 
         $this->addElement('textarea', 'domanda', array(
             'style' => array("height: 150px;"),
+            'id' =>'domanda',
             'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true)),
             'required' =>true,
             'label' => 'Domanda',
@@ -18,6 +19,7 @@ class Application_Form_Admin_Faq_Add extends App_Form_Abstract
 
             $this->addElement('textarea', 'risposta', array(
                 'style' => array("height: 150px;"),
+                'id' =>'risposta',
                 'validators' => array(array('validator'=>'NotEmpty','options'=>array('messages'=>'Il campo non può essere lasciato vuoto'),'breakChainOnFailure'=>true)),
                 'required' =>true,
                 'label' => 'Risposta',
