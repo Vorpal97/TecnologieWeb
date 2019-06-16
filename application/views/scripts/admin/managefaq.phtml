@@ -2,7 +2,9 @@
   <section id="breadcrumb" class="hoc clear">
     <h6 class="heading">FAQ</h6>
     <ul>
-      <li><a href="">Gestisci FAQ</a></li>
+      <li><a href="<?= $this->url(array('controller' => 'admin',
+                                    'action' => 'managefaq'),
+                                    'default', true)?>">Gestisci FAQ</a></li>
       <li></li>
     </ul>
   </section>
