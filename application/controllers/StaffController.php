@@ -15,7 +15,6 @@ class StaffController extends Zend_Controller_Action {
         $this->view->insertform = $this->getinsertForm();
         $this->view->editform = $this->geteditForm();
         $this->_catalogModel = new Application_Model_Catalog();
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $this->_reservationModel = new Application_Model_Reservation();
     }
 
@@ -94,15 +93,13 @@ class StaffController extends Zend_Controller_Action {
         $this->_helper->redirector('inserisci');
     }
 
-    public function indexAction() {
-        // action body
-    }
-
     public function inserisciAction() {
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $this->view->azione = $this->getRequest()->getActionName();
     }
 
     public function modificaAction() {
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $this->view->azione = $this->getRequest()->getActionName();
         $autoid = $this->_getParam('idauto', null);
         $urlHelper = $this->_helper->getHelper('url');
@@ -128,6 +125,7 @@ class StaffController extends Zend_Controller_Action {
     }
 
     public function visualizzaAction() {
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $this->view->azione = $this->getRequest()->getActionName();
 
         $mese = $this->_getParam('mese', null);

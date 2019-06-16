@@ -13,7 +13,6 @@ class UserController extends Zend_Controller_Action {
         $this->_adminModel = new Application_Model_Admin();
         $this->_helper->layout->setLayout('main');
         $this->_authService = new Application_Service_Auth();
-        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_reservationModel = new Application_Model_Reservation();
         $this->view->id_utente = $this->_authService->getIdentity()->id_utente;
@@ -44,6 +43,7 @@ class UserController extends Zend_Controller_Action {
 
     public function updateprofileAction()
     {
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         if(!$this->getRequest()->isPost())
         {
             $this->_helper->redirector('index','public');
@@ -87,9 +87,6 @@ class UserController extends Zend_Controller_Action {
         return $loggeduser;
     }
 
-    public function indexAction() {
-        $this->view->azione = $this->getRequest()->getActionName();
-    }
 
     public function logoutAction() {
         $this->_authService->logout();
@@ -97,6 +94,7 @@ class UserController extends Zend_Controller_Action {
     }
 
     public function profiloAction() {
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $this->view->azione = $this->getRequest()->getActionName();
         $data = $this->getloggeduserAction();
         $this->_form->populate($data->toArray());
@@ -110,13 +108,8 @@ class UserController extends Zend_Controller_Action {
         return $this->_form;
     }
 
-    public function editaprofiloAction() {
-        // action body
-    }
-
     public function preventivoAction() {
-
-
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $idAuto = $this->_getParam('idAuto', null);
         $inizio = $this->_getParam('dataInizio');
         $fine = $this->_getParam('dataFine');
@@ -131,7 +124,7 @@ class UserController extends Zend_Controller_Action {
     }
 
     public function prenotazioneAction() {
-
+        $this->view->livello = $this->_authService->getIdentity()->autenticazione;
         $dataInizio = $this->_getParam('data_inizio', null);
         $dataFine = $this->_getParam('data_fine', null);
         $idAuto = $this->_getParam('id_auto', null);
@@ -149,6 +142,7 @@ class UserController extends Zend_Controller_Action {
 
     public function messaggiAction(){
       $userid = $this->_authService->getIdentity()->id_utente;
+      $this->view->azione = $this->getRequest()->getActionName();
       $urlHelper = $this->_helper->getHelper('url');
       $this->view->livello = $this->_authService->getIdentity()->autenticazione;
       if($userid != null){
