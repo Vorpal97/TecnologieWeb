@@ -243,8 +243,8 @@
 }
 .resMensile tr:nth-child(odd) {
     background-color: #F6F6F6;
-  }
+}
 
-  .errorsfaq{
-      width:150px;
-  }
+.errorsfaq{
+    width:150px;
+}
