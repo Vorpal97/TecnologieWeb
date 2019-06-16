@@ -7,7 +7,7 @@
 /* DEMO ONLY */
 </style>
 
-<div class="bgded overlay" style="background-image:url('http://localhost/TecnologieWeb/public/images/samples/faq.jpg'); background-position: center;">
+<?php echo '<div class="bgded overlay" style="background-image:' . $this->immagineBack("faq.jpg") . '; background-position: center;">'?>
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
@@ -47,12 +47,12 @@
                   <a href="<?= $this->url(array('controller' => 'admin',
                                                 'action' => 'editstaffmember',
                                                 'userid' => $member->id_utente),
-                                                'default', true)?>"> <img src="http://localhost/TecnologieWeb/public/images/icon/edit.png" style="width:20px; height:20px;"> </a>
+                                                'default', true)?>"> <?php echo $this->immaginiIcon("edit.png")?></b> </a> </a>
                                                  &nbsp
                   <a href="<?= $this->url(array('controller' => 'admin',
                                                 'action' => 'removestaffmember',
                                                 'userid' => $member->id_utente),
-                                                'default', true)?>"> <img src="http://localhost/TecnologieWeb/public/images/icon/trash.png" style="width:20px; height:20px;"> </a>
+                                                'default', true)?>"> <?php echo $this->immaginiIcon("trash.png")?></b> </a> </a>
                 </address>
               </header>
               <div class="comcont">

@@ -3,6 +3,8 @@
         <p>Vuoi prenotare un'auto?</p>
         <p>Effettua il login o registrati</p>
     </div>
-    <button style="width: 40%; height: 25px; position: relative; margin-left: 10px; float: left;" onclick="window.location.href = 'http:/TecnologieWeb/public/public/login'">Login</button>
-    <button style="width: 40%; height: 25px; position: relative; margin-right: 10px; float: right;" onclick="window.location.href = 'http:/TecnologieWeb/public/public/register'">Registrati</button>
+    <?php echo '<button style="width: 40%; height: 25px; position: relative; margin-left: 10px; float: left;" onclick="window.location.href =\' ' . $this->url(array('controller' => 'public',
+                                    'action' => 'login'), 'default', true) . '\'">Login</button>';
+    echo '<button style="width: 40%; height: 25px; position: relative; margin-right: 10px; float: right;" onclick="window.location.href =\' ' . $this->url(array('controller' => 'public',
+                                    'action' => 'register'), 'default', true) . '\'">Registrati</button>';?>
 </div>

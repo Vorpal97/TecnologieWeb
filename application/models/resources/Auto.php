@@ -54,15 +54,6 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract {
         return $this->fetchAll($select);
     }
 
-    /* public function getAutoByPosti ($posti){
-
-      $query = 'n_posti ==' . $posti;
-      $select = $this->select()
-      ->where($quey)
-      ->order('marca');
-      return $this->fetchAll();
-      } */
-
     public function getAutoByPosti($posti) {
 
         $query = 'n_posti >= ' . $posti;

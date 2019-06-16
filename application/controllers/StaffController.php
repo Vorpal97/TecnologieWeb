@@ -216,6 +216,9 @@ class StaffController extends Zend_Controller_Action {
         } else {
             $pren = $this->_reservationModel->getPrenotazioni($oggi, $anno);
         }
+        if (!is_null($mese)){
         $this->view->assign(array('prenotazioni' => $pren, 'mese' => $query, 'oggi' => $query2));
+        }
+        else {$this->view->assign(array('prenotazioni' => $pren, 'oggi' => $query2));}
     }
 }
