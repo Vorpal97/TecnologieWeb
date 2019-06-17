@@ -22,7 +22,8 @@ class Application_Resource_User extends Zend_Db_Table_Abstract
 
   public function getUser($user)
   {
-    return $this->fetchRow($this->select()->where('username = ?', $user));
+      $query = 'username = \'' . $user . '\' AND abilitato = \'1\'';
+    return $this->fetchRow($this->select()->where($query));
   }
 
   public function getUserList()

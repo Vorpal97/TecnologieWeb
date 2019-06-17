@@ -1,33 +1,36 @@
-<?php echo '<div class="bgded overlay" style="background-image:' . $this->immagineBack("copertinaGrandTour.png") . '; padding-bottom:13%; height: 400px;">' ?>
-    <section id="pageintro" class="hoc clear">
-        <div>
-            <h4 class="heading">Prenota in pochi click</h4>
-        </div>
-    </section>
-</div>
-<div class="paginaCat">
-
-    <div class="prod">
-        <h1 style="color: #A2B70D; text-align: center;">Prenotazione avvenuta con successo!!</h1>
-        <div style="text-align: center">
-            <b style="color:#A2B70D;">Dettaglio prenotazione</b> 
-            <?php
-            $auto = $this->dataAuto;
-            $inizio = $this->data_inizio;
-            $fine = $this->data_fine;
-            $ida = $this->id_auto;
-            $idu = $this->id_utente;
-            $prezzo = $auto->prezzo;
-            $durata = $this->durata($inizio, $fine);
-            $tipo = 'Costo';
-            echo '<p>Data di inizio: ' . $inizio . '</p>';
-            echo '<p>Data di fine: ' . $fine . '</p>';
-            echo '<p>Durata: ' . $durata . ' giorni</p>';
-            echo $this->costo($prezzo, $durata, $tipo);
-            echo '<button onclick="window.location.href =\' ' . $this->url(array('controller' => 'public',
-                'action' => 'catalog',), 'default', true) . '\'">Torna al catalogo</button>';
-            ?>
-        </div>
+<?php echo '<div class="bgded overlay" style="background-image:' . $this->immagineBack("copertinaGrandTour.png") . '; padding-bottom:13%; height: 400px; background-position-y: center;">' ?>
+<section id="pageintro" class="hoc clear">
+    <div>
+        <h4 class="heading">Prenota in pochi click</h4>
     </div>
+</section>
+</div>
+<div id="paginaPren" style="text-align: center; background-color: #F6F6F6;">
+    <center>
+        <div class="paginaCat">
+            <div class="prod">
+                <h1 style="color: #A2B70D; text-align: center;">Prenotazione avvenuta con successo!!</h1>
+                <div style="text-align: center">
+                    <b style="color:#A2B70D;">Dettaglio prenotazione</b> 
+                    <?php
+                    $auto = $this->dataAuto;
+                    $inizio = $this->data_inizio;
+                    $fine = $this->data_fine;
+                    $ida = $this->id_auto;
+                    $idu = $this->id_utente;
+                    $prezzo = $auto->prezzo;
+                    $durata = $this->durata($inizio, $fine);
+                    $tipo = 'Costo';
+                    echo '<p>Data di inizio: ' . $inizio . '</p>';
+                    echo '<p>Data di fine: ' . $fine . '</p>';
+                    echo '<p>Durata: ' . $durata . ' giorni</p>';
+                    echo $this->costo($prezzo, $durata, $tipo);
+                    echo '<button onclick="window.location.href =\' ' . $this->url(array('controller' => 'public',
+                        'action' => 'catalog',), 'default', true) . '\'">Torna al catalogo</button>';
+                    ?>
+                </div>
+            </div>
 
+        </div>
+    </center>
 </div>
