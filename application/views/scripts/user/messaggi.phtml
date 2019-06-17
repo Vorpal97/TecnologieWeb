@@ -17,17 +17,17 @@
           }).length === 0;
       }
 
-      $inputs.on('blur', function() {
-          $submit.prop("disabled", !checkEmpty());
-      }).blur();
-  });
+			$inputs.on('keyup blur', function() {
+		        $submit.prop("disabled", !checkEmpty());
+		    }).keyup();
+		});
 
 <?php $this->headScript()->captureEnd() ?>
 <?php echo '<div class="bgded overlay" style="background-image:' . $this->immagineBack("faq.jpg") . '; background-position: center;">' ?>
   <!-- ################################################################################################ -->
   <section id="breadcrumb" class="hoc clear">
     <!-- ################################################################################################ -->
-    <h6 class="heading">Messagga con l'amministratore</h6>
+    <h6 class="heading">Messaggia con l'amministratore</h6>
     <!-- ################################################################################################ -->
     <!-- ################################################################################################ -->
   </section>
