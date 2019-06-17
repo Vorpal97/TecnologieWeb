@@ -13,9 +13,9 @@
           }).length === 0;
       }
 
-      $inputs.on('blur', function() {
-          $submit.prop("disabled", !checkEmpty());
-      }).blur();
+			$inputs.on('keyup blur', function() {
+		        $submit.prop("disabled", !checkEmpty());
+		    }).keyup();
   });
 
 <?php $this->headScript()->captureEnd() ?>

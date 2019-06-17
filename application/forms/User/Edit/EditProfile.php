@@ -15,13 +15,13 @@
                 ));
             
             $this->addElement('password', 'oldpass', array(
-                'validators' => array(array('StringLength', true, array(5,15,'messages'=>'La password deve contenere min 5 caratteri e max 15'))),
+                'validators' => array(array('StringLength', true, array(4,15,'messages'=>'La password deve contenere min 4 caratteri e max 15'))),
                 'label' => 'Password attuale',
                 'decorators' => $this->elementDecorators,
             ));
             
             $this->addElement('password', 'psw', array(
-                'validators' => array(array('StringLength', true, array(5,15,'messages'=>'La password deve contenere min 5 caratteri e max 15'))),
+                'validators' => array(array('StringLength', true, array(4,15,'messages'=>'La password deve contenere min 4 caratteri e max 15'))),
                 'label' => 'Nuova Password',
                 'decorators' => $this->elementDecorators,
             ));
